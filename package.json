@@ -1,6 +1,6 @@
 {
   "name": "@bond-london/gatsby-graphcms-components",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Components shared across various Bond London projects",
   "main": "index.js",
   "types": "index.d.ts",
