@@ -57,11 +57,30 @@
   },
   "peerDependencies": {
     "gatsby": "^3.0.0",
+    "gatsby-plugin-image": "^1.14.1",
     "react": "^16.x || ^17.x",
     "react-helmet": "^6.1.0"
   },
   "optionalDependencies": {},
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
   "dependencies": {
-    "classnames": "^2.3.1"
+    "@graphcms/rich-text-react-renderer": "^0.3.2",
+    "@types/react-helmet": "^6.1.4",
+    "classnames": "^2.3.1",
+    "gatsby-plugin-image": "^1.14.1",
+    "lottie-web": "^5.7.14",
+    "react-helmet": "^6.1.0"
+  },
+  "release-it": {
+    "hooks": {
+      "before:init": [
+        "yarn run format",
+        "yarn run prepare"
+      ]
+    }
   }
 }
