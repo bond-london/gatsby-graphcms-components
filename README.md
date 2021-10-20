@@ -33,8 +33,8 @@ plugins: [
     resolve: `gatsby-source-filesystem`,
     options: {
       path: `${__dirname}/locales`,
-      name: `locale`
-    }
+      name: `locale`,
+    },
   },
   {
     resolve: `@bond-london/gatsby-plugin-cms-i18next`,
@@ -46,24 +46,24 @@ plugins: [
       // you can pass any i18next options
       i18nextOptions: {
         interpolation: {
-          escapeValue: false // not needed for react as it escapes by default
+          escapeValue: false, // not needed for react as it escapes by default
         },
         keySeparator: false,
-        nsSeparator: false
+        nsSeparator: false,
       },
       pages: [
         {
-          matchPath: '/:lang?/blog/:uid',
+          matchPath: "/:lang?/blog/:uid",
           getLanguageFromPath: true,
-          excludeLanguages: ['es']
+          excludeLanguages: ["es"],
         },
         {
-          matchPath: '/preview',
-          languages: ['en']
-        }
-      ]
-    }
-  }
+          matchPath: "/preview",
+          languages: ["en"],
+        },
+      ],
+    },
+  },
 ];
 ```
 
@@ -103,17 +103,17 @@ Use react i18next [`useTranslation`](https://react.i18next.com/latest/usetransla
 Replace [Gatsby `Link`](https://www.gatsbyjs.org/docs/gatsby-link) component with the `Link` component exported from `gatsby-plugin-cms-i18next`
 
 ```javascript
-import React from 'react';
-import {Link, Trans, useTranslation} from 'gatsby-plugin-cms-i18next';
-import Layout from '../components/layout';
-import Image from '../components/image';
-import SEO from '../components/seo';
+import React from "react";
+import { Link, Trans, useTranslation } from "gatsby-plugin-cms-i18next";
+import Layout from "../components/layout";
+import Image from "../components/image";
+import SEO from "../components/seo";
 
 const IndexPage = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <Layout>
-      <SEO title={t('Home')} />
+      <SEO title={t("Home")} />
       <h1>
         <Trans>Hi people</Trans>
       </h1>
@@ -123,7 +123,7 @@ const IndexPage = () => {
       <p>
         <Trans>Now go build something great.</Trans>
       </p>
-      <div style={{maxWidth: `300px`, marginBottom: `1.45rem`}}>
+      <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
         <Image />
       </div>
       <Link to="/page-2/">
@@ -137,7 +137,7 @@ export default IndexPage;
 
 export const query = graphql`
   query ($language: String!) {
-    locales: allLocale(filter: {language: {eq: $language}}) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
       edges {
         node {
           ns
@@ -169,19 +169,19 @@ This example is not using semantic keys instead the entire message will be used 
 `gatsby-plugin-cms-i18next` exposes `useI18next` hook
 
 ```javascript
-import {Link, useI18next} from 'gatsby-plugin-cms-i18next';
-import React from 'react';
+import { Link, useI18next } from "gatsby-plugin-cms-i18next";
+import React from "react";
 
-const Header = ({siteTitle}) => {
-  const {languages, changeLanguage} = useI18next();
+const Header = ({ siteTitle }) => {
+  const { languages, changeLanguage } = useI18next();
   return (
     <header className="main-header">
-      <h1 style={{margin: 0}}>
+      <h1 style={{ margin: 0 }}>
         <Link
           to="/"
           style={{
             color: `white`,
-            textDecoration: `none`
+            textDecoration: `none`,
           }}
         >
           {siteTitle}
@@ -210,20 +210,20 @@ const Header = ({siteTitle}) => {
 Or a more SEO friendly version using `Link` component
 
 ```javascript
-import {Link, useI18next} from 'gatsby-plugin-cms-i18next';
-import PropTypes from 'prop-types';
-import React from 'react';
+import { Link, useI18next } from "gatsby-plugin-cms-i18next";
+import PropTypes from "prop-types";
+import React from "react";
 
-const Header = ({siteTitle}) => {
-  const {languages, originalPath} = useI18next();
+const Header = ({ siteTitle }) => {
+  const { languages, originalPath } = useI18next();
   return (
     <header className="main-header">
-      <h1 style={{margin: 0}}>
+      <h1 style={{ margin: 0 }}>
         <Link
           to="/"
           style={{
             color: `white`,
-            textDecoration: `none`
+            textDecoration: `none`,
           }}
         >
           {siteTitle}
@@ -272,7 +272,7 @@ const Header = ({siteTitle}) => {
 `Link` component is identical to [Gatsby Link component](https://www.gatsbyjs.org/docs/gatsby-link/) except that you can provide additional `language` prop to create a link to a page with different language
 
 ```javascript
-import {Link} from 'gatsby-plugin-cms-i18next';
+import { Link } from "gatsby-plugin-cms-i18next";
 
 const SpanishAboutLink = () => (
   <Link to="/about" language="es">
@@ -321,7 +321,7 @@ This react hook returns `I18nextContext`, object and additional helper functions
 `useI18next` also exposes the output of react i18next [`useTranslation`](https://react.i18next.com/latest/usetranslation-hook) so you can use
 
 ```javascript
-const {t} = useI18next();
+const { t } = useI18next();
 ```
 
 ## How to exclude pages that already have language key in path
@@ -331,10 +331,10 @@ For example if you have some other plugin or script that generates your blog pos
 ```js
 pages: [
   {
-    matchPath: '/:lang?/blog/:uid',
+    matchPath: "/:lang?/blog/:uid",
     getLanguageFromPath: true,
-    excludeLanguages: ['es']
-  }
+    excludeLanguages: ["es"],
+  },
 ];
 ```
 
@@ -354,9 +354,9 @@ You can limit the languages used to generate versions of a specific page, for ex
 ```js
 pages: [
   {
-    matchPath: '/preview',
-    languages: ['en']
-  }
+    matchPath: "/preview",
+    languages: ["en"],
+  },
 ];
 ```
 
@@ -367,7 +367,9 @@ You can use `ns` and `language` field in gatsby page queries to fetch specific n
 ```javascript
 export const query = graphql`
   query ($language: String!) {
-    locales: allLocale(filter: {ns: {in: ["common", "index"]}, language: {eq: $language}}) {
+    locales: allLocale(
+      filter: { ns: { in: ["common", "index"] }, language: { eq: $language } }
+    ) {
       edges {
         node {
           ns
@@ -390,7 +392,7 @@ You can use `language` variable in gatsby page queries to fetch additional data 
 ```javascript
 export const query = graphql`
   query ($language: String!) {
-    dataJson(language: {eq: $language}) {
+    dataJson(language: { eq: $language }) {
       ...DataFragment
     }
   }
@@ -405,9 +407,9 @@ You can use [gatsby-plugin-sitemap](https://www.gatsbyjs.org/packages/gatsby-plu
 // In your gatsby-config.js
 plugins: [
   {
-    resolve: 'gatsby-plugin-sitemap',
+    resolve: "gatsby-plugin-sitemap",
     options: {
-      exclude: ['/**/404', '/**/404.html'],
+      exclude: ["/**/404", "/**/404.html"],
       query: `
           {
             site {
@@ -431,29 +433,30 @@ plugins: [
             }
           }
         `,
-      serialize: ({site, allSitePage}) => {
+      serialize: ({ site, allSitePage }) => {
         return allSitePage.edges.map((edge) => {
-          const {languages, originalPath, defaultLanguage} = edge.node.context.i18n;
-          const {siteUrl} = site.siteMetadata;
+          const { languages, originalPath, defaultLanguage } =
+            edge.node.context.i18n;
+          const { siteUrl } = site.siteMetadata;
           const url = siteUrl + originalPath;
           const links = [
-            {lang: defaultLanguage, url},
-            {lang: 'x-default', url}
+            { lang: defaultLanguage, url },
+            { lang: "x-default", url },
           ];
           languages.forEach((lang) => {
             if (lang === defaultLanguage) return;
-            links.push({lang, url: `${siteUrl}/${lang}${originalPath}`});
+            links.push({ lang, url: `${siteUrl}/${lang}${originalPath}` });
           });
           return {
             url,
-            changefreq: 'daily',
-            priority: originalPath === '/' ? 1.0 : 0.7,
-            links
+            changefreq: "daily",
+            priority: originalPath === "/" ? 1.0 : 0.7,
+            links,
           };
         });
-      }
-    }
-  }
+      },
+    },
+  },
 ];
 ```
 

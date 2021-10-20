@@ -1,7 +1,7 @@
-import classNames from 'classnames';
-import {IGatsbyImageData} from 'gatsby-plugin-image';
-import React, {useCallback, useEffect, useState} from 'react';
-import {Thumbnail, AutoVideo} from '.';
+import classNames from "classnames";
+import { IGatsbyImageData } from "gatsby-plugin-image";
+import React, { useCallback, useEffect, useState } from "react";
+import { Thumbnail, AutoVideo } from ".";
 
 interface Props {
   videoSrc: string;
@@ -9,8 +9,8 @@ interface Props {
   thumbnail: IGatsbyImageData;
   fitParent?: boolean;
   delay?: number;
-  loop?: boolean;
-  muted?: boolean;
+  imageClassname?: string;
+  videoClassname?: string;
 }
 
 export const AutoVideoAndThumbnail: React.FC<Props> = ({
@@ -18,28 +18,19 @@ export const AutoVideoAndThumbnail: React.FC<Props> = ({
   alt,
   thumbnail,
   fitParent,
-  delay,
-  loop,
-  muted
+  delay = 1000,
 }) => {
-  const [videoHasBeenVisible, setVideoHasBeenVisible] = useState(false);
-  const onVideoVisible = useCallback((isVisible: boolean) => {
-    if (isVisible) {
-      setVideoHasBeenVisible(true);
-    }
-  }, []);
-  const realDelay = delay || 100;
   const [imageLoaded, setImageLoaded] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
 
   const onImageLoadedOrErrored = useCallback(() => setImageLoaded(true), []);
 
   useEffect(() => {
-    if (imageLoaded && !showVideo) {
-      const handle = setTimeout(() => setShowVideo(true), realDelay);
+    if (imageLoaded) {
+      const handle = setTimeout(() => setShowVideo(true), delay);
       return () => clearTimeout(handle);
     }
-  }, [imageLoaded, showVideo, realDelay]);
+  }, [imageLoaded, delay]);
 
   return (
     <>
@@ -50,13 +41,12 @@ export const AutoVideoAndThumbnail: React.FC<Props> = ({
         onLoad={onImageLoadedOrErrored}
         onError={onImageLoadedOrErrored}
       />
-      <AutoVideo
-        src={videoSrc}
-        className={classNames(!showVideo && 'invisible')}
-        autoplay={showVideo}
-        loop={loop}
-        muted={muted}
-      />
+      {showVideo && (
+        <AutoVideo
+          src={videoSrc}
+          className={classNames(!showVideo && "invisible")}
+        />
+      )}
     </>
   );
 };

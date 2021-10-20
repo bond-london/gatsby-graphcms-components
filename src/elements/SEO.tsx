@@ -1,7 +1,7 @@
-import {getSrc, IGatsbyImageData} from 'gatsby-plugin-image';
-import * as React from 'react';
-import {Helmet} from 'react-helmet';
-import {SchemaOrg} from '.';
+import { getSrc, IGatsbyImageData } from "gatsby-plugin-image";
+import * as React from "react";
+import { Helmet } from "react-helmet";
+import { SchemaOrg } from ".";
 
 interface SiteBuildMetadata {
   readonly buildTime?: any;
@@ -14,15 +14,21 @@ export interface Seo {
   keywords?: string[] | undefined | null;
 }
 interface Props {
-  siteBuildMetadata: SiteBuildMetadata & {buildYear: string};
+  siteBuildMetadata: SiteBuildMetadata & { buildYear: string };
   siteMetadata: Seo;
   pageMetadata?: Seo;
   pageUrl: string;
 }
 
-export const SEO: React.FC<Props> = ({siteBuildMetadata, siteMetadata, pageMetadata, pageUrl}) => {
-  const title = pageMetadata?.title || siteMetadata.title || 'Page title';
-  const description = pageMetadata?.description || siteMetadata.description || 'Page description';
+export const SEO: React.FC<Props> = ({
+  siteBuildMetadata,
+  siteMetadata,
+  pageMetadata,
+  pageUrl,
+}) => {
+  const title = pageMetadata?.title || siteMetadata.title || "Page title";
+  const description =
+    pageMetadata?.description || siteMetadata.description || "Page description";
   const image = pageMetadata?.image || siteMetadata?.image || undefined;
   const imageSrc = image && getSrc(image);
   const imageUrl = imageSrc && pageUrl + imageSrc;
@@ -30,7 +36,7 @@ export const SEO: React.FC<Props> = ({siteBuildMetadata, siteMetadata, pageMetad
 
   return (
     <>
-      <Helmet htmlAttributes={{lang: 'en'}}>
+      <Helmet htmlAttributes={{ lang: "en" }}>
         <title>{title}</title>
         <noscript>This site runs best with JavaScript enabled</noscript>
         <meta name="description" content={description} />
@@ -38,7 +44,10 @@ export const SEO: React.FC<Props> = ({siteBuildMetadata, siteMetadata, pageMetad
         <meta name="keywords" content={keywords.join()} />
         <meta name="designer" content="Bond London" />
         {siteBuildMetadata.buildTime && (
-          <meta name="revised" content={siteBuildMetadata.buildTime as string} />
+          <meta
+            name="revised"
+            content={siteBuildMetadata.buildTime as string}
+          />
         )}
 
         {/* Open graph tags */}
@@ -57,7 +66,7 @@ export const SEO: React.FC<Props> = ({siteBuildMetadata, siteMetadata, pageMetad
       <SchemaOrg
         pageUrl={pageUrl}
         title={title}
-        defaultTitle={siteMetadata.title || 'Page title'}
+        defaultTitle={siteMetadata.title || "Page title"}
       />
     </>
   );

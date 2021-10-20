@@ -27,7 +27,7 @@ const RealLottieElement: React.FC<Props> = (props) => {
     className,
     rendererSettings,
     placeholderClassName,
-    loop,
+    loop = false,
     debug,
     disabled,
   } = props;
@@ -58,7 +58,7 @@ const RealLottieElement: React.FC<Props> = (props) => {
               container,
               renderer: "svg",
               autoplay: true,
-              loop: loop || false,
+              loop,
               // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
               animationData,
               rendererSettings,

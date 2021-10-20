@@ -7,8 +7,6 @@ interface Props {
   alt?: string | null;
   thumbnail?: IGatsbyImageData | null;
   fitParent?: boolean;
-  loop?: boolean;
-  muted?: boolean;
 }
 
 export const AutoVideoOrThumbnail: React.FC<Props> = ({
@@ -16,8 +14,6 @@ export const AutoVideoOrThumbnail: React.FC<Props> = ({
   alt,
   thumbnail,
   fitParent,
-  loop,
-  muted,
 }) => {
   const realAlt = alt || "Video/Image";
   if (videoSrc && thumbnail) {
@@ -27,15 +23,11 @@ export const AutoVideoOrThumbnail: React.FC<Props> = ({
         alt={realAlt}
         thumbnail={thumbnail}
         fitParent={fitParent}
-        loop={loop}
-        muted={muted}
       />
     );
   }
   if (videoSrc) {
-    return (
-      <AutoVideo src={videoSrc} autoplay={true} loop={loop} muted={muted} />
-    );
+    return <AutoVideo src={videoSrc} />;
   }
 
   if (thumbnail) {

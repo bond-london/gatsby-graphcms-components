@@ -1,5 +1,5 @@
-import {GatsbyImage, IGatsbyImageData} from 'gatsby-plugin-image';
-import React, {CSSProperties, useCallback, useMemo} from 'react';
+import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
+import React, { CSSProperties, useCallback, useMemo } from "react";
 
 interface Props {
   image: IGatsbyImageData;
@@ -10,9 +10,16 @@ interface Props {
   className?: string;
 }
 
-export const Thumbnail: React.FC<Props> = ({image, onLoad, onError, alt, fitParent, className}) => {
+export const Thumbnail: React.FC<Props> = ({
+  image,
+  onLoad,
+  onError,
+  alt,
+  fitParent,
+  className,
+}) => {
   const handleStartLoad = useCallback(
-    ({wasCached}: {wasCached?: boolean}) => {
+    ({ wasCached }: { wasCached?: boolean }) => {
       if (wasCached) {
         onLoad?.();
       }
@@ -24,13 +31,13 @@ export const Thumbnail: React.FC<Props> = ({image, onLoad, onError, alt, fitPare
     () =>
       fitParent
         ? {
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            left: '0',
-            top: '0'
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+            left: "0",
+            top: "0",
           }
-        : {display: 'block'},
+        : { display: "block" },
     [fitParent]
   );
   return (
