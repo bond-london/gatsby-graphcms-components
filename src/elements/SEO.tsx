@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import { SchemaOrg } from ".";
 
 interface SiteBuildMetadata {
-  readonly buildTime?: any;
+  readonly buildTime?: unknown;
 }
 
 export interface Seo {
