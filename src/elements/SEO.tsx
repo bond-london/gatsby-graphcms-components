@@ -15,7 +15,7 @@ export interface Seo {
 }
 interface Props {
   siteBuildMetadata: SiteBuildMetadata & { buildYear: string };
-  siteMetadata: Seo;
+  siteMetadata?: Seo;
   pageMetadata?: Seo;
   pageUrl: string;
 }
@@ -26,9 +26,11 @@ export const SEO: React.FC<Props> = ({
   pageMetadata,
   pageUrl,
 }) => {
-  const title = pageMetadata?.title || siteMetadata.title || "Page title";
+  const title = pageMetadata?.title || siteMetadata?.title || "Page title";
   const description =
-    pageMetadata?.description || siteMetadata.description || "Page description";
+    pageMetadata?.description ||
+    siteMetadata?.description ||
+    "Page description";
   const image = pageMetadata?.image || siteMetadata?.image || undefined;
   const imageSrc = image && getSrc(image);
   const imageUrl = imageSrc && pageUrl + imageSrc;
@@ -66,7 +68,7 @@ export const SEO: React.FC<Props> = ({
       <SchemaOrg
         pageUrl={pageUrl}
         title={title}
-        defaultTitle={siteMetadata.title || "Page title"}
+        defaultTitle={siteMetadata?.title || "Page title"}
       />
     </>
   );

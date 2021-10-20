@@ -31,6 +31,7 @@
     "dev": "run-p dev:ts dev:defs",
     "prepare": "cross-env NODE_ENV=production yarn run build:ts && yarn run build:defs && husky install",
     "format": "prettier --write \"**/*.{js,jsx,json,ts,tsx,md}\"",
+    "lint": "eslint --max-warnings 0 \"**/*.{js,jsx,ts,tsx}\"",
     "release": "release-it"
   },
   "devDependencies": {
@@ -88,6 +89,7 @@
     },
     "hooks": {
       "before:init": [
+        "yarn run list",
         "yarn run format",
         "yarn run prepare"
       ]
