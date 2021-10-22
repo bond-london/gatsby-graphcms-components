@@ -73,7 +73,6 @@
   "dependencies": {
     "@graphcms/rich-text-react-renderer": "^0.3.2",
     "@types/react-helmet": "^6.1.4",
-    "classnames": "^2.3.1",
     "lottie-web": "^5.7.14",
     "react-helmet": "^6.1.0"
   },

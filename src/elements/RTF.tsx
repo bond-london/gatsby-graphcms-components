@@ -2,7 +2,6 @@
 import React, { useMemo } from "react";
 import { RichText } from "@graphcms/rich-text-react-renderer";
 import { RichTextContent } from "@graphcms/rich-text-types";
-import classNames from "classnames";
 
 export type RTFContent = RichTextContent;
 export type ClassNameOverrides = { [key: string]: string };
@@ -41,7 +40,7 @@ export const RTF: React.FC<Props> = ({
   }
 
   return (
-    <div className={classNames(className, "rich-text space-y-20px")}>
+    <div className={className}>
       <RichText
         content={content}
         renderers={{

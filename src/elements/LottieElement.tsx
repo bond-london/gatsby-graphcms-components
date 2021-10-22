@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import Lottie, { AnimationItem, SVGRendererConfig } from "lottie-web";
 import React, { MutableRefObject, useEffect, useRef, useState } from "react";
 import { onVisibleToUser, useTraceUpdate } from "../hooks";
@@ -120,7 +119,8 @@ const RealLottieElement: React.FC<Props> = (props) => {
         alt="Animation"
         ref={imgRef}
         src={encoded}
-        className={classNames("h-full", placeholderClassName)}
+        style={{ height: "100%" }}
+        className={placeholderClassName}
       />
     </div>
   );

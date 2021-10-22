@@ -1,5 +1,11 @@
-import classNames from "classnames";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  CSSProperties,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { onVisibleToUser } from "../hooks/Visibility";
 
 function playVideo(videoElement: HTMLVideoElement) {
@@ -20,16 +26,20 @@ interface Props {
   onClick?: () => void;
   onVisible?: (isVisible: boolean) => void;
   className?: string;
+  style?: CSSProperties;
   threshold?: number;
   delay?: number;
+  fitParent?: boolean;
 }
 
 export const RealAutoVideo: React.FC<Props> = ({
   src,
   onLoad,
   className,
+  style,
   onClick,
   onVisible,
+  fitParent,
   threshold = 0.4,
   delay = 100,
 }) => {
@@ -76,13 +86,27 @@ export const RealAutoVideo: React.FC<Props> = ({
     }
   }, [onLoad]);
 
+  const fullStyles: CSSProperties = useMemo(() => {
+    const shared: CSSProperties = {
+      objectFit: "cover",
+    };
+    const conditional: CSSProperties = fitParent
+      ? {
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          left: "0",
+          top: "0",
+        }
+      : { display: "block" };
+    return { ...shared, ...conditional, ...style };
+  }, [fitParent, style]);
+
   return (
     <video
+      style={fullStyles}
+      className={className}
       ref={videoRef}
-      className={classNames(
-        "absolute overflow-hidden inline-block align-top w-full h-full left-0 top-0 object-cover",
-        className
-      )}
       src={src}
       preload="none"
       autoPlay={false}

@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import { IGatsbyImageData } from "gatsby-plugin-image";
 import React, { useCallback, useEffect, useState } from "react";
 import { Thumbnail, AutoVideo } from ".";
@@ -44,7 +43,8 @@ export const AutoVideoAndThumbnail: React.FC<Props> = ({
       {showVideo && (
         <AutoVideo
           src={videoSrc}
-          className={classNames(!showVideo && "invisible")}
+          fitParent={fitParent}
+          style={{ visibility: showVideo ? "unset" : "hidden" }}
         />
       )}
     </>
