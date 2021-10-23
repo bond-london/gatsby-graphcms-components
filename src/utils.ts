@@ -31,6 +31,14 @@ interface File {
   readonly lottie?: ExtractedLottie;
 }
 
+export interface VisualAsset {
+  image?: IGatsbyImageData;
+  videoUrl?: string;
+  alt: string;
+  svg?: ExtractedSvg;
+  animation?: ExtractedLottie;
+}
+
 export function getRTF(
   node: GenericRichTextNode | string | undefined
 ): RTFContent | undefined {

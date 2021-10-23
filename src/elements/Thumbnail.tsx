@@ -8,6 +8,7 @@ interface Props {
   onError?: () => void;
   fitParent?: boolean;
   className?: string;
+  imgClassName?: string;
 }
 
 export const Thumbnail: React.FC<Props> = ({
@@ -17,6 +18,7 @@ export const Thumbnail: React.FC<Props> = ({
   alt,
   fitParent,
   className,
+  imgClassName,
 }) => {
   const handleStartLoad = useCallback(
     ({ wasCached }: { wasCached?: boolean }) => {
@@ -50,6 +52,7 @@ export const Thumbnail: React.FC<Props> = ({
       onStartLoad={handleStartLoad}
       onError={onError}
       className={className}
+      imgClassName={imgClassName}
     />
   );
 };

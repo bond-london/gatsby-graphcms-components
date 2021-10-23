@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 export function onVisibleToUser(
   element: HTMLElement,
@@ -58,7 +58,8 @@ export function onVisibleToUser(
 
 export function useFirstVisibleToUser<T extends HTMLElement>(
   threshold = 0.4,
-  delay = 100
+  delay = 100,
+  callback?: () => void
 ): [React.RefObject<T>, boolean] {
   const elementRef = useRef<T>(null);
   const [visible, setVisible] = useState(false);
@@ -72,6 +73,7 @@ export function useFirstVisibleToUser<T extends HTMLElement>(
       (isVisible) => {
         if (isVisible) {
           setVisible(true);
+          callback?.();
           removeVisibility();
         }
       },
@@ -80,36 +82,20 @@ export function useFirstVisibleToUser<T extends HTMLElement>(
     );
 
     return removeVisibility;
-  }, [threshold, delay]);
+  }, [threshold, delay, callback]);
 
   return [elementRef, visible];
 }
 
-export function useEntryAnimation<T extends HTMLElement>(
-  threshold?: number,
-  delay?: number
-): [React.RefObject<T>, string] {
-  const [refObject, visible] = useFirstVisibleToUser<T>(threshold, delay);
-  const animationMode = visible ? "animation-running" : "animation-paused";
-  return [refObject, animationMode];
-}
+export function useFirstVisibleCallback(
+  pausedClassName: string,
+  runningClassName: string
+): [() => void, string] {
+  const [animationMode, setAnimationMode] = useState(pausedClassName);
+  const onVisible = useCallback(
+    () => setAnimationMode(runningClassName),
+    [runningClassName]
+  );
 
-const animationDelays = [
-  "animation-delay-100",
-  "animation-delay-200",
-  "animation-delay-300",
-  "animation-delay-400",
-  "animation-delay-500",
-  "animation-delay-600",
-  "animation-delay-700",
-  "animation-delay-800",
-  "animation-delay-900",
-  "animation-delay-1000",
-];
-
-export function calculateAnimationDelay(index: number): string {
-  if (index < animationDelays.length) {
-    return animationDelays[index];
-  }
-  return animationDelays[animationDelays.length - 1];
+  return [onVisible, animationMode];
 }

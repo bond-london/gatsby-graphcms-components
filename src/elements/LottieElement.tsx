@@ -1,6 +1,13 @@
 import Lottie, { AnimationItem, SVGRendererConfig } from "lottie-web";
-import React, { MutableRefObject, useEffect, useRef, useState } from "react";
-import { onVisibleToUser, useTraceUpdate } from "../hooks";
+import React, {
+  CSSProperties,
+  MutableRefObject,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { onVisibleToUser } from "../hooks";
 
 interface Props {
   animationJson?: string;
@@ -11,6 +18,8 @@ interface Props {
   loop?: boolean;
   debug?: boolean;
   disabled?: boolean;
+  fitParent?: boolean;
+  alt: string;
 }
 
 interface InternalState {
@@ -29,9 +38,10 @@ const RealLottieElement: React.FC<Props> = (props) => {
     loop = false,
     debug,
     disabled,
+    alt,
+    fitParent,
   } = props;
 
-  useTraceUpdate(debug ? (props as { [key: string]: unknown }) : {});
   const containerRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
   const [animation, setAnimation] = useState<AnimationItem>();
@@ -113,13 +123,30 @@ const RealLottieElement: React.FC<Props> = (props) => {
     }
   }, [animation, disabled, visible, debug]);
 
+  const fullStyles: CSSProperties = useMemo(() => {
+    return fitParent
+      ? {
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          left: "0",
+          top: "0",
+        }
+      : { display: "block" };
+  }, [fitParent]);
+
   return (
-    <div ref={containerRef} className={className}>
+    <div ref={containerRef} className={className} style={fullStyles}>
       <img
-        alt="Animation"
+        alt={alt}
         ref={imgRef}
         src={encoded}
-        style={{ height: "100%" }}
+        style={{
+          height: "100%",
+          width: "100%",
+          objectFit: "contain",
+          objectPosition: "center",
+        }}
         className={placeholderClassName}
       />
     </div>

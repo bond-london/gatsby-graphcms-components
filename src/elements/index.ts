@@ -6,3 +6,4 @@ export * from "./RTF";
 export * from "./SEO";
 export * from "./LottieElement";
 export * from "./SvgIcon";
+export * from "./AutoVisual";

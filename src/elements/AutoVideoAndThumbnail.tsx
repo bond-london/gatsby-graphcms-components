@@ -8,8 +8,8 @@ interface Props {
   thumbnail: IGatsbyImageData;
   fitParent?: boolean;
   delay?: number;
-  imageClassname?: string;
-  videoClassname?: string;
+  classname?: string;
+  loop?: boolean;
 }
 
 export const AutoVideoAndThumbnail: React.FC<Props> = ({
@@ -18,6 +18,8 @@ export const AutoVideoAndThumbnail: React.FC<Props> = ({
   thumbnail,
   fitParent,
   delay = 1000,
+  loop,
+  classname,
 }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
@@ -35,6 +37,7 @@ export const AutoVideoAndThumbnail: React.FC<Props> = ({
     <>
       <Thumbnail
         image={thumbnail}
+        className={classname}
         alt={alt}
         fitParent={fitParent}
         onLoad={onImageLoadedOrErrored}
@@ -42,9 +45,11 @@ export const AutoVideoAndThumbnail: React.FC<Props> = ({
       />
       {showVideo && (
         <AutoVideo
+          className={classname}
           src={videoSrc}
           fitParent={fitParent}
           style={{ visibility: showVideo ? "unset" : "hidden" }}
+          loop={loop}
         />
       )}
     </>

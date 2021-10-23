@@ -3,10 +3,12 @@ import React from "react";
 import { AutoVideo, AutoVideoAndThumbnail, Thumbnail } from ".";
 
 interface Props {
-  videoSrc?: string | null;
-  alt?: string | null;
-  thumbnail?: IGatsbyImageData | null;
+  videoSrc?: string;
+  alt: string;
+  thumbnail?: IGatsbyImageData;
   fitParent?: boolean;
+  loop?: boolean;
+  className?: string;
 }
 
 export const AutoVideoOrThumbnail: React.FC<Props> = ({
@@ -14,25 +16,42 @@ export const AutoVideoOrThumbnail: React.FC<Props> = ({
   alt,
   thumbnail,
   fitParent,
+  loop,
+  className,
 }) => {
-  const realAlt = alt || "Video/Image";
   if (videoSrc && thumbnail) {
     return (
       <AutoVideoAndThumbnail
         videoSrc={videoSrc}
-        alt={realAlt}
+        alt={alt}
         thumbnail={thumbnail}
         fitParent={fitParent}
+        loop={loop}
+        classname={className}
       />
     );
   }
   if (videoSrc) {
-    return <AutoVideo src={videoSrc} />;
+    return (
+      <AutoVideo
+        src={videoSrc}
+        fitParent={fitParent}
+        loop={loop}
+        className={className}
+      />
+    );
   }
 
   if (thumbnail) {
-    return <Thumbnail image={thumbnail} alt={realAlt} fitParent={fitParent} />;
+    return (
+      <Thumbnail
+        image={thumbnail}
+        alt={alt}
+        fitParent={fitParent}
+        className={className}
+      />
+    );
   }
 
-  throw new Error(`No content`);
+  return <div className={className}>No content</div>;
 };
