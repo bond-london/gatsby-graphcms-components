@@ -1,3 +1,10 @@
+### [1.2.1](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.2.0...v1.2.1) (2021-10-23)
+
+
+### Bug Fixes
+
+* remove margin from video ([4d68f44](https://github.com/bond-london/gatsby-graphcms-components/commit/4d68f44ece5d5bcf45022f715b368eb804d67b62))
+
 ## [1.2.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.1.1...v1.2.0) (2021-10-23)
 
 ### Features
