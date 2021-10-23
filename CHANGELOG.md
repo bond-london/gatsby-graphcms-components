@@ -1,3 +1,10 @@
+## [1.2.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.1.1...v1.2.0) (2021-10-23)
+
+
+### Features
+
+* more tidying up! ([d1fe927](https://github.com/bond-london/gatsby-graphcms-components/commit/d1fe927b4583cd378e6491b8c20511ad5b4b358b))
+
 ### [1.1.1](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.1.0...v1.1.1) (2021-10-22)
 
 ### Bug Fixes
