@@ -1,9 +1,8 @@
 ### [1.1.1](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.1.0...v1.1.1) (2021-10-22)
 
-
 ### Bug Fixes
 
-* remove classnames and tailwind ([cccf687](https://github.com/bond-london/gatsby-graphcms-components/commit/cccf6876a906303fc0aec54356417b3ed0bde1a8))
+- remove classnames and tailwind ([cccf687](https://github.com/bond-london/gatsby-graphcms-components/commit/cccf6876a906303fc0aec54356417b3ed0bde1a8))
 
 ## [1.1.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.0.3...v1.1.0) (2021-10-21)
 
