@@ -99,7 +99,6 @@ export const RealAutoVideo: React.FC<Props> = ({
           position: "absolute",
           left: "0",
           top: "0",
-          margin: "-1px",
         }
       : { display: "block", position: "relative" };
     return { ...shared, ...conditional, ...style };
