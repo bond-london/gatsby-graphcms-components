@@ -14,12 +14,12 @@ interface ImageSharp {
   readonly gatsbyImageData: IGatsbyImageData;
 }
 
-interface ExtractedSvg {
+export interface SvgInformation {
   readonly content: string;
   readonly encoded: string;
 }
 
-interface ExtractedLottie {
+export interface LottieInformation {
   readonly animationJson: string;
   readonly encoded: string;
 }
@@ -27,16 +27,46 @@ interface ExtractedLottie {
 interface File {
   readonly childImageSharp?: ImageSharp;
   readonly publicURL?: string;
-  readonly svg?: ExtractedSvg;
-  readonly lottie?: ExtractedLottie;
+  readonly svg?: SvgInformation;
+  readonly lottie?: LottieInformation;
 }
 
 export interface VisualAsset {
   image?: IGatsbyImageData;
   videoUrl?: string;
   alt: string;
-  svg?: ExtractedSvg;
-  animation?: ExtractedLottie;
+  svg?: SvgInformation;
+  animation?: LottieInformation;
+}
+
+export function isEmptyRTF(node: GenericRichTextNode | undefined): boolean {
+  if (!node) {
+    return true;
+  }
+
+  const content = node.json || (node.raw as RTFContent);
+  if (!content) {
+    return true;
+  }
+
+  if (Array.isArray(content)) {
+    return content.length === 0;
+  }
+
+  const children = content.children;
+  if (children.length === 0) {
+    return true;
+  }
+  if (children.length === 1) {
+    const child = children[0];
+    if (child.type === "paragraph" && child.children.length === 1) {
+      const firstParagraph = child.children[0];
+      const text = firstParagraph.text as unknown;
+      return !text;
+    }
+  }
+
+  return false;
 }
 
 export function getRTF(
@@ -89,23 +119,23 @@ export function getVideo(node: GenericAsset | undefined): string | undefined {
   return getVideoFromFile(node?.localFile);
 }
 
-export function getLottieFromFile(file?: File): ExtractedLottie | undefined {
+export function getLottieFromFile(file?: File): LottieInformation | undefined {
   return file?.lottie;
 }
 
 export function getLottie(
   node: GenericAsset | undefined
-): ExtractedLottie | undefined {
+): LottieInformation | undefined {
   return getLottieFromFile(node?.localFile);
 }
 
-export function getSvgFromFile(file?: File): ExtractedSvg | undefined {
+export function getSvgFromFile(file?: File): SvgInformation | undefined {
   return file?.svg;
 }
 
 export function getExtractedSvg(
   node: GenericAsset | undefined
-): ExtractedSvg | undefined {
+): SvgInformation | undefined {
   return getSvgFromFile(node?.localFile);
 }
 
