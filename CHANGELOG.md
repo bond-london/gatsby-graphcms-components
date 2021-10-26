@@ -1,9 +1,8 @@
 ## [1.3.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.2.1...v1.3.0) (2021-10-25)
 
-
 ### Features
 
-* add empty rtf ([86620bf](https://github.com/bond-london/gatsby-graphcms-components/commit/86620bf772b61ec4d7531b9bbb418be16cb4b341))
+- add empty rtf ([86620bf](https://github.com/bond-london/gatsby-graphcms-components/commit/86620bf772b61ec4d7531b9bbb418be16cb4b341))
 
 ### [1.2.1](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.2.0...v1.2.1) (2021-10-23)
 
