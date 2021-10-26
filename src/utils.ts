@@ -1,5 +1,12 @@
-import { RTFContent } from "./elements";
+import { RTFContent, RTFReferences } from "./elements";
 import { IGatsbyImageData } from "gatsby-plugin-image";
+
+export interface GenericAsset {
+  alt?: string;
+  id: string;
+  localFile?: File;
+  alternateText?: string;
+}
 
 export interface GenericRichTextNode {
   readonly remoteTypeName: string | undefined;
@@ -8,6 +15,7 @@ export interface GenericRichTextNode {
   readonly markdown?: string;
   readonly text?: string;
   readonly json?: RTFContent;
+  readonly references?: readonly GenericAsset[];
 }
 
 interface ImageSharp {
@@ -88,10 +96,12 @@ export function getRTF(
   }
 }
 
-export interface GenericAsset {
-  id: string;
-  localFile?: File;
-  alternateText?: string;
+export function getRTFReferences(
+  node: GenericRichTextNode | undefined
+): RTFReferences[] | undefined {
+  if (node?.references) {
+    return node.references as unknown as RTFReferences[];
+  }
 }
 
 export function getImageFromFile(file?: File): IGatsbyImageData | undefined {
