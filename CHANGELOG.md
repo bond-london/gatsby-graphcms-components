@@ -1,3 +1,15 @@
+## [1.5.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.4.0...v1.5.0) (2021-10-27)
+
+
+### Features
+
+* improved rtf support ([401422b](https://github.com/bond-london/gatsby-graphcms-components/commit/401422b19297d65b8145d839e0b7bc3ade0b3066))
+
+
+### Bug Fixes
+
+* dont format markdown files ([52d9124](https://github.com/bond-london/gatsby-graphcms-components/commit/52d9124e8f33e86f7ba03517be56e3e4bb450f95))
+
 ## [1.4.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.3.0...v1.4.0) (2021-10-26)
 
 ### Features
