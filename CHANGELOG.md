@@ -1,3 +1,10 @@
+### [1.5.1](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.5.0...v1.5.1) (2021-10-27)
+
+
+### Features
+
+* ignore recommended bump ([c7d8ca9](https://github.com/bond-london/gatsby-graphcms-components/commit/c7d8ca9bc58c9cc890117592842ffa118258e0ff))
+
 ## [1.5.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.4.0...v1.5.0) (2021-10-27)
 
 
