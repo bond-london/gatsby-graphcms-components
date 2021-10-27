@@ -3,7 +3,7 @@ import React from "react";
 import { LinkRendererProps, LinkElement } from "@graphcms/rich-text-types";
 import { GatsbyLinkProps, Link as GatsbyLink } from "gatsby";
 
-export function ExternalLink({
+export const ExternalLink: React.FC<LinkRendererProps> = ({
   href,
   rel,
   id,
@@ -11,7 +11,7 @@ export function ExternalLink({
   openInNewTab,
   className,
   children,
-}: LinkRendererProps): JSX.Element {
+}) => {
   const props: Pick<LinkElement, "rel" | "id" | "title" | "className"> & {
     target?: string;
   } = {};
@@ -27,15 +27,15 @@ export function ExternalLink({
       {children}
     </a>
   );
-}
+};
 
-export function InternalLink({
+export const InternalLink: React.FC<LinkRendererProps> = ({
   href,
   id,
   title,
   className,
   children,
-}: LinkRendererProps): JSX.Element {
+}) => {
   const props: Pick<
     GatsbyLinkProps<unknown>,
     "id" | "title" | "className"
@@ -50,12 +50,12 @@ export function InternalLink({
       {children}
     </GatsbyLink>
   );
-}
+};
 
-export function RTFLink(props: LinkRendererProps): JSX.Element {
+export const RTFLink: React.FC<LinkRendererProps> = (props) => {
   const { href } = props;
   if (href?.startsWith("/")) {
-    return InternalLink(props);
+    return <InternalLink {...props} />;
   }
-  return ExternalLink(props);
-}
+  return <ExternalLink {...props} />;
+};
