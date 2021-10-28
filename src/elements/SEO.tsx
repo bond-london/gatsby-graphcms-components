@@ -1,5 +1,5 @@
 import { getSrc, IGatsbyImageData } from "gatsby-plugin-image";
-import * as React from "react";
+import React from "react";
 import { Helmet } from "react-helmet";
 
 interface SiteBuildMetadata {
@@ -10,7 +10,7 @@ export interface Seo {
   title: string;
   description?: string;
   image?: IGatsbyImageData;
-  keywords?: readonly string[];
+  keywords?: string;
 }
 interface Props {
   siteBuildMetadata: SiteBuildMetadata & { buildYear: string };
@@ -34,7 +34,7 @@ export const SEO: React.FC<Props> = ({
   const image = pageMetadata.image || siteMetadata.image;
   const imageSrc = image && getSrc(image);
   const imageUrl = imageSrc && pageUrl + imageSrc;
-  const keywords = pageMetadata?.keywords || siteMetadata?.keywords || [];
+  const keywords = pageMetadata?.keywords || siteMetadata?.keywords;
 
   const baseSchema = {
     "@context": "http://schema.org",
@@ -51,7 +51,7 @@ export const SEO: React.FC<Props> = ({
         <noscript>This site runs best with JavaScript enabled</noscript>
         <meta name="description" content={description} />
         <meta name="image" content={imageUrl} />
-        <meta name="keywords" content={keywords.join()} />
+        {keywords && <meta name="keywords" content={keywords} />}
         <meta name="designer" content="Bond London" />
         {siteBuildMetadata.buildTime && (
           <meta

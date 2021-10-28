@@ -9,7 +9,6 @@ export interface GenericAsset {
 }
 
 export interface GenericRichTextNode {
-  readonly remoteTypeName: string | undefined;
   readonly raw?: unknown;
   readonly html?: string;
   readonly markdown?: string;
