@@ -35,7 +35,7 @@ export interface RTFProps {
 function getClassName(
   classNameOverrides: ClassNameOverrides | undefined,
   className: string,
-  defaultValue: string
+  defaultValue?: string
 ) {
   const value = classNameOverrides && classNameOverrides[className];
   return value || defaultValue;
@@ -68,6 +68,8 @@ export const CoreRTF: React.FC<RTFProps> = ({
   const realRenderers = useMemo(() => {
     const gcn = (name: string, defaultValue?: string) =>
       getClassName(classNameOverrides, name, defaultValue || name);
+    const gcnd = (name: string, defaultValue?: string) =>
+      getClassName(classNameOverrides, name, defaultValue);
     const defaultRenderers: Required<NodeRendererType> = {
       h1: ({ children }) => (
         <h2 className={hc || pc || gcn("h1")}>{children}</h2>
@@ -87,78 +89,78 @@ export const CoreRTF: React.FC<RTFProps> = ({
       h6: ({ children }) => (
         <h6 className={hc || pc || gcn("h6")}>{children}</h6>
       ),
-      p: ({ children }) => <p className={pc || gcn("p")}>{children}</p>,
+      p: ({ children }) => <p className={pc || gcnd("p")}>{children}</p>,
       a: (props) => (
         <CheckEnabled disabled={disabledElements?.a} name="Links">
-          <RTFLink {...props} className={gcn("a")} />
+          <RTFLink {...props} className={gcnd("a")} />
         </CheckEnabled>
       ),
       class: () => <pre>Class not supported</pre>,
       video: () => <pre>Video not supported</pre>,
       img: (props) => (
         <CheckEnabled disabled={disabledElements?.img} name="Image">
-          <RTFImage {...props} className={gcn("img")} />
+          <RTFImage {...props} className={gcnd("img")} />
         </CheckEnabled>
       ),
       iframe: () => <pre>Iframe not supported</pre>,
       blockquote: ({ children }) => (
         <CheckEnabled disabled={disabledElements?.blockquote} name="Blockquote">
-          <blockquote className={gcn("blockquote")}>{children}</blockquote>
+          <blockquote className={gcnd("blockquote")}>{children}</blockquote>
         </CheckEnabled>
       ),
       li: ({ children }) => (
         <CheckEnabled disabled={disabledElements?.ul || disabledElements?.ol}>
-          <li className={gcn("li")}>{children}</li>
+          <li className={gcnd("li")}>{children}</li>
         </CheckEnabled>
       ),
       ul: ({ children }) => (
         <CheckEnabled disabled={disabledElements?.ul} name="Unordered list">
-          <ul className={gcn("ul")}>{children}</ul>
+          <ul className={gcnd("ul")}>{children}</ul>
         </CheckEnabled>
       ),
       ol: ({ children }) => (
         <CheckEnabled disabled={disabledElements?.ol} name="Ordered lists">
-          <ol className={gcn("ol")}>{children}</ol>
+          <ol className={gcnd("ol")}>{children}</ol>
         </CheckEnabled>
       ),
       table: ({ children }) => (
         <CheckEnabled disabled={disabledElements?.table} name="Table">
-          <table className={gcn("table")}>{children}</table>
+          <table className={gcnd("table")}>{children}</table>
         </CheckEnabled>
       ),
       table_head: ({ children }) => (
         <CheckEnabled disabled={disabledElements?.table}>
-          <thead className={gcn("thead")}>{children}</thead>
+          <thead className={gcnd("thead")}>{children}</thead>
         </CheckEnabled>
       ),
       table_body: ({ children }) => (
         <CheckEnabled disabled={disabledElements?.table}>
-          <tbody className={gcn("tbody")}>{children}</tbody>
+          <tbody className={gcnd("tbody")}>{children}</tbody>
         </CheckEnabled>
       ),
       table_row: ({ children }) => (
         <CheckEnabled disabled={disabledElements?.table}>
-          <tr className={gcn("tr")}>{children}</tr>
+          <tr className={gcnd("tr")}>{children}</tr>
         </CheckEnabled>
       ),
       table_cell: ({ children }) => (
         <CheckEnabled disabled={disabledElements?.table}>
-          <td className={gcn("td")}>{children}</td>
+          <td className={gcnd("td")}>{children}</td>
         </CheckEnabled>
       ),
       bold: ({ children }) => <b className={gcn("b")}>{children}</b>,
       italic: ({ children }) => <i className={gcn("i")}>{children}</i>,
       underline: ({ children }) => (
-        <u className={gcn("underline")}>{children}</u>
+        <u className={gcnd("underline")}>{children}</u>
       ),
       code: ({ children }) => (
         <CheckEnabled disabled={disabledElements?.code} name="Code">
-          <code className={gcn("code")}>{children}</code>
+          <code className={gcnd("code")}>{children}</code>
         </CheckEnabled>
       ),
       code_block: ({ children }) => (
         <CheckEnabled disabled={disabledElements?.code} name="Code">
-          <pre className={gcn("pre")}>{children}</pre>
+          <pre className={gcnd("pre")}>{children}</pre>
         </CheckEnabled>
       ),
       list_item_child: ({ children }) => <>{children}</>,
