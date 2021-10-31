@@ -1,3 +1,10 @@
+### [1.5.3](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.5.2...v1.5.3) (2021-10-31)
+
+
+### Features
+
+* don't do classes for everything ([1f7d589](https://github.com/bond-london/gatsby-graphcms-components/commit/1f7d589cfcda92871c2b6815ecc309c70afff7e0))
+
 ### [1.5.2](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.5.1...v1.5.2) (2021-10-28)
 
 
