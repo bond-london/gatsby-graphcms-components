@@ -1,3 +1,17 @@
+## [1.6.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.5.3...v1.6.0) (2021-11-05)
+
+
+### Features
+
+* some rtf updates ([150e9f6](https://github.com/bond-london/gatsby-graphcms-components/commit/150e9f6360d16ec6229bc1c8f0494153bc553ced))
+
+
+### Bug Fixes
+
+* handle empty rtf better ([31334d5](https://github.com/bond-london/gatsby-graphcms-components/commit/31334d5a16f8efbc82b237ba60505b1319a99f6b))
+* install lint packages ([f7a1168](https://github.com/bond-london/gatsby-graphcms-components/commit/f7a11682b2d75dbf64f35dabc5628089cbb60ce0))
+* use correct empy ([4c469d2](https://github.com/bond-london/gatsby-graphcms-components/commit/4c469d21846c5bd3e3ddfcbf3d6a0e29cfea3fec))
+
 ### [1.5.3](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.5.2...v1.5.3) (2021-10-31)
 
 
