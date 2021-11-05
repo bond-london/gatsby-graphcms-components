@@ -44,8 +44,11 @@ export function elementIsEmpty(children: (ElementNode | Text)[]): boolean {
 
     return hasText.length > 0 ? false : true;
   } else {
-    const text = children[0].text;
-    if (isEmptyText(text)) return true;
+    const child = children[0];
+    if (isText(child)) {
+      const text = child.text;
+      if (isEmptyText(text)) return true;
+    }
   }
 
   return false;

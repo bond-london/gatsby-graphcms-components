@@ -29,7 +29,7 @@
     "dev:ts": "babel -w src --out-dir dist --extensions .ts,.tsx",
     "dev:defs": "tsc -w --declaration --outDir dist --emitDeclarationOnly",
     "dev": "run-p dev:ts dev:defs",
-    "prepare": "cross-env NODE_ENV=production yarn run build:ts && yarn run build:defs && husky install",
+    "prepare": "cross-env NODE_ENV=production yarn run lint && yarn run build:ts && yarn run build:defs && husky install",
     "format": "prettier --write \"**/*.{js,jsx,json,ts,tsx}\"",
     "lint": "eslint --max-warnings 0 \"**/*.{js,jsx,ts,tsx}\"",
     "release": "release-it"
@@ -74,6 +74,9 @@
   "dependencies": {
     "@graphcms/rich-text-react-renderer": "^0.3.2",
     "@types/react-helmet": "^6.1.4",
+    "@typescript-eslint/eslint-plugin": "^5.3.0",
+    "@typescript-eslint/parser": "^5.3.0",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
     "lottie-web": "^5.7.14",
     "react-helmet": "^6.1.0"
   },
@@ -90,7 +93,6 @@
     },
     "hooks": {
       "before:init": [
-        "yarn run lint",
         "yarn run format",
         "yarn run prepare"
       ]
