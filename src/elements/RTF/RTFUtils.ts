@@ -62,20 +62,22 @@ export function isEmptyRTF(node: GenericRichTextNode | undefined): boolean {
     return content.length === 0;
   }
 
-  const children = content.children;
-  if (children.length === 0) {
-    return true;
-  }
-  if (children.length === 1) {
-    const child = children[0];
-    if (child.type === "paragraph" && child.children.length === 1) {
-      const firstParagraph = child.children[0];
-      const text = firstParagraph.text as unknown;
-      return !text;
-    }
-  }
+  return elementIsEmpty(content);
 
-  return false;
+  //   const children = content.children;
+  //   if (children.length === 0) {
+  //     return true;
+  //   }
+  //   if (children.length === 1) {
+  //     const child = children[0];
+  //     if (child.type === "paragraph" && child.children.length === 1) {
+  //       const firstParagraph = child.children[0];
+  //       const text = firstParagraph.text as unknown;
+  //       return !text;
+  //     }
+  //   }
+
+  //   return false;
 }
 
 export function getRTF(
