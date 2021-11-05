@@ -1,15 +1,11 @@
 /* eslint-disable react/display-name */
 import React, { Fragment, useMemo } from "react";
 import { RichText } from "@graphcms/rich-text-react-renderer";
-import { RichTextContent, NodeRendererType } from "@graphcms/rich-text-types";
+import { NodeRendererType } from "@graphcms/rich-text-types";
 import { RTFLink } from "./RTF/RTFLink";
 import { RTFImage } from "./RTF/RTFImage";
+import { RTFContent, RTFReferences } from ".";
 
-export type RTFContent = RichTextContent;
-export type RTFReferences = {
-  id: string;
-  mimeType: string;
-};
 export type ClassNameOverrides = { [key: string]: string };
 export interface DisabledElements {
   ul?: boolean;

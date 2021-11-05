@@ -9,3 +9,4 @@ export * from "./SvgIcon";
 export * from "./AutoVisual";
 export * from "./RTF/RTFImage";
 export * from "./RTF/RTFLink";
+export * from "./RTF/RTFUtils";
