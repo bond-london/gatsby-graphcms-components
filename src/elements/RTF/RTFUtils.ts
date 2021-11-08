@@ -4,6 +4,7 @@ import {
   isText,
   Text,
   RichTextContent,
+  Node,
 } from "@graphcms/rich-text-types";
 import { GenericAsset } from "../..";
 
@@ -22,44 +23,81 @@ export interface GenericRichTextNode {
   readonly references?: readonly GenericAsset[];
 }
 
+function cleanupTextString(text: string) {
+  return text.replace(/\s+/g, " ");
+}
+
 function isEmptyText(text: string) {
   return text.trim().length === 0;
+}
+
+function cleanupElement(element: ElementNode): ElementNode | undefined {
+  const { children, ...rest } = element;
+  if (elementIsEmpty(children)) {
+    return;
+  }
+  const newChildren = cleanupElements(children);
+  return { ...rest, children: newChildren };
+}
+
+function cleanupText(text: Text): Text {
+  return { ...text, text: cleanupTextString(text.text) };
+}
+
+function cleanupNode(node: Node): Node | undefined {
+  if (isText(node)) {
+    return cleanupText(node);
+  }
+  if (isElement(node)) {
+    return cleanupElement(node);
+  }
+
+  return node;
+}
+
+function cleanupElements(elements: Node[]): Node[] {
+  return elements.map(cleanupNode).filter((n) => n) as Node[];
+}
+
+export function cleanupRTF(content: RTFContent): RTFContent {
+  const elements = Array.isArray(content) ? content : content.children;
+  const newElements = cleanupElements(elements);
+  return newElements as ElementNode[];
+}
+
+function isNotEmpty(child: ElementNode | Text): boolean {
+  if (isText(child)) {
+    return !isEmptyText(child.text);
+  }
+
+  if (isElement(child)) {
+    const nonEmptyChildren = child.children.filter(isNotEmpty);
+    return nonEmptyChildren.length > 0;
+  }
+
+  return false;
 }
 
 export function elementIsEmpty(children: (ElementNode | Text)[]): boolean {
   // Checks if the children array has more than one element.
   // It may have a link inside, that's why we need to check this condition.
   if (children.length > 1) {
-    const hasText = children.filter(function f(child): boolean | number {
-      if (isText(child)) {
-        return !isEmptyText(child.text);
-      }
+    const nonEmptyChildren = children.filter(isNotEmpty);
+    return nonEmptyChildren.length === 0;
+  }
 
-      if (isElement(child)) {
-        return (child.children = child.children.filter(f)).length;
-      }
-
-      return false;
-    });
-
-    return hasText.length > 0 ? false : true;
-  } else {
-    const child = children[0];
-    if (isText(child)) {
-      const text = child.text;
-      if (isEmptyText(text)) return true;
-    }
+  const child = children[0];
+  if (isText(child)) {
+    const text = child.text;
+    if (isEmptyText(text)) return true;
   }
 
   return false;
 }
 
 export function isEmptyRTFContent(content: RichTextContent): boolean {
-  if (Array.isArray(content)) {
-    return elementIsEmpty(content);
-  }
-
-  return elementIsEmpty(content.children);
+  const realContent = Array.isArray(content) ? content : content.children;
+  return elementIsEmpty(realContent);
 }
 
 export function isEmptyRTF(node: GenericRichTextNode | undefined): boolean {
@@ -73,21 +111,6 @@ export function isEmptyRTF(node: GenericRichTextNode | undefined): boolean {
   }
 
   return isEmptyRTFContent(content);
-
-  //   const children = content.children;
-  //   if (children.length === 0) {
-  //     return true;
-  //   }
-  //   if (children.length === 1) {
-  //     const child = children[0];
-  //     if (child.type === "paragraph" && child.children.length === 1) {
-  //       const firstParagraph = child.children[0];
-  //       const text = firstParagraph.text as unknown;
-  //       return !text;
-  //     }
-  //   }
-
-  //   return false;
 }
 
 export function getRTF(
