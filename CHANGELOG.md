@@ -1,3 +1,10 @@
+## [1.7.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.6.0...v1.7.0) (2021-11-08)
+
+
+### Bug Fixes
+
+* rtf filtering ([8354b8e](https://github.com/bond-london/gatsby-graphcms-components/commit/8354b8e4fc7881100c714f5250cc9a13247597d1))
+
 ## [1.6.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.5.3...v1.6.0) (2021-11-05)
 
 
