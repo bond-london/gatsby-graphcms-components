@@ -1,4 +1,4 @@
-import Lottie, { AnimationItem, SVGRendererConfig } from "lottie-web";
+import { AnimationItem, SVGRendererConfig } from "lottie-web";
 import React, {
   CSSProperties,
   MutableRefObject,
@@ -60,27 +60,36 @@ const RealLottieElement: React.FC<Props> = (props) => {
         if (isVisible) {
           if (!state.loaded) {
             debug && console.log("Loading");
-            const animationData = JSON.parse(
-              animationJson as string
-            ) as unknown;
-            state.animation = Lottie.loadAnimation({
-              container,
-              renderer: "svg",
-              autoplay: true,
-              loop,
-              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-              animationData,
-              rendererSettings,
-            });
-            setAnimation(state.animation);
-            const img = imgRef.current;
-            if (img && img.parentElement === container) {
-              debug && console.log("Remove image");
-              container.removeChild(img);
-              (imgRef as MutableRefObject<HTMLImageElement | null>).current =
-                null;
-            }
-            state.loaded = true;
+            import("./LottieExport")
+              .then((Lottie) => {
+                if (!state.cancelled) {
+                  const animationData = JSON.parse(
+                    animationJson as string
+                  ) as unknown;
+                  state.animation = Lottie.default.loadAnimation({
+                    container,
+                    renderer: "svg",
+                    autoplay: true,
+                    loop,
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                    animationData,
+                    rendererSettings,
+                  });
+                  setAnimation(state.animation);
+                  const img = imgRef.current;
+                  if (img && img.parentElement === container) {
+                    debug && console.log("Remove image");
+                    container.removeChild(img);
+                    (
+                      imgRef as MutableRefObject<HTMLImageElement | null>
+                    ).current = null;
+                  }
+                  state.loaded = true;
+                }
+              })
+              .catch((error) => {
+                console.error("Failed to load lottie", error);
+              });
           }
         }
         setVisible(isVisible);
