@@ -71,7 +71,7 @@
   },
   "dependencies": {
     "@babel/preset-react": "^7.16.0",
-    "@bond-london/graphcms-rich-text": "^0.1.2",
+    "@bond-london/graphcms-rich-text": "^0.2.0",
     "@types/react-helmet": "^6.1.4",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",

@@ -1067,10 +1067,12 @@
     "@babel/helper-validator-identifier" "^7.15.7"
     to-fast-properties "^2.0.0"
 
-"@bond-london/graphcms-rich-text@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@bond-london/graphcms-rich-text/-/graphcms-rich-text-0.1.2.tgz#e2c0bfcdb326246185a7518e6e9b7e66290dfa67"
-  integrity sha512-tfavYM7dNn3mbssJM4Em7wEu4i6BFQpd7QXxilQX6QMc3miwvp9D3yhM95r0/THC53iuu8F2kioTaznBF9s7xg==
+"@bond-london/graphcms-rich-text@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@bond-london/graphcms-rich-text/-/graphcms-rich-text-0.2.0.tgz#94690df116aa301521ac63bc24b7bf9e5be724fe"
+  integrity sha512-ReUaunevvHIdqFlPqoSo3ZJd67SivJnbnGErXud6P61KBfo6IKD44LVchiL0q4Ou4pRv/gWayU6cagSyg1Jx2A==
+  dependencies:
+    "@babel/preset-react" "^7.16.0"
 
 "@commitlint/cli@^15.0.0":
   version "15.0.0"
@@ -13121,9 +13123,9 @@ ts-node@^9:
     yn "3.1.1"
 
 tsconfig-paths@^3.11.0:
-  version "3.11.0"
-  resolved "https://registry.yarnpkg.com/tsconfig-paths/-/tsconfig-paths-3.11.0.tgz#954c1fe973da6339c78e06b03ce2e48810b65f36"
-  integrity sha512-7ecdYDnIdmv639mmDwslG6KQg1Z9STTz1j7Gcz0xa+nshh/gKDAHcPxRbWOsA3SPp0tXP2leTcY9Kw+NAkfZzA==
+  version "3.12.0"
+  resolved "https://registry.yarnpkg.com/tsconfig-paths/-/tsconfig-paths-3.12.0.tgz#19769aca6ee8f6a1a341e38c8fa45dd9fb18899b"
+  integrity sha512-e5adrnOYT6zqVnWqZu7i/BQ3BnhzvGbjEjejFXO20lKIKpwTaupkCPgEfv4GZK1IBciJUEhYs3J3p75FdaTFVg==
   dependencies:
     "@types/json5" "^0.0.29"
     json5 "^1.0.1"
@@ -13774,9 +13776,9 @@ webpack-virtual-modules@^0.3.2:
     debug "^3.0.0"
 
 webpack@^5.61.0:
-  version "5.64.1"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.64.1.tgz#fd59840c16f04fe315f2b2598a85026f12dfa1bb"
-  integrity sha512-b4FHmRgaaAjP+aVOVz41a9Qa5SmkUPQ+u8FntTQ1roPHahSComB6rXnLwc976VhUY4CqTaLu5mCswuHiNhOfVw==
+  version "5.64.2"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.64.2.tgz#152e28d4712a6223b06c06cba0d3e622a61611a0"
+  integrity sha512-4KGc0+Ozi0aS3EaLNRvEppfZUer+CaORKqL6OBjDLZOPf9YfN8leagFzwe6/PoBdHFxc/utKArl8LMC0Ivtmdg==
   dependencies:
     "@types/eslint-scope" "^3.7.0"
     "@types/estree" "^0.0.50"
