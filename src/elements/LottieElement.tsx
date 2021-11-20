@@ -60,7 +60,7 @@ const RealLottieElement: React.FC<Props> = (props) => {
         if (isVisible) {
           if (!state.loaded) {
             debug && console.log("Loading");
-            import("./LottieExport")
+            import(/* webpackLoad: false */ "./LottieExport")
               .then((Lottie) => {
                 if (!state.cancelled) {
                   const animationData = JSON.parse(

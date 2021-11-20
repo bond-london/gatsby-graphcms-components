@@ -1,9 +1,9 @@
 import React from "react";
 
-import { LinkRendererProps, LinkElement } from "@graphcms/rich-text-types";
 import { GatsbyLinkProps, Link as GatsbyLink } from "gatsby";
+import { LinkNodeRendererProps } from "@bond-london/graphcms-rich-text";
 
-export const ExternalLink: React.FC<LinkRendererProps> = ({
+export const ExternalLink: React.FC<LinkNodeRendererProps> = ({
   href,
   rel,
   id,
@@ -12,7 +12,13 @@ export const ExternalLink: React.FC<LinkRendererProps> = ({
   className,
   children,
 }) => {
-  const props: Pick<LinkElement, "rel" | "id" | "title" | "className"> & {
+  const props: Pick<
+    React.DetailedHTMLProps<
+      React.AnchorHTMLAttributes<HTMLAnchorElement>,
+      HTMLAnchorElement
+    >,
+    "rel" | "id" | "title" | "className"
+  > & {
     target?: string;
   } = {};
 
@@ -29,7 +35,7 @@ export const ExternalLink: React.FC<LinkRendererProps> = ({
   );
 };
 
-export const InternalLink: React.FC<LinkRendererProps> = ({
+export const InternalLink: React.FC<LinkNodeRendererProps> = ({
   href,
   id,
   title,
@@ -52,7 +58,7 @@ export const InternalLink: React.FC<LinkRendererProps> = ({
   );
 };
 
-export const RTFLink: React.FC<LinkRendererProps> = (props) => {
+export const RTFLink: React.FC<LinkNodeRendererProps> = (props) => {
   const { href } = props;
   if (href?.startsWith("/")) {
     return <InternalLink {...props} />;

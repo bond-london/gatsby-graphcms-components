@@ -15,7 +15,8 @@
     "isolatedModules": true,
     "jsx": "react",
     "importHelpers": true,
-    "removeComments": true
+    "removeComments": true,
+    "declaration": true
   },
   "include": ["src"]
 }
