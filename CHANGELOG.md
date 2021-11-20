@@ -1,3 +1,16 @@
+## [1.8.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.7.0...v1.8.0) (2021-11-20)
+
+
+### Features
+
+* make lottie lazy ([4bc6aae](https://github.com/bond-london/gatsby-graphcms-components/commit/4bc6aae8932574cc3ed38438774211096cd7660b))
+* updates ([9843659](https://github.com/bond-london/gatsby-graphcms-components/commit/9843659019600228a80db15b45915218ea18fe5a))
+
+
+### Bug Fixes
+
+* build ([f339e29](https://github.com/bond-london/gatsby-graphcms-components/commit/f339e29b3e53e23c7febc9d965514782bdf04479))
+
 ## [1.7.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.6.0...v1.7.0) (2021-11-08)
 
 
