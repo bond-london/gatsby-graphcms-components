@@ -24,7 +24,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "build:defs": "tsc --outDir dist",
+    "build": "tsc --outDir dist",
     "dev": "tsc -w --outDir dist",
     "prepare": "cross-env NODE_ENV=production yarn run lint && yarn run build && husky install",
     "format": "prettier --write \"**/*.{js,jsx,json,ts,tsx}\"",
