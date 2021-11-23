@@ -1,3 +1,10 @@
+### [1.8.6](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.8.5...v1.8.6) (2021-11-23)
+
+
+### Bug Fixes
+
+* more lottie ([8f5b196](https://github.com/bond-london/gatsby-graphcms-components/commit/8f5b19697208d63bf4dc3f002a5f6f19e169e25f))
+
 ### [1.8.5](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.8.4...v1.8.5) (2021-11-23)
 
 
