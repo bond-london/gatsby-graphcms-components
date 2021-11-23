@@ -6,4 +6,5 @@ export * from "./SEO";
 export * from "./LottieElement";
 export * from "./SvgIcon";
 export * from "./AutoVisual";
+export * from "./AutoVisualNoLottie";
 export * from "./RTF";
