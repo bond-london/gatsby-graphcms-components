@@ -1,3 +1,10 @@
+### [1.8.3](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.8.2...v1.8.3) (2021-11-23)
+
+
+### Bug Fixes
+
+* removed babel ([197879b](https://github.com/bond-london/gatsby-graphcms-components/commit/197879b413dc9cae0068b7b968e7a25dcf6bac99))
+
 ### [1.8.2](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.8.1...v1.8.2) (2021-11-23)
 
 
