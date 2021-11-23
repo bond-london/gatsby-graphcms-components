@@ -1,3 +1,10 @@
+### [1.8.4](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.8.3...v1.8.4) (2021-11-23)
+
+
+### Bug Fixes
+
+* reduce lottie impact ([2cece47](https://github.com/bond-london/gatsby-graphcms-components/commit/2cece47445c17fb0dbbeeeb875df224e7856e097))
+
 ### [1.8.3](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.8.2...v1.8.3) (2021-11-23)
 
 
