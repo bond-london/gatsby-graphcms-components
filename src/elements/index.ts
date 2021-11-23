@@ -3,8 +3,5 @@ export * from "./AutoVideoAndThumbnail";
 export * from "./AutoVideoOrThumbnail";
 export * from "./Thumbnail";
 export * from "./SEO";
-export * from "./LottieElement";
 export * from "./SvgIcon";
-export * from "./AutoVisual";
-export * from "./AutoVisualNoLottie";
 export * from "./RTF";
