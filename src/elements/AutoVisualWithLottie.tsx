@@ -1,10 +1,7 @@
 import React from "react";
 import { VisualAsset } from "..";
-import loadable from "@loadable/component";
 import { AutoVisualNoLottie } from "./AutoVisualNoLottie";
-const LottieElement = loadable(() => import("./LottieElement"), {
-  resolveComponent: (c) => c.LottieElement,
-});
+import { LottieElement } from "./LottieElement";
 
 export const AutoVisualWithLottie: React.FC<{
   visual?: VisualAsset;
