@@ -1,3 +1,10 @@
+### [1.8.9](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.8.8...v1.8.9) (2021-11-27)
+
+
+### Bug Fixes
+
+* delay load lottie ([ecb14c3](https://github.com/bond-london/gatsby-graphcms-components/commit/ecb14c3c6d9cf4f36200d7c4375c8301cf21b1aa))
+
 ### [1.8.8](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.8.7...v1.8.8) (2021-11-25)
 
 
