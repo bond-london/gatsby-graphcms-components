@@ -1,3 +1,10 @@
+### [1.8.10](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.8.9...v1.8.10) (2021-11-27)
+
+
+### Bug Fixes
+
+* remove loadable ([24cda5e](https://github.com/bond-london/gatsby-graphcms-components/commit/24cda5e8a7ea2b458048c9d495091c4789f179f8))
+
 ### [1.8.9](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.8.8...v1.8.9) (2021-11-27)
 
 
