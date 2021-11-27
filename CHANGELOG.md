@@ -1,3 +1,10 @@
+### [1.8.11](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.8.10...v1.8.11) (2021-11-27)
+
+
+### Bug Fixes
+
+* change index ([755694b](https://github.com/bond-london/gatsby-graphcms-components/commit/755694bd3616fe6e0a1ecff95c03a1fbfeb46776))
+
 ### [1.8.10](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.8.9...v1.8.10) (2021-11-27)
 
 
