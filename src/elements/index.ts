@@ -5,3 +5,6 @@ export * from "./Thumbnail";
 export * from "./SEO";
 export * from "./SvgIcon";
 export * from "./RTF";
+export * from "./AutoVisualNoLottie";
+export * from "./AutoVisualWithLottie";
+export * from "./LottieElement";
