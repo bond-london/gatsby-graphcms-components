@@ -1,11 +1,10 @@
 import React, { CSSProperties, useMemo } from "react";
 
 interface Props {
-  encoded?: string;
+  encoded: string;
   alt: string;
   className?: string;
   fitParent?: boolean;
-  onClick?: (ev: React.SyntheticEvent) => void;
 }
 
 export const SvgIcon: React.FC<Props> = ({
@@ -13,7 +12,6 @@ export const SvgIcon: React.FC<Props> = ({
   alt,
   className,
   fitParent,
-  onClick,
 }) => {
   const fullStyles: CSSProperties = useMemo(() => {
     return fitParent
@@ -27,17 +25,7 @@ export const SvgIcon: React.FC<Props> = ({
       : {};
   }, [fitParent]);
 
-  if (!encoded) {
-    return null;
-  }
-
   return (
-    <img
-      src={encoded}
-      alt={alt}
-      className={className}
-      style={fullStyles}
-      onClick={onClick}
-    />
+    <img src={encoded} alt={alt} className={className} style={fullStyles} />
   );
 };

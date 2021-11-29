@@ -62,9 +62,7 @@ export const LottieElement: React.FC<Props> = (props) => {
           if (!state.loaded) {
             debug && console.log("Loading");
             if (!state.cancelled) {
-              const animationData = JSON.parse(
-                animationJson as string
-              ) as unknown;
+              const animationData = JSON.parse(animationJson) as unknown;
               state.animation = lottie.loadAnimation({
                 container,
                 renderer: "svg",

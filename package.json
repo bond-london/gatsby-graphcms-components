@@ -73,7 +73,7 @@
     }
   },
   "dependencies": {
-    "@bond-london/graphcms-rich-text": "^0.2.0",
+    "@bond-london/graphcms-rich-text": "^0.3.1",
     "react-helmet": "^6.1.0"
   },
   "release-it": {
