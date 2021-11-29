@@ -1,3 +1,11 @@
+## [1.9.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.8.11...v1.9.0) (2021-11-29)
+
+
+### Bug Fixes
+
+* better module handling ([1edade6](https://github.com/bond-london/gatsby-graphcms-components/commit/1edade62be6cfe24aa58d7e11e31631b2cdcd0d2))
+* cleanup ([78e2e01](https://github.com/bond-london/gatsby-graphcms-components/commit/78e2e0184d8e12cf89eb1fbd51187ead34dadcb7))
+
 ### [1.8.11](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.8.10...v1.8.11) (2021-11-27)
 
 
