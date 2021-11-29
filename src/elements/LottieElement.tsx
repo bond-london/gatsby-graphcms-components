@@ -8,10 +8,11 @@ import React, {
   useState,
 } from "react";
 import { onVisibleToUser } from "../hooks";
+import lottie from "lottie-web/build/player/lottie_light";
 
 interface Props {
-  animationJson?: string;
-  encoded?: string;
+  animationJson: string;
+  encoded: string;
   className?: string;
   rendererSettings?: SVGRendererConfig;
   placeholderClassName?: string;
@@ -28,7 +29,7 @@ interface InternalState {
   loaded?: boolean;
   visible?: boolean;
 }
-const RealLottieElement: React.FC<Props> = (props) => {
+export const LottieElement: React.FC<Props> = (props) => {
   const {
     animationJson,
     encoded,
@@ -60,36 +61,29 @@ const RealLottieElement: React.FC<Props> = (props) => {
         if (isVisible) {
           if (!state.loaded) {
             debug && console.log("Loading");
-            import("lottie-web")
-              .then((Lottie) => {
-                if (!state.cancelled) {
-                  const animationData = JSON.parse(
-                    animationJson as string
-                  ) as unknown;
-                  state.animation = Lottie.default.loadAnimation({
-                    container,
-                    renderer: "svg",
-                    autoplay: true,
-                    loop,
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                    animationData,
-                    rendererSettings,
-                  });
-                  setAnimation(state.animation);
-                  const img = imgRef.current;
-                  if (img && img.parentElement === container) {
-                    debug && console.log("Remove image");
-                    container.removeChild(img);
-                    (
-                      imgRef as MutableRefObject<HTMLImageElement | null>
-                    ).current = null;
-                  }
-                  state.loaded = true;
-                }
-              })
-              .catch((error) => {
-                console.error("Failed to load lottie", error);
+            if (!state.cancelled) {
+              const animationData = JSON.parse(
+                animationJson as string
+              ) as unknown;
+              state.animation = lottie.loadAnimation({
+                container,
+                renderer: "svg",
+                autoplay: true,
+                loop,
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                animationData,
+                rendererSettings,
               });
+              setAnimation(state.animation);
+              const img = imgRef.current;
+              if (img && img.parentElement === container) {
+                debug && console.log("Remove image");
+                container.removeChild(img);
+                (imgRef as MutableRefObject<HTMLImageElement | null>).current =
+                  null;
+              }
+              state.loaded = true;
+            }
           }
         }
         setVisible(isVisible);
@@ -160,11 +154,4 @@ const RealLottieElement: React.FC<Props> = (props) => {
       />
     </div>
   );
-};
-
-export const LottieElement: React.FC<Props> = (props) => {
-  if (!props.animationJson) {
-    return null;
-  }
-  return <RealLottieElement {...props} />;
 };

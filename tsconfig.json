@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -8,14 +8,13 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "commonjs",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "sourceMap": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "jsx": "react",
     "importHelpers": true,
-    "removeComments": true,
+    "removeComments": false,
     "declaration": true
   },
   "include": ["src"]

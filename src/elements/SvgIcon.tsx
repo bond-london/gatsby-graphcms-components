@@ -5,6 +5,7 @@ interface Props {
   alt: string;
   className?: string;
   fitParent?: boolean;
+  onClick?: (ev: React.SyntheticEvent) => void;
 }
 
 export const SvgIcon: React.FC<Props> = ({
@@ -12,6 +13,7 @@ export const SvgIcon: React.FC<Props> = ({
   alt,
   className,
   fitParent,
+  onClick,
 }) => {
   const fullStyles: CSSProperties = useMemo(() => {
     return fitParent
@@ -22,7 +24,7 @@ export const SvgIcon: React.FC<Props> = ({
           left: "0",
           top: "0",
         }
-      : { display: "block" };
+      : {};
   }, [fitParent]);
 
   if (!encoded) {
@@ -30,6 +32,12 @@ export const SvgIcon: React.FC<Props> = ({
   }
 
   return (
-    <img src={encoded} alt={alt} className={className} style={fullStyles} />
+    <img
+      src={encoded}
+      alt={alt}
+      className={className}
+      style={fullStyles}
+      onClick={onClick}
+    />
   );
 };
