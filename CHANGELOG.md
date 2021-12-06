@@ -1,3 +1,10 @@
+### [1.10.1](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.10.0...v1.10.1) (2021-12-06)
+
+
+### Bug Fixes
+
+* remove block from lottie element ([82fe993](https://github.com/bond-london/gatsby-graphcms-components/commit/82fe9930d0b16aa6c7f6908091b1f991a9a22479))
+
 ## [1.10.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.9.0...v1.10.0) (2021-11-30)
 
 ## [1.9.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.8.11...v1.9.0) (2021-11-29)
