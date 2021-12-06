@@ -133,7 +133,7 @@ export const LottieElement: React.FC<Props> = (props) => {
           left: "0",
           top: "0",
         }
-      : { display: "block" };
+      : {};
   }, [fitParent]);
 
   return (
