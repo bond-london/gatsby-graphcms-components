@@ -5,13 +5,12 @@ import { VisualAsset } from "..";
 export const AutoVisualNoLottie: React.FC<{
   visual?: VisualAsset;
   className?: string;
-  loop?: boolean;
   fitParent?: boolean;
-}> = ({ visual, className, loop, fitParent }) => {
+}> = ({ visual, className, fitParent }) => {
   if (!visual) {
     return null;
   }
-  const { image, svg, animation, videoUrl, alt } = visual;
+  const { image, svg, animation, videoUrl, alt, loop } = visual;
   if (animation) {
     console.error("Lottie is not supported");
     return null;
@@ -34,8 +33,8 @@ export const AutoVisualNoLottie: React.FC<{
       alt={alt}
       thumbnail={image}
       fitParent={fitParent}
-      loop={loop}
       className={className}
+      loop={loop}
     />
   );
 };

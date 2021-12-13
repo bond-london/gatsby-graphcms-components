@@ -6,14 +6,13 @@ import { LottieElement } from "./LottieElement";
 export const AutoVisualWithLottie: React.FC<{
   visual?: VisualAsset;
   className?: string;
-  loop?: boolean;
   fitParent?: boolean;
-}> = ({ visual, className, loop, fitParent }) => {
+}> = ({ visual, className, fitParent }) => {
   if (!visual) {
     return null;
   }
 
-  const { animation, alt } = visual;
+  const { animation, alt, loop } = visual;
   if (animation) {
     return (
       <LottieElement
@@ -31,7 +30,6 @@ export const AutoVisualWithLottie: React.FC<{
     <AutoVisualNoLottie
       visual={visual}
       className={className}
-      loop={loop}
       fitParent={fitParent}
     />
   );

@@ -34,6 +34,7 @@ export interface VisualAsset {
   alt: string;
   svg?: SvgInformation;
   animation?: LottieInformation;
+  loop?: boolean;
 }
 
 export function getImageFromFile(file?: File): IGatsbyImageData | undefined {
@@ -83,4 +84,32 @@ export function getExtractedSvg(
 
 export function getSvg(node: GenericAsset | undefined): string | undefined {
   return getExtractedSvg(node)?.encoded;
+}
+
+export function getVisual(
+  asset: GenericAsset | undefined,
+  loop = false,
+  preview: GenericAsset | undefined = undefined,
+  defaultAlt = ""
+): VisualAsset | undefined {
+  if (!asset) {
+    return;
+  }
+
+  const image = getImage(asset);
+  const alt = getAlt(asset, defaultAlt);
+  const svg = getExtractedSvg(asset);
+  const possibleVideoUrl = getVideo(asset);
+  const animation = getLottie(asset);
+  if (!image && !svg && !possibleVideoUrl && !animation) {
+    return;
+  }
+
+  const videoUrl = !image && !svg && !animation ? possibleVideoUrl : undefined;
+  if (videoUrl) {
+    const previewImage = videoUrl ? getImage(preview) : undefined;
+    return { image: previewImage, alt, videoUrl, loop };
+  }
+
+  return { image, alt, svg, videoUrl, animation, loop: !!loop };
 }
