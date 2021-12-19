@@ -1,3 +1,10 @@
+### [1.10.3](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.10.2...v1.10.3) (2021-12-19)
+
+
+### Features
+
+* added a loop delay ([be2b227](https://github.com/bond-london/gatsby-graphcms-components/commit/be2b227c4578c450a7e556f94ac910b143426632))
+
 ### [1.10.2](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.10.1...v1.10.2) (2021-12-13)
 
 
