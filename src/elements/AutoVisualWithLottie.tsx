@@ -7,7 +7,8 @@ export const AutoVisualWithLottie: React.FC<{
   visual?: VisualAsset;
   className?: string;
   fitParent?: boolean;
-}> = ({ visual, className, fitParent }) => {
+  loopDelay?: number;
+}> = ({ visual, className, fitParent, loopDelay }) => {
   if (!visual) {
     return null;
   }
@@ -22,6 +23,7 @@ export const AutoVisualWithLottie: React.FC<{
         loop={loop}
         fitParent={fitParent}
         alt={alt}
+        loopDelay={loopDelay}
       />
     );
   }

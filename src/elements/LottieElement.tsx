@@ -21,6 +21,7 @@ interface Props {
   disabled?: boolean;
   fitParent?: boolean;
   alt: string;
+  loopDelay?: number;
 }
 
 interface InternalState {
@@ -28,6 +29,7 @@ interface InternalState {
   cancelled?: boolean;
   loaded?: boolean;
   visible?: boolean;
+  retriggerHandle?: number;
 }
 export const LottieElement: React.FC<Props> = (props) => {
   const {
@@ -41,6 +43,7 @@ export const LottieElement: React.FC<Props> = (props) => {
     disabled,
     alt,
     fitParent,
+    loopDelay,
   } = props;
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -72,6 +75,14 @@ export const LottieElement: React.FC<Props> = (props) => {
                 animationData,
                 rendererSettings,
               });
+              if (loopDelay) {
+                state.animation?.addEventListener("complete", () => {
+                  state.retriggerHandle = window.setTimeout(() => {
+                    state.retriggerHandle = undefined;
+                    state.animation?.goToAndPlay(0);
+                  }, loopDelay);
+                });
+              }
               setAnimation(state.animation);
               const img = imgRef.current;
               if (img && img.parentElement === container) {
@@ -94,13 +105,16 @@ export const LottieElement: React.FC<Props> = (props) => {
       debug && console.log("destroy animation");
       if (!state.cancelled) {
         state.cancelled = true;
+        if (state.retriggerHandle) {
+          window.clearTimeout(state.retriggerHandle);
+        }
         state.animation?.destroy();
         state.animation = undefined;
         setAnimation(undefined);
       }
       removeVisibility();
     };
-  }, [animationJson, rendererSettings, debug, loop]);
+  }, [animationJson, rendererSettings, debug, loop, loopDelay]);
 
   useEffect(() => {
     if (!animation) return;
