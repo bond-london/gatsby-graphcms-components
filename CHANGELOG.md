@@ -1,3 +1,10 @@
+## [1.11.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.10.3...v1.11.0) (2022-01-04)
+
+
+### Features
+
+* lazy load lottie better ([6169751](https://github.com/bond-london/gatsby-graphcms-components/commit/6169751050d40e49c5a70d55870452a943e40f14))
+
 ### [1.10.3](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.10.2...v1.10.3) (2021-12-19)
 
 
