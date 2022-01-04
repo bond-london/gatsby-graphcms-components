@@ -17,7 +17,7 @@ export interface SvgInformation {
 }
 
 export interface LottieInformation {
-  readonly animationJson: string;
+  readonly animationUrl: string;
   readonly encoded: string;
 }
 
@@ -25,7 +25,7 @@ interface File {
   readonly childImageSharp?: ImageSharp;
   readonly publicURL?: string;
   readonly svg?: SvgInformation;
-  readonly lottie?: LottieInformation;
+  readonly lottie?: Omit<LottieInformation, "animationUrl">;
 }
 
 export interface VisualAsset {
@@ -63,7 +63,12 @@ export function getVideo(node: GenericAsset | undefined): string | undefined {
 }
 
 export function getLottieFromFile(file?: File): LottieInformation | undefined {
-  return file?.lottie;
+  if (file?.lottie && file?.publicURL) {
+    return {
+      encoded: file.lottie.encoded,
+      animationUrl: file.publicURL,
+    };
+  }
 }
 
 export function getLottie(
@@ -111,5 +116,11 @@ export function getVisual(
     return { image: previewImage, alt, videoUrl, loop };
   }
 
-  return { image, alt, svg, videoUrl, animation, loop: !!loop };
+  return {
+    image,
+    alt,
+    svg,
+    animation,
+    loop: !!loop,
+  };
 }

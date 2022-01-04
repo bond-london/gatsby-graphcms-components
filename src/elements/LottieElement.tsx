@@ -11,7 +11,7 @@ import { onVisibleToUser } from "../hooks";
 import lottie from "lottie-web/build/player/lottie_light";
 
 interface Props {
-  animationJson: string;
+  animationUrl: string;
   encoded: string;
   className?: string;
   rendererSettings?: SVGRendererConfig;
@@ -22,6 +22,7 @@ interface Props {
   fitParent?: boolean;
   alt: string;
   loopDelay?: number;
+  cover?: boolean;
 }
 
 interface InternalState {
@@ -31,9 +32,16 @@ interface InternalState {
   visible?: boolean;
   retriggerHandle?: number;
 }
+
+async function loadAnimation(url: string): Promise<unknown> {
+  return await fetch(url).then(
+    (response) => response.json() as Promise<unknown>
+  );
+}
+
 export const LottieElement: React.FC<Props> = (props) => {
   const {
-    animationJson,
+    animationUrl,
     encoded,
     className,
     rendererSettings,
@@ -44,6 +52,7 @@ export const LottieElement: React.FC<Props> = (props) => {
     alt,
     fitParent,
     loopDelay,
+    cover,
   } = props;
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -64,35 +73,43 @@ export const LottieElement: React.FC<Props> = (props) => {
         if (isVisible) {
           if (!state.loaded) {
             debug && console.log("Loading");
-            if (!state.cancelled) {
-              const animationData = JSON.parse(animationJson) as unknown;
-              state.animation = lottie.loadAnimation({
-                container,
-                renderer: "svg",
-                autoplay: true,
-                loop,
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                animationData,
-                rendererSettings,
-              });
-              if (loopDelay) {
-                state.animation?.addEventListener("complete", () => {
-                  state.retriggerHandle = window.setTimeout(() => {
-                    state.retriggerHandle = undefined;
-                    state.animation?.goToAndPlay(0);
-                  }, loopDelay);
-                });
-              }
-              setAnimation(state.animation);
-              const img = imgRef.current;
-              if (img && img.parentElement === container) {
-                debug && console.log("Remove image");
-                container.removeChild(img);
-                (imgRef as MutableRefObject<HTMLImageElement | null>).current =
-                  null;
-              }
-              state.loaded = true;
-            }
+            loadAnimation(animationUrl)
+              .then((animationData) => {
+                if (!state.cancelled) {
+                  const realRendererSettings: SVGRendererConfig = {
+                    ...(rendererSettings ? rendererSettings : {}),
+                    ...(cover ? { preserveAspectRatio: "xMidYMid slice" } : {}),
+                  };
+                  state.animation = lottie.loadAnimation({
+                    container,
+                    renderer: "svg",
+                    autoplay: true,
+                    loop,
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                    animationData,
+                    rendererSettings: realRendererSettings,
+                  });
+                  if (loopDelay) {
+                    state.animation?.addEventListener("complete", () => {
+                      state.retriggerHandle = window.setTimeout(() => {
+                        state.retriggerHandle = undefined;
+                        state.animation?.goToAndPlay(0);
+                      }, loopDelay);
+                    });
+                  }
+                  setAnimation(state.animation);
+                  const img = imgRef.current;
+                  if (img && img.parentElement === container) {
+                    debug && console.log("Remove image");
+                    container.removeChild(img);
+                    (
+                      imgRef as MutableRefObject<HTMLImageElement | null>
+                    ).current = null;
+                  }
+                  state.loaded = true;
+                }
+              })
+              .catch((error) => console.error("Error loading", error));
           }
         }
         setVisible(isVisible);
@@ -114,7 +131,7 @@ export const LottieElement: React.FC<Props> = (props) => {
       }
       removeVisibility();
     };
-  }, [animationJson, rendererSettings, debug, loop, loopDelay]);
+  }, [animationUrl, rendererSettings, debug, loop, loopDelay, cover]);
 
   useEffect(() => {
     if (!animation) return;
@@ -159,7 +176,7 @@ export const LottieElement: React.FC<Props> = (props) => {
         style={{
           height: "100%",
           width: "100%",
-          objectFit: "contain",
+          objectFit: cover ? "cover" : "contain",
           objectPosition: "center",
         }}
         className={placeholderClassName}
