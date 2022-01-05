@@ -1,3 +1,10 @@
+### [1.11.1](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.11.0...v1.11.1) (2022-01-05)
+
+
+### Bug Fixes
+
+* don't export lottie by default ([aba0437](https://github.com/bond-london/gatsby-graphcms-components/commit/aba0437ee131dea3033c8741ea98510a20da8fc9))
+
 ## [1.11.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.10.3...v1.11.0) (2022-01-04)
 
 
