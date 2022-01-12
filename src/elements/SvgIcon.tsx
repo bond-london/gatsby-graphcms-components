@@ -5,6 +5,7 @@ interface Props {
   alt: string;
   className?: string;
   fitParent?: boolean;
+  noStyle?: boolean;
 }
 
 export const SvgIcon: React.FC<Props> = ({
@@ -12,9 +13,10 @@ export const SvgIcon: React.FC<Props> = ({
   alt,
   className,
   fitParent,
+  noStyle,
 }) => {
-  const fullStyles: CSSProperties = useMemo(() => {
-    return fitParent
+  const fullStyles: CSSProperties | undefined = useMemo(() => {
+    return !noStyle && fitParent
       ? {
           position: "absolute",
           width: "100%",
@@ -22,8 +24,8 @@ export const SvgIcon: React.FC<Props> = ({
           left: "0",
           top: "0",
         }
-      : {};
-  }, [fitParent]);
+      : undefined;
+  }, [fitParent, noStyle]);
 
   return (
     <img src={encoded} alt={alt} className={className} style={fullStyles} />

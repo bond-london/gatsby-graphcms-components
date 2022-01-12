@@ -10,6 +10,7 @@ interface Props {
   delay?: number;
   classname?: string;
   loop?: boolean;
+  noStyle?: boolean;
 }
 
 export const AutoVideoAndThumbnail: React.FC<Props> = ({
@@ -20,6 +21,7 @@ export const AutoVideoAndThumbnail: React.FC<Props> = ({
   delay = 1000,
   loop,
   classname,
+  noStyle,
 }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
@@ -42,14 +44,15 @@ export const AutoVideoAndThumbnail: React.FC<Props> = ({
         fitParent={fitParent}
         onLoad={onImageLoadedOrErrored}
         onError={onImageLoadedOrErrored}
+        noStyle={noStyle}
       />
       {showVideo && (
         <AutoVideo
           className={classname}
           src={videoSrc}
           fitParent={fitParent}
-          style={{ visibility: showVideo ? "unset" : "hidden" }}
           loop={loop}
+          noStyle={noStyle}
         />
       )}
     </>

@@ -1,17 +1,24 @@
 import { SVGRendererConfig } from "lottie-web";
 import React from "react";
-import { VisualAsset } from "..";
+import { AutoVisualProps } from ".";
 import { AutoVisualNoLottie } from "./AutoVisualNoLottie";
 import { LottieElement } from "./LottieElement";
 
-export const AutoVisualWithLottie: React.FC<{
-  visual?: VisualAsset;
-  className?: string;
-  fitParent?: boolean;
-  loopDelay?: number;
-  rendererSettings?: SVGRendererConfig;
-  cover?: boolean;
-}> = ({ visual, className, fitParent, loopDelay, rendererSettings, cover }) => {
+export const AutoVisualWithLottie: React.FC<
+  AutoVisualProps & {
+    loopDelay?: number;
+    rendererSettings?: SVGRendererConfig;
+    cover?: boolean;
+  }
+> = ({
+  visual,
+  className,
+  fitParent,
+  loopDelay,
+  rendererSettings,
+  cover,
+  noStyle,
+}) => {
   if (!visual) {
     return null;
   }
@@ -38,6 +45,7 @@ export const AutoVisualWithLottie: React.FC<{
       visual={visual}
       className={className}
       fitParent={fitParent}
+      noStyle={noStyle}
     />
   );
 };

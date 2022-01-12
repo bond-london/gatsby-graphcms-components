@@ -9,6 +9,7 @@ interface Props {
   fitParent?: boolean;
   className?: string;
   imgClassName?: string;
+  noStyle?: boolean;
 }
 
 export const Thumbnail: React.FC<Props> = ({
@@ -19,6 +20,7 @@ export const Thumbnail: React.FC<Props> = ({
   fitParent,
   className,
   imgClassName,
+  noStyle,
 }) => {
   const handleStartLoad = useCallback(
     ({ wasCached }: { wasCached?: boolean }) => {
@@ -29,9 +31,11 @@ export const Thumbnail: React.FC<Props> = ({
     [onLoad]
   );
 
-  const style: CSSProperties = useMemo(
+  const style: CSSProperties | undefined = useMemo(
     () =>
-      fitParent
+      noStyle
+        ? undefined
+        : fitParent
         ? {
             position: "absolute",
             width: "100%",
@@ -40,7 +44,7 @@ export const Thumbnail: React.FC<Props> = ({
             top: "0",
           }
         : { display: "block" },
-    [fitParent]
+    [fitParent, noStyle]
   );
   return (
     <GatsbyImage

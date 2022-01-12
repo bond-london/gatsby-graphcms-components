@@ -9,6 +9,7 @@ interface Props {
   fitParent?: boolean;
   loop?: boolean;
   className?: string;
+  noStyle?: boolean;
 }
 
 export const AutoVideoOrThumbnail: React.FC<Props> = ({
@@ -18,6 +19,7 @@ export const AutoVideoOrThumbnail: React.FC<Props> = ({
   fitParent,
   loop,
   className,
+  noStyle,
 }) => {
   if (videoSrc && thumbnail) {
     return (
@@ -28,6 +30,7 @@ export const AutoVideoOrThumbnail: React.FC<Props> = ({
         fitParent={fitParent}
         loop={loop}
         classname={className}
+        noStyle={noStyle}
       />
     );
   }
@@ -38,6 +41,7 @@ export const AutoVideoOrThumbnail: React.FC<Props> = ({
         fitParent={fitParent}
         loop={loop}
         className={className}
+        noStyle={noStyle}
       />
     );
   }
@@ -49,6 +53,7 @@ export const AutoVideoOrThumbnail: React.FC<Props> = ({
         alt={alt}
         fitParent={fitParent}
         className={className}
+        noStyle={noStyle}
       />
     );
   }

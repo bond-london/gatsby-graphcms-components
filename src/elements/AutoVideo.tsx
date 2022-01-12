@@ -31,6 +31,7 @@ interface Props {
   delay?: number;
   fitParent?: boolean;
   loop?: boolean;
+  noStyle?: boolean;
 }
 
 export const RealAutoVideo: React.FC<Props> = ({
@@ -44,6 +45,7 @@ export const RealAutoVideo: React.FC<Props> = ({
   threshold = 0.4,
   delay = 100,
   loop,
+  noStyle,
 }) => {
   const [hasPlayed, setHasPlayed] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -88,7 +90,10 @@ export const RealAutoVideo: React.FC<Props> = ({
     }
   }, [onLoad]);
 
-  const fullStyles: CSSProperties = useMemo(() => {
+  const fullStyles: CSSProperties | undefined = useMemo(() => {
+    if (noStyle) {
+      return undefined;
+    }
     const shared: CSSProperties = {
       objectFit: "cover",
       width: "100%",
@@ -102,7 +107,7 @@ export const RealAutoVideo: React.FC<Props> = ({
         }
       : { display: "block", position: "relative" };
     return { ...shared, ...conditional, ...style };
-  }, [fitParent, style]);
+  }, [fitParent, style, noStyle]);
 
   return (
     <video

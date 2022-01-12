@@ -2,11 +2,19 @@ import React from "react";
 import { AutoVideoOrThumbnail, SvgIcon } from ".";
 import { VisualAsset } from "..";
 
-export const AutoVisualNoLottie: React.FC<{
+export interface AutoVisualProps {
   visual?: VisualAsset;
   className?: string;
   fitParent?: boolean;
-}> = ({ visual, className, fitParent }) => {
+  noStyle?: boolean;
+}
+
+export const AutoVisualNoLottie: React.FC<AutoVisualProps> = ({
+  visual,
+  className,
+  fitParent,
+  noStyle,
+}) => {
   if (!visual) {
     return null;
   }
@@ -23,6 +31,7 @@ export const AutoVisualNoLottie: React.FC<{
         alt={alt}
         fitParent={fitParent}
         className={className}
+        noStyle={noStyle}
       />
     );
   }
@@ -35,6 +44,7 @@ export const AutoVisualNoLottie: React.FC<{
       fitParent={fitParent}
       className={className}
       loop={loop}
+      noStyle={noStyle}
     />
   );
 };
