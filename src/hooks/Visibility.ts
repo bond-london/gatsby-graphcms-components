@@ -99,3 +99,36 @@ export function useFirstVisibleCallback(
 
   return [onVisible, animationMode];
 }
+
+export function useVisibleToUser<T extends HTMLElement = HTMLDivElement>(
+  threshold = 0.4,
+  delay = 100,
+  callback?: (isVisible: boolean) => void
+): { elementRef: React.RefObject<T>; visible: boolean; firstVisible: boolean } {
+  const elementRef = useRef<T>(null);
+  const [visible, setVisible] = useState(false);
+  const [firstVisible, setFirstVisible] = useState(false);
+
+  useEffect(() => {
+    const element = elementRef.current;
+    if (!element) {
+      return;
+    }
+    const removeVisibility = onVisibleToUser(
+      element,
+      (isVisible) => {
+        if (isVisible) {
+          setFirstVisible(true);
+        }
+        setVisible(isVisible);
+        callback?.(isVisible);
+      },
+      threshold,
+      delay
+    );
+
+    return removeVisibility;
+  }, [threshold, delay, callback]);
+
+  return { elementRef, visible, firstVisible };
+}
