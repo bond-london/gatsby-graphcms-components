@@ -1,3 +1,10 @@
+### [1.13.1](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.13.0...v1.13.1) (2022-01-14)
+
+
+### Features
+
+* add useVisibleToUser ([6839b76](https://github.com/bond-london/gatsby-graphcms-components/commit/6839b76359a86f29b5dd2f8f7106c1814326c5f9))
+
 ## [1.13.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.12.0...v1.13.0) (2022-01-12)
 
 
