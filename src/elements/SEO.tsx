@@ -11,6 +11,7 @@ export interface Seo {
   description?: string;
   image?: IGatsbyImageData;
   keywords?: string;
+  noIndex?: boolean;
 }
 interface Props {
   siteBuildMetadata: SiteBuildMetadata & { buildYear: string };
@@ -47,6 +48,9 @@ export const SEO: React.FC<Props> = ({
   return (
     <>
       <Helmet htmlAttributes={{ lang: "en" }}>
+        {pageMetadata.noIndex && (
+          <meta name="robots" content="noindex, nofollow" />
+        )}
         <title>{pageTitle}</title>
         <noscript>This site runs best with JavaScript enabled</noscript>
         <meta name="description" content={description} />
