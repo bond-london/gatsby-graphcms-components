@@ -1,3 +1,10 @@
+## [1.14.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.13.1...v1.14.0) (2022-01-21)
+
+
+### Features
+
+* add noIndex to seo ([720d5f5](https://github.com/bond-london/gatsby-graphcms-components/commit/720d5f58472f5f0e5d4f37ff69c3072cf9b5b6e8))
+
 ### [1.13.1](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.13.0...v1.13.1) (2022-01-14)
 
 
