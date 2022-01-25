@@ -1,3 +1,10 @@
+## [1.15.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.14.0...v1.15.0) (2022-01-25)
+
+
+### Features
+
+* consolidate props ([85fb3e8](https://github.com/bond-london/gatsby-graphcms-components/commit/85fb3e887ebe161f787569542da3f7f639739285))
+
 ## [1.14.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.13.1...v1.14.0) (2022-01-21)
 
 
