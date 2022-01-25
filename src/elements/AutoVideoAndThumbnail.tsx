@@ -1,16 +1,12 @@
 import { IGatsbyImageData } from "gatsby-plugin-image";
 import React, { useCallback, useEffect, useState } from "react";
-import { Thumbnail, AutoVideo } from ".";
+import { Thumbnail, AutoVideo, VisualComponentProps } from ".";
 
-interface Props {
+interface Props extends Partial<VisualComponentProps> {
   videoSrc: string;
   alt: string;
   thumbnail: IGatsbyImageData;
-  fitParent?: boolean;
-  delay?: number;
-  classname?: string;
   loop?: boolean;
-  noStyle?: boolean;
 }
 
 export const AutoVideoAndThumbnail: React.FC<Props> = ({
@@ -18,10 +14,14 @@ export const AutoVideoAndThumbnail: React.FC<Props> = ({
   alt,
   thumbnail,
   fitParent,
+  threshold,
   delay = 1000,
   loop,
-  classname,
   noStyle,
+  objectFit,
+  objectPosition,
+  className,
+  style,
 }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
@@ -39,20 +39,30 @@ export const AutoVideoAndThumbnail: React.FC<Props> = ({
     <>
       <Thumbnail
         image={thumbnail}
-        className={classname}
+        className={className}
         alt={alt}
         fitParent={fitParent}
         onLoad={onImageLoadedOrErrored}
         onError={onImageLoadedOrErrored}
         noStyle={noStyle}
+        objectFit={objectFit}
+        objectPosition={objectPosition}
+        style={style}
+        threshold={threshold}
+        delay={delay}
       />
       {showVideo && (
         <AutoVideo
-          className={classname}
+          className={className}
           src={videoSrc}
           fitParent={fitParent}
           loop={loop}
           noStyle={noStyle}
+          objectFit={objectFit}
+          objectPosition={objectPosition}
+          threshold={threshold}
+          delay={delay}
+          style={style}
         />
       )}
     </>

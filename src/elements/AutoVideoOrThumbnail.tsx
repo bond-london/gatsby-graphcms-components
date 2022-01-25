@@ -1,15 +1,17 @@
 import { IGatsbyImageData } from "gatsby-plugin-image";
 import React from "react";
-import { AutoVideo, AutoVideoAndThumbnail, Thumbnail } from ".";
+import {
+  AutoVideo,
+  AutoVideoAndThumbnail,
+  Thumbnail,
+  VisualComponentProps,
+} from ".";
 
-interface Props {
+interface Props extends Partial<VisualComponentProps> {
   videoSrc?: string;
   alt: string;
   thumbnail?: IGatsbyImageData;
-  fitParent?: boolean;
   loop?: boolean;
-  className?: string;
-  noStyle?: boolean;
 }
 
 export const AutoVideoOrThumbnail: React.FC<Props> = ({
@@ -20,6 +22,11 @@ export const AutoVideoOrThumbnail: React.FC<Props> = ({
   loop,
   className,
   noStyle,
+  objectFit,
+  objectPosition,
+  style,
+  threshold,
+  delay,
 }) => {
   if (videoSrc && thumbnail) {
     return (
@@ -29,8 +36,13 @@ export const AutoVideoOrThumbnail: React.FC<Props> = ({
         thumbnail={thumbnail}
         fitParent={fitParent}
         loop={loop}
-        classname={className}
+        className={className}
         noStyle={noStyle}
+        objectFit={objectFit}
+        objectPosition={objectPosition}
+        style={style}
+        threshold={threshold}
+        delay={delay}
       />
     );
   }
@@ -42,6 +54,11 @@ export const AutoVideoOrThumbnail: React.FC<Props> = ({
         loop={loop}
         className={className}
         noStyle={noStyle}
+        objectFit={objectFit}
+        objectPosition={objectPosition}
+        style={style}
+        threshold={threshold}
+        delay={delay}
       />
     );
   }
@@ -54,6 +71,11 @@ export const AutoVideoOrThumbnail: React.FC<Props> = ({
         fitParent={fitParent}
         className={className}
         noStyle={noStyle}
+        objectFit={objectFit}
+        objectPosition={objectPosition}
+        style={style}
+        threshold={threshold}
+        delay={delay}
       />
     );
   }

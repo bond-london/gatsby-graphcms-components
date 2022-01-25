@@ -1,4 +1,6 @@
 import { IGatsbyImageData } from "gatsby-plugin-image";
+import { CSSProperties, useMemo } from "react";
+import { VisualComponentProps } from ".";
 
 export interface GenericAsset {
   alt?: string;
@@ -123,4 +125,28 @@ export function getVisual(
     animation,
     loop: !!loop,
   };
+}
+
+export function useStyles(props: Partial<VisualComponentProps>) {
+  const { noStyle, objectFit, objectPosition, fitParent, style } = props;
+  return useMemo(() => {
+    if (noStyle) {
+      return undefined;
+    }
+    const shared: CSSProperties = {
+      objectFit,
+      objectPosition,
+      width: "100%",
+      height: "100%",
+    };
+
+    const conditional: CSSProperties = fitParent
+      ? {
+          position: "absolute",
+          left: "0",
+          top: "0",
+        }
+      : { display: "block", position: "relative" };
+    return { ...shared, ...conditional, ...style };
+  }, [noStyle, objectFit, objectPosition, fitParent, style]);
 }

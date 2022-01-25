@@ -1,11 +1,6 @@
-import React, {
-  CSSProperties,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { VisualComponentProps } from ".";
+import { useStyles } from "..";
 import { onVisibleToUser } from "../hooks/Visibility";
 
 function playVideo(videoElement: HTMLVideoElement) {
@@ -20,33 +15,25 @@ function playVideo(videoElement: HTMLVideoElement) {
     });
 }
 
-interface Props {
+interface Props extends Partial<VisualComponentProps> {
   src: string;
+  loop?: boolean;
   onLoad?: () => void;
   onClick?: () => void;
   onVisible?: (isVisible: boolean) => void;
-  className?: string;
-  style?: CSSProperties;
-  threshold?: number;
-  delay?: number;
-  fitParent?: boolean;
-  loop?: boolean;
-  noStyle?: boolean;
 }
 
-export const RealAutoVideo: React.FC<Props> = ({
-  src,
-  onLoad,
-  className,
-  style,
-  onClick,
-  onVisible,
-  fitParent,
-  threshold = 0.4,
-  delay = 100,
-  loop,
-  noStyle,
-}) => {
+export const AutoVideo: React.FC<Props> = (props) => {
+  const {
+    src,
+    onLoad,
+    className,
+    onClick,
+    onVisible,
+    threshold = 0.4,
+    delay = 100,
+    loop,
+  } = props;
   const [hasPlayed, setHasPlayed] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -90,24 +77,7 @@ export const RealAutoVideo: React.FC<Props> = ({
     }
   }, [onLoad]);
 
-  const fullStyles: CSSProperties | undefined = useMemo(() => {
-    if (noStyle) {
-      return undefined;
-    }
-    const shared: CSSProperties = {
-      objectFit: "cover",
-      width: "100%",
-      height: "100%",
-    };
-    const conditional: CSSProperties = fitParent
-      ? {
-          position: "absolute",
-          left: "0",
-          top: "0",
-        }
-      : { display: "block", position: "relative" };
-    return { ...shared, ...conditional, ...style };
-  }, [fitParent, style, noStyle]);
+  const fullStyles = useStyles(props);
 
   return (
     <video
@@ -124,13 +94,4 @@ export const RealAutoVideo: React.FC<Props> = ({
       onClick={onClick}
     />
   );
-};
-
-export const AutoVideo: React.FC<Props> = (props) => {
-  if (!props.src) {
-    console.error("no src");
-    return null;
-  }
-
-  return RealAutoVideo(props);
 };

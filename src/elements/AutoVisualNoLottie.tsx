@@ -1,19 +1,35 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 import { AutoVideoOrThumbnail, SvgIcon } from ".";
 import { VisualAsset } from "..";
 
-export interface AutoVisualProps {
+export const DefaultVisualComponentProps: Partial<VisualComponentProps> = {
+  objectFit: "cover",
+};
+
+export interface VisualComponentProps {
+  className: string;
+  fitParent: boolean;
+  noStyle: boolean;
+  objectFit: CSSProperties["objectFit"];
+  objectPosition: CSSProperties["objectPosition"];
+  style: CSSProperties;
+  threshold: number;
+  delay: number;
+}
+export interface AutoVisualProps extends VisualComponentProps {
   visual?: VisualAsset;
-  className?: string;
-  fitParent?: boolean;
-  noStyle?: boolean;
 }
 
-export const AutoVisualNoLottie: React.FC<AutoVisualProps> = ({
+export const AutoVisualNoLottie: React.FC<Partial<AutoVisualProps>> = ({
   visual,
   className,
   fitParent,
   noStyle,
+  style,
+  objectFit = DefaultVisualComponentProps.objectFit,
+  objectPosition,
+  threshold,
+  delay,
 }) => {
   if (!visual) {
     return null;
@@ -32,6 +48,11 @@ export const AutoVisualNoLottie: React.FC<AutoVisualProps> = ({
         fitParent={fitParent}
         className={className}
         noStyle={noStyle}
+        objectFit={objectFit}
+        objectPosition={objectPosition}
+        style={style}
+        threshold={threshold}
+        delay={delay}
       />
     );
   }
@@ -43,8 +64,13 @@ export const AutoVisualNoLottie: React.FC<AutoVisualProps> = ({
       thumbnail={image}
       fitParent={fitParent}
       className={className}
-      loop={loop}
       noStyle={noStyle}
+      objectFit={objectFit}
+      objectPosition={objectPosition}
+      style={style}
+      threshold={threshold}
+      delay={delay}
+      loop={loop}
     />
   );
 };

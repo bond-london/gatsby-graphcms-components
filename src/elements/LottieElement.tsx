@@ -9,20 +9,18 @@ import React, {
 } from "react";
 import { onVisibleToUser } from "../hooks";
 import lottie from "lottie-web/build/player/lottie_light";
+import { VisualComponentProps } from ".";
 
-interface Props {
+interface Props extends Partial<VisualComponentProps> {
   animationUrl: string;
   encoded: string;
-  className?: string;
   rendererSettings?: SVGRendererConfig;
   placeholderClassName?: string;
   loop?: boolean;
   debug?: boolean;
   disabled?: boolean;
-  fitParent?: boolean;
   alt: string;
   loopDelay?: number;
-  cover?: boolean;
 }
 
 interface InternalState {
@@ -52,7 +50,8 @@ export const LottieElement: React.FC<Props> = (props) => {
     alt,
     fitParent,
     loopDelay,
-    cover,
+    objectFit,
+    objectPosition,
   } = props;
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -78,7 +77,9 @@ export const LottieElement: React.FC<Props> = (props) => {
                 if (!state.cancelled) {
                   const realRendererSettings: SVGRendererConfig = {
                     ...(rendererSettings ? rendererSettings : {}),
-                    ...(cover ? { preserveAspectRatio: "xMidYMid slice" } : {}),
+                    ...(objectFit === "cover"
+                      ? { preserveAspectRatio: "xMidYMid slice" }
+                      : {}),
                   };
                   state.animation = lottie.loadAnimation({
                     container,
@@ -131,7 +132,7 @@ export const LottieElement: React.FC<Props> = (props) => {
       }
       removeVisibility();
     };
-  }, [animationUrl, rendererSettings, debug, loop, loopDelay, cover]);
+  }, [animationUrl, rendererSettings, debug, loop, loopDelay, objectFit]);
 
   useEffect(() => {
     if (!animation) return;
@@ -176,8 +177,8 @@ export const LottieElement: React.FC<Props> = (props) => {
         style={{
           height: "100%",
           width: "100%",
-          objectFit: cover ? "cover" : "contain",
-          objectPosition: "center",
+          objectFit,
+          objectPosition,
         }}
         className={placeholderClassName}
       />
