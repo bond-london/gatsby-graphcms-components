@@ -1,3 +1,10 @@
+### [1.15.1](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.15.0...v1.15.1) (2022-01-25)
+
+
+### Bug Fixes
+
+* tweaks to svgicon positioning ([cf3201e](https://github.com/bond-london/gatsby-graphcms-components/commit/cf3201e30c959c51819e265826345d46b3352e3d))
+
 ## [1.15.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.14.0...v1.15.0) (2022-01-25)
 
 
