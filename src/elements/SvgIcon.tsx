@@ -40,8 +40,6 @@ export const SvgIcon: React.FC<Props> = (props) => {
         src={encoded}
         alt={alt}
         style={{
-          height: "100%",
-          width: "100%",
           objectFit,
           objectPosition,
         }}
