@@ -1,3 +1,10 @@
+### [1.15.2](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.15.1...v1.15.2) (2022-02-08)
+
+
+### Bug Fixes
+
+* better svg inline ([7ab0485](https://github.com/bond-london/gatsby-graphcms-components/commit/7ab0485aa7b6de52c2c8b9ab851d650066c3667c))
+
 ### [1.15.1](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.15.0...v1.15.1) (2022-01-25)
 
 
