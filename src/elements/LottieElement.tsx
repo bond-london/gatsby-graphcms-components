@@ -52,6 +52,8 @@ export const LottieElement: React.FC<Props> = (props) => {
     loopDelay,
     objectFit,
     objectPosition,
+    style,
+    visualStyle,
   } = props;
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -157,7 +159,7 @@ export const LottieElement: React.FC<Props> = (props) => {
   }, [animation, disabled, visible, debug]);
 
   const fullStyles: CSSProperties = useMemo(() => {
-    return fitParent
+    const shared: CSSProperties = fitParent
       ? {
           position: "absolute",
           width: "100%",
@@ -166,7 +168,8 @@ export const LottieElement: React.FC<Props> = (props) => {
           top: "0",
         }
       : {};
-  }, [fitParent]);
+    return { ...shared, ...style };
+  }, [fitParent, style]);
 
   return (
     <div ref={containerRef} className={className} style={fullStyles}>
@@ -174,12 +177,14 @@ export const LottieElement: React.FC<Props> = (props) => {
         alt={alt}
         ref={imgRef}
         src={encoded}
-        style={{
-          height: "100%",
-          width: "100%",
-          objectFit,
-          objectPosition,
-        }}
+        style={
+          visualStyle || {
+            height: "100%",
+            width: "100%",
+            objectFit,
+            objectPosition,
+          }
+        }
         className={placeholderClassName}
       />
     </div>

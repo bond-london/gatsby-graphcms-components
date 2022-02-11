@@ -15,6 +15,7 @@ export interface VisualComponentProps {
   style: CSSProperties;
   threshold: number;
   delay: number;
+  visualStyle: CSSProperties;
 }
 export interface AutoVisualProps extends VisualComponentProps {
   visual?: VisualAsset;
@@ -30,6 +31,7 @@ export const AutoVisualNoLottie: React.FC<Partial<AutoVisualProps>> = ({
   objectPosition,
   threshold,
   delay,
+  visualStyle,
 }) => {
   if (!visual) {
     return null;
@@ -51,6 +53,7 @@ export const AutoVisualNoLottie: React.FC<Partial<AutoVisualProps>> = ({
         objectFit={objectFit}
         objectPosition={objectPosition}
         style={style}
+        visualStyle={visualStyle}
         threshold={threshold}
         delay={delay}
       />

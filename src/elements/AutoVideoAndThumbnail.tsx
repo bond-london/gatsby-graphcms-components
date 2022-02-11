@@ -22,6 +22,7 @@ export const AutoVideoAndThumbnail: React.FC<Props> = ({
   objectPosition,
   className,
   style,
+  visualStyle,
 }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
@@ -50,6 +51,7 @@ export const AutoVideoAndThumbnail: React.FC<Props> = ({
         style={style}
         threshold={threshold}
         delay={delay}
+        visualStyle={visualStyle}
       />
       {showVideo && (
         <AutoVideo
@@ -63,6 +65,7 @@ export const AutoVideoAndThumbnail: React.FC<Props> = ({
           threshold={threshold}
           delay={delay}
           style={style}
+          visualStyle={visualStyle}
         />
       )}
     </>

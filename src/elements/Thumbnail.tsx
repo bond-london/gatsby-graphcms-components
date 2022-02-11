@@ -23,6 +23,7 @@ export const Thumbnail: React.FC<Props> = (props) => {
     noStyle,
     fitParent,
     style,
+    visualStyle,
   } = props;
   const handleStartLoad = useCallback(
     ({ wasCached }: { wasCached?: boolean }) => {
@@ -61,6 +62,7 @@ export const Thumbnail: React.FC<Props> = (props) => {
       onError={onError}
       className={className}
       imgClassName={imgClassName}
+      imgStyle={visualStyle}
     />
   );
 };

@@ -26,6 +26,7 @@ export const AutoVisualWithLottie: React.FC<
   style,
   threshold,
   delay,
+  visualStyle,
 }) => {
   if (!visual) {
     return null;
@@ -47,6 +48,7 @@ export const AutoVisualWithLottie: React.FC<
         objectPosition={objectPosition}
         noStyle={noStyle}
         style={style}
+        visualStyle={visualStyle}
         threshold={threshold}
         delay={delay}
       />
@@ -64,6 +66,7 @@ export const AutoVisualWithLottie: React.FC<
       style={style}
       threshold={threshold}
       delay={delay}
+      visualStyle={visualStyle}
     />
   );
 };

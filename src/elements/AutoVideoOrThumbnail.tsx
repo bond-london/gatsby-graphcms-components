@@ -27,6 +27,7 @@ export const AutoVideoOrThumbnail: React.FC<Props> = ({
   style,
   threshold,
   delay,
+  visualStyle,
 }) => {
   if (videoSrc && thumbnail) {
     return (
@@ -41,6 +42,7 @@ export const AutoVideoOrThumbnail: React.FC<Props> = ({
         objectFit={objectFit}
         objectPosition={objectPosition}
         style={style}
+        visualStyle={visualStyle}
         threshold={threshold}
         delay={delay}
       />
@@ -59,6 +61,7 @@ export const AutoVideoOrThumbnail: React.FC<Props> = ({
         style={style}
         threshold={threshold}
         delay={delay}
+        visualStyle={visualStyle}
       />
     );
   }
@@ -76,6 +79,7 @@ export const AutoVideoOrThumbnail: React.FC<Props> = ({
         style={style}
         threshold={threshold}
         delay={delay}
+        visualStyle={visualStyle}
       />
     );
   }

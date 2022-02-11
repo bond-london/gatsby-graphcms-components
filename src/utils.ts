@@ -128,7 +128,8 @@ export function getVisual(
 }
 
 export function useStyles(props: Partial<VisualComponentProps>) {
-  const { noStyle, objectFit, objectPosition, fitParent, style } = props;
+  const { noStyle, objectFit, objectPosition, fitParent, style, visualStyle } =
+    props;
   return useMemo(() => {
     if (noStyle) {
       return undefined;
@@ -147,6 +148,6 @@ export function useStyles(props: Partial<VisualComponentProps>) {
           top: "0",
         }
       : { display: "block", position: "relative" };
-    return { ...shared, ...conditional, ...style };
-  }, [noStyle, objectFit, objectPosition, fitParent, style]);
+    return { ...shared, ...conditional, ...style, ...visualStyle };
+  }, [noStyle, objectFit, objectPosition, fitParent, style, visualStyle]);
 }

@@ -16,6 +16,7 @@ export const SvgIcon: React.FC<Props> = (props) => {
     fitParent,
     noStyle,
     style,
+    visualStyle,
   } = props;
 
   const fullStyles: CSSProperties | undefined = useMemo(() => {
@@ -34,16 +35,14 @@ export const SvgIcon: React.FC<Props> = (props) => {
     return { ...conditional, ...style };
   }, [fitParent, noStyle, style]);
 
+  const imgStyle: CSSProperties = useMemo(
+    () => ({ objectFit, objectPosition, ...visualStyle }),
+    [objectFit, objectPosition, visualStyle]
+  );
+
   return (
     <div className={className} style={fullStyles}>
-      <img
-        src={encoded}
-        alt={alt}
-        style={{
-          objectFit,
-          objectPosition,
-        }}
-      />
+      <img src={encoded} alt={alt} style={imgStyle} />
     </div>
   );
 };
