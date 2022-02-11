@@ -1,3 +1,10 @@
+## [1.16.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.15.2...v1.16.0) (2022-02-11)
+
+
+### Features
+
+* added visual style ([af359ef](https://github.com/bond-london/gatsby-graphcms-components/commit/af359ef5570537f098775edb11e0d3ed830e02d8))
+
 ### [1.15.2](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.15.1...v1.15.2) (2022-02-08)
 
 
