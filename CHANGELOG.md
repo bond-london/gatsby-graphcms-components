@@ -1,3 +1,10 @@
+## [1.17.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.16.0...v1.17.0) (2022-02-17)
+
+
+### Features
+
+* better schema.org support ([ef3ebed](https://github.com/bond-london/gatsby-graphcms-components/commit/ef3ebed04133d4412774e227a5a937a516f5a721))
+
 ## [1.16.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.15.2...v1.16.0) (2022-02-11)
 
 
