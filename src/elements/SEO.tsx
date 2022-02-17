@@ -20,6 +20,7 @@ interface Props {
   pageUrl: string;
   pageTitle: string;
   className?: string;
+  schemaOrgs?: unknown[];
 }
 
 export const SEO: React.FC<Props> = ({
@@ -29,6 +30,7 @@ export const SEO: React.FC<Props> = ({
   pageUrl,
   pageTitle,
   className,
+  schemaOrgs,
 }) => {
   const description =
     pageMetadata?.description || siteMetadata.description || pageTitle;
@@ -44,6 +46,13 @@ export const SEO: React.FC<Props> = ({
     name: pageTitle,
     alternateName: siteMetadata.title,
   };
+
+  const realSchema: unknown = schemaOrgs
+    ? {
+        "@context": "http://schema.org",
+        "@graph": schemaOrgs,
+      }
+    : baseSchema;
 
   return (
     <>
@@ -76,7 +85,7 @@ export const SEO: React.FC<Props> = ({
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={imageUrl} />
 
-        <script type="application/ld+json">{JSON.stringify(baseSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(realSchema)}</script>
         {className && <body className={className} />}
       </Helmet>
     </>
