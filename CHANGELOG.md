@@ -1,5 +1,13 @@
 undefined
 
+### [1.18.1](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.18.0...v1.18.1) (2022-03-09)
+
+
+### Bug Fixes
+
+* add additional schemas ([bbd4114](https://github.com/bond-london/gatsby-graphcms-components/commit/bbd4114290568f26b2521cc93b954ac331c4b5fa))
+* typo in schema ([707e74a](https://github.com/bond-london/gatsby-graphcms-components/commit/707e74a8f2eebfc74bb255f15f8f1736b953d378))undefined
+
 ## [1.18.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.17.0...v1.18.0) (2022-03-09)
 
 
