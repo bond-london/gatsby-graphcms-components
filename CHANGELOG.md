@@ -1,4 +1,16 @@
-## [1.17.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.16.0...v1.17.0) (2022-02-17)
+undefined
+
+## [1.18.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.17.0...v1.18.0) (2022-03-09)
+
+
+### Features
+
+* bring in crop capabilities ([d497c15](https://github.com/bond-london/gatsby-graphcms-components/commit/d497c15cc294bf9215c087b60bb2ec3e3bf10bf6))
+
+
+### Bug Fixes
+
+* better don't crop ([f40e401](https://github.com/bond-london/gatsby-graphcms-components/commit/f40e40112dc9b5303813ae1057a3f163b2a30220))## [1.17.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.16.0...v1.17.0) (2022-02-17)
 
 
 ### Features
