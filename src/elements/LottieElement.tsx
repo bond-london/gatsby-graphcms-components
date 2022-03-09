@@ -9,9 +9,9 @@ import React, {
 } from "react";
 import { onVisibleToUser } from "../hooks";
 import lottie from "lottie-web/build/player/lottie_light";
-import { VisualComponentProps } from ".";
+import { InternalVisualComponentProps } from ".";
 
-interface Props extends Partial<VisualComponentProps> {
+interface Props extends Partial<InternalVisualComponentProps> {
   animationUrl: string;
   encoded: string;
   rendererSettings?: SVGRendererConfig;

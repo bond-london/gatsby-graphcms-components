@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { VisualComponentProps } from ".";
+import { InternalVisualComponentProps } from ".";
 import { useStyles } from "..";
 import { onVisibleToUser } from "../hooks/Visibility";
 
@@ -15,7 +15,7 @@ function playVideo(videoElement: HTMLVideoElement) {
     });
 }
 
-interface Props extends Partial<VisualComponentProps> {
+interface Props extends Partial<InternalVisualComponentProps> {
   src: string;
   loop?: boolean;
   onLoad?: () => void;

@@ -4,10 +4,10 @@ import {
   AutoVideo,
   AutoVideoAndThumbnail,
   Thumbnail,
-  VisualComponentProps,
+  InternalVisualComponentProps,
 } from ".";
 
-interface Props extends Partial<VisualComponentProps> {
+interface Props extends Partial<InternalVisualComponentProps> {
   videoSrc?: string;
   alt: string;
   thumbnail?: IGatsbyImageData;

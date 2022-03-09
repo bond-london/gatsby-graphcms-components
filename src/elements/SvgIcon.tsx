@@ -1,7 +1,7 @@
 import React, { CSSProperties, useMemo } from "react";
-import { VisualComponentProps } from ".";
+import { InternalVisualComponentProps } from ".";
 
-interface Props extends Partial<VisualComponentProps> {
+interface Props extends Partial<InternalVisualComponentProps> {
   encoded: string;
   alt: string;
 }

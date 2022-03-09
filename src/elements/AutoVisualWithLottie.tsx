@@ -1,10 +1,8 @@
 import { SVGRendererConfig } from "lottie-web";
 import React from "react";
 import { AutoVisualProps } from ".";
-import {
-  AutoVisualNoLottie,
-  DefaultVisualComponentProps,
-} from "./AutoVisualNoLottie";
+import { calculateCropDetails } from "../utils";
+import { AutoVisualNoLottie } from "./AutoVisualNoLottie";
 import { LottieElement } from "./LottieElement";
 
 export const AutoVisualWithLottie: React.FC<
@@ -21,8 +19,6 @@ export const AutoVisualWithLottie: React.FC<
   loopDelay,
   rendererSettings,
   noStyle,
-  objectFit = DefaultVisualComponentProps.objectFit,
-  objectPosition,
   style,
   threshold,
   delay,
@@ -34,6 +30,7 @@ export const AutoVisualWithLottie: React.FC<
 
   const { animation, alt, loop } = visual;
   if (animation) {
+    const { objectFit, objectPosition } = calculateCropDetails(visual);
     return (
       <LottieElement
         animationUrl={animation.animationUrl}
@@ -61,8 +58,6 @@ export const AutoVisualWithLottie: React.FC<
       className={className}
       fitParent={fitParent}
       noStyle={noStyle}
-      objectFit={objectFit}
-      objectPosition={objectPosition}
       style={style}
       threshold={threshold}
       delay={delay}

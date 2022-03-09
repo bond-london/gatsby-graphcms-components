@@ -1,8 +1,8 @@
 import { IGatsbyImageData } from "gatsby-plugin-image";
 import React, { useCallback, useEffect, useState } from "react";
-import { Thumbnail, AutoVideo, VisualComponentProps } from ".";
+import { Thumbnail, AutoVideo, InternalVisualComponentProps } from ".";
 
-interface Props extends Partial<VisualComponentProps> {
+interface Props extends Partial<InternalVisualComponentProps> {
   videoSrc: string;
   alt: string;
   thumbnail: IGatsbyImageData;

@@ -1,8 +1,8 @@
 import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 import React, { CSSProperties, useCallback, useMemo } from "react";
-import { VisualComponentProps } from ".";
+import { InternalVisualComponentProps } from ".";
 
-interface Props extends Partial<VisualComponentProps> {
+interface Props extends Partial<InternalVisualComponentProps> {
   image: IGatsbyImageData;
   alt: string;
   onLoad?: () => void;

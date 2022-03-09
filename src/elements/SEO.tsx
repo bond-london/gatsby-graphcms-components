@@ -1,9 +1,17 @@
 import { getSrc, IGatsbyImageData } from "gatsby-plugin-image";
-import React from "react";
+import React, { useMemo } from "react";
 import { Helmet } from "react-helmet";
 
-interface SiteBuildMetadata {
+export interface SiteBuildMetadata {
   readonly buildTime?: unknown;
+  readonly buildYear: string;
+}
+
+export interface SiteMetadata {
+  readonly siteName: string;
+  readonly siteUrl: string;
+  readonly logo?: string;
+  readonly sameAs?: string[];
 }
 
 export interface Seo {
@@ -14,45 +22,59 @@ export interface Seo {
   noIndex?: boolean;
 }
 interface Props {
-  siteBuildMetadata: SiteBuildMetadata & { buildYear: string };
-  siteMetadata: Seo;
+  siteBuildMetadata: SiteBuildMetadata;
+  siteMetadata: SiteMetadata;
   pageMetadata: Seo;
   pageUrl: string;
   pageTitle: string;
   className?: string;
   schemaOrgs?: unknown[];
+  additionalSchemas?: unknown[];
+}
+
+export function buildOrganizationSchema(
+  name: string,
+  url: string,
+  logo?: string,
+  sameAs?: string[]
+) {
+  return { "@type": "Organization", name, url, logo, sameAs };
+}
+
+export function buildWebsiteSchema(name: string, url: string) {
+  return { "@tpe": "WebSite", name, url };
 }
 
 export const SEO: React.FC<Props> = ({
-  siteBuildMetadata,
-  siteMetadata,
+  siteBuildMetadata: { buildTime },
+  siteMetadata: { siteName, siteUrl, logo, sameAs },
   pageMetadata,
   pageUrl,
   pageTitle,
   className,
   schemaOrgs,
 }) => {
-  const description =
-    pageMetadata?.description || siteMetadata.description || pageTitle;
-  const image = pageMetadata.image || siteMetadata.image;
+  if (!siteName) {
+    throw new Error(`The site metadata must have siteName`);
+  }
+  if (!siteUrl) {
+    throw new Error(`The site metadata must have siteUrl`);
+  }
+
+  const description = pageMetadata?.description;
+  const image = pageMetadata.image;
   const imageSrc = image && getSrc(image);
   const imageUrl = imageSrc && pageUrl + imageSrc;
-  const keywords = pageMetadata?.keywords || siteMetadata?.keywords;
+  const keywords = pageMetadata?.keywords;
 
-  const baseSchema = {
-    "@context": "http://schema.org",
-    "@type": "WebSite",
-    url: pageUrl,
-    name: pageTitle,
-    alternateName: siteMetadata.title,
-  };
+  const schemaOrg = useMemo(() => {
+    const schemas = schemaOrgs || [
+      buildOrganizationSchema(siteName, siteUrl, logo, sameAs),
+      buildWebsiteSchema(siteName, siteUrl),
+    ];
 
-  const realSchema: unknown = schemaOrgs
-    ? {
-        "@context": "http://schema.org",
-        "@graph": schemaOrgs,
-      }
-    : baseSchema;
+    return { "@context": "http://schema.org", "@graph": schemas };
+  }, [schemaOrgs, siteName, siteUrl, logo, sameAs]);
 
   return (
     <>
@@ -66,12 +88,7 @@ export const SEO: React.FC<Props> = ({
         <meta name="image" content={imageUrl} />
         {keywords && <meta name="keywords" content={keywords} />}
         <meta name="designer" content="Bond London" />
-        {siteBuildMetadata.buildTime && (
-          <meta
-            name="revised"
-            content={siteBuildMetadata.buildTime as string}
-          />
-        )}
+        {buildTime && <meta name="revised" content={buildTime as string} />}
 
         {/* Open graph tags */}
         <meta property="og:url" content={pageUrl} />
@@ -85,7 +102,7 @@ export const SEO: React.FC<Props> = ({
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={imageUrl} />
 
-        <script type="application/ld+json">{JSON.stringify(realSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(schemaOrg)}</script>
         {className && <body className={className} />}
       </Helmet>
     </>

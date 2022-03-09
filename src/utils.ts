@@ -1,12 +1,15 @@
 import { IGatsbyImageData } from "gatsby-plugin-image";
 import { CSSProperties, useMemo } from "react";
-import { VisualComponentProps } from ".";
+import { InternalVisualComponentProps } from ".";
 
 export interface GenericAsset {
   alt?: string;
   id: string;
   localFile?: File;
   alternateText?: string;
+  dontCrop?: boolean;
+  verticalCropPosition?: VerticalPosition;
+  horizontalCropPosition?: HorizontalPosition;
 }
 
 interface ImageSharp {
@@ -28,7 +31,11 @@ interface File {
   readonly publicURL?: string;
   readonly svg?: SvgInformation;
   readonly lottie?: Omit<LottieInformation, "animationUrl">;
+  readonly name: string;
 }
+
+export type VerticalPosition = "Top" | "Middle" | "Bottom";
+export type HorizontalPosition = "Left" | "Middle" | "Right";
 
 export interface VisualAsset {
   image?: IGatsbyImageData;
@@ -37,6 +44,9 @@ export interface VisualAsset {
   svg?: SvgInformation;
   animation?: LottieInformation;
   loop?: boolean;
+  dontCrop?: boolean;
+  verticalCropPosition?: VerticalPosition;
+  horizontalCropPosition?: HorizontalPosition;
 }
 
 export function getImageFromFile(file?: File): IGatsbyImageData | undefined {
@@ -103,6 +113,7 @@ export function getVisual(
     return;
   }
 
+  const { dontCrop, verticalCropPosition, horizontalCropPosition } = asset;
   const image = getImage(asset);
   const alt = getAlt(asset, defaultAlt);
   const svg = getExtractedSvg(asset);
@@ -124,10 +135,98 @@ export function getVisual(
     svg,
     animation,
     loop: !!loop,
+    dontCrop,
+    verticalCropPosition,
+    horizontalCropPosition,
   };
 }
 
-export function useStyles(props: Partial<VisualComponentProps>) {
+export function getVisualFromFile(
+  file: File | undefined,
+  loop = false,
+  defaultAlt = "",
+  dontCrop?: boolean,
+  verticalCropPosition?: VerticalPosition,
+  horizontalCropPosition?: HorizontalPosition
+): VisualAsset | undefined {
+  if (!file) {
+    return;
+  }
+
+  const alt = defaultAlt || file.name;
+  const image = getImageFromFile(file);
+  const svg = getSvgFromFile(file);
+  const possibleVideoUrl = getVideoFromFile(file);
+  const animation = getLottieFromFile(file);
+  if (!image && !svg && !possibleVideoUrl && !animation) {
+    return;
+  }
+
+  const videoUrl = !image && !svg && !animation ? possibleVideoUrl : undefined;
+  if (videoUrl) {
+    return {
+      alt,
+      videoUrl,
+      loop,
+      dontCrop,
+      verticalCropPosition,
+      horizontalCropPosition,
+    };
+  }
+
+  return {
+    image,
+    alt,
+    svg,
+    videoUrl,
+    animation,
+    loop: !!loop,
+    dontCrop,
+    verticalCropPosition,
+    horizontalCropPosition,
+  };
+}
+
+function caclulateVertical(position?: VerticalPosition) {
+  switch (position) {
+    case "Bottom":
+      return "bottom";
+    case "Top":
+      return "top";
+    default:
+      return "center";
+  }
+}
+
+function calculateHorizontal(position?: HorizontalPosition) {
+  switch (position) {
+    case "Left":
+      return "left";
+    case "Right":
+      return "right";
+    default:
+      return "center";
+  }
+}
+
+export function calculateCropDetails(
+  visual: VisualAsset
+): Pick<CSSProperties, "objectFit" | "objectPosition"> {
+  const { dontCrop, verticalCropPosition, horizontalCropPosition } = visual;
+
+  if (dontCrop) {
+    return { objectFit: "contain" };
+  }
+
+  return {
+    objectFit: "cover",
+    objectPosition: `${calculateHorizontal(
+      horizontalCropPosition
+    )} ${caclulateVertical(verticalCropPosition)}`,
+  };
+}
+
+export function useStyles(props: Partial<InternalVisualComponentProps>) {
   const { noStyle, objectFit, objectPosition, fitParent, style, visualStyle } =
     props;
   return useMemo(() => {
