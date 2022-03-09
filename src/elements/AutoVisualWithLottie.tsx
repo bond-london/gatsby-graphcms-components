@@ -14,6 +14,7 @@ export const AutoVisualWithLottie: React.FC<
   >
 > = ({
   visual,
+  dontCrop,
   className,
   fitParent,
   loopDelay,
@@ -30,7 +31,10 @@ export const AutoVisualWithLottie: React.FC<
 
   const { animation, alt, loop } = visual;
   if (animation) {
-    const { objectFit, objectPosition } = calculateCropDetails(visual);
+    const { objectFit, objectPosition } = calculateCropDetails(
+      visual,
+      dontCrop
+    );
     return (
       <LottieElement
         animationUrl={animation.animationUrl}
@@ -62,6 +66,7 @@ export const AutoVisualWithLottie: React.FC<
       threshold={threshold}
       delay={delay}
       visualStyle={visualStyle}
+      dontCrop={dontCrop}
     />
   );
 };

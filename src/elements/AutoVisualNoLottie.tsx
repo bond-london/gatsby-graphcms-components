@@ -13,7 +13,8 @@ export interface VisualComponentProps {
   visualStyle: CSSProperties;
 }
 export interface AutoVisualProps extends VisualComponentProps {
-  visual?: VisualAsset;
+  visual: VisualAsset;
+  dontCrop: boolean;
 }
 export interface InternalVisualComponentProps extends VisualComponentProps {
   objectFit: CSSProperties["objectFit"];
@@ -22,6 +23,7 @@ export interface InternalVisualComponentProps extends VisualComponentProps {
 
 export const AutoVisualNoLottie: React.FC<Partial<AutoVisualProps>> = ({
   visual,
+  dontCrop,
   className,
   fitParent,
   noStyle,
@@ -34,7 +36,7 @@ export const AutoVisualNoLottie: React.FC<Partial<AutoVisualProps>> = ({
     return null;
   }
 
-  const { objectFit, objectPosition } = calculateCropDetails(visual);
+  const { objectFit, objectPosition } = calculateCropDetails(visual, dontCrop);
 
   const { image, svg, animation, videoUrl, alt, loop } = visual;
   if (animation) {

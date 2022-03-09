@@ -210,11 +210,12 @@ function calculateHorizontal(position?: HorizontalPosition) {
 }
 
 export function calculateCropDetails(
-  visual: VisualAsset
+  visual: VisualAsset,
+  dontCrop?: boolean
 ): Pick<CSSProperties, "objectFit" | "objectPosition"> {
-  const { dontCrop, verticalCropPosition, horizontalCropPosition } = visual;
+  const { verticalCropPosition, horizontalCropPosition } = visual;
 
-  if (dontCrop) {
+  if (dontCrop || visual.dontCrop) {
     return { objectFit: "contain" };
   }
 
