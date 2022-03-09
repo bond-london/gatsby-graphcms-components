@@ -53,6 +53,7 @@ export const SEO: React.FC<Props> = ({
   pageTitle,
   className,
   schemaOrgs,
+  additionalSchemas,
 }) => {
   if (!siteName) {
     throw new Error(`The site metadata must have siteName`);
@@ -72,9 +73,12 @@ export const SEO: React.FC<Props> = ({
       buildOrganizationSchema(siteName, siteUrl, logo, sameAs),
       buildWebsiteSchema(siteName, siteUrl),
     ];
+    if (additionalSchemas) {
+      schemas.push(...additionalSchemas);
+    }
 
     return { "@context": "http://schema.org", "@graph": schemas };
-  }, [schemaOrgs, siteName, siteUrl, logo, sameAs]);
+  }, [schemaOrgs, siteName, siteUrl, logo, sameAs, additionalSchemas]);
 
   return (
     <>
