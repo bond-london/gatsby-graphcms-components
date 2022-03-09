@@ -42,7 +42,7 @@ export function buildOrganizationSchema(
 }
 
 export function buildWebsiteSchema(name: string, url: string) {
-  return { "@tpe": "WebSite", name, url };
+  return { "@type": "WebSite", name, url };
 }
 
 export const SEO: React.FC<Props> = ({
