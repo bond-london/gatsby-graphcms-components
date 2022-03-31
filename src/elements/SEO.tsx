@@ -25,7 +25,7 @@ interface Props {
   siteBuildMetadata: SiteBuildMetadata;
   siteMetadata: SiteMetadata;
   pageMetadata: Seo;
-  pageUrl: string;
+  pagePath: string;
   pageTitle: string;
   className?: string;
   schemaOrgs?: unknown[];
@@ -49,7 +49,7 @@ export const SEO: React.FC<Props> = ({
   siteBuildMetadata: { buildTime },
   siteMetadata: { siteName, siteUrl, logo, sameAs },
   pageMetadata,
-  pageUrl,
+  pagePath,
   pageTitle,
   className,
   schemaOrgs,
@@ -65,7 +65,7 @@ export const SEO: React.FC<Props> = ({
   const description = pageMetadata?.description;
   const image = pageMetadata.image;
   const imageSrc = image && getSrc(image);
-  const imageUrl = imageSrc && pageUrl + imageSrc;
+  const imageUrl = imageSrc && siteUrl + imageSrc;
   const keywords = pageMetadata?.keywords;
 
   const schemaOrg = useMemo(() => {
@@ -79,6 +79,8 @@ export const SEO: React.FC<Props> = ({
 
     return { "@context": "http://schema.org", "@graph": schemas };
   }, [schemaOrgs, siteName, siteUrl, logo, sameAs, additionalSchemas]);
+
+  const pageUrl = siteUrl + pagePath;
 
   return (
     <>
@@ -97,6 +99,7 @@ export const SEO: React.FC<Props> = ({
         {/* Open graph tags */}
         <meta property="og:url" content={pageUrl} />
         <meta property="og:title" content={pageTitle} />
+        <meta property="og:type" content="website" />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={imageUrl} />
 
