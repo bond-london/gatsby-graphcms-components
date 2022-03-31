@@ -1,5 +1,12 @@
 undefined
 
+## [1.19.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.18.1...v1.19.0) (2022-03-31)
+
+
+### Bug Fixes
+
+* generate page url from page path ([bb81ddc](https://github.com/bond-london/gatsby-graphcms-components/commit/bb81ddc07602bc0d6bcbe62b4ef114e1a45e4499))undefined
+
 ### [1.18.1](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.18.0...v1.18.1) (2022-03-09)
 
 
