@@ -1,4 +1,12 @@
-undefined
+
+
+## [1.20.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.19.0...v1.20.0) (2022-04-05)
+
+
+### Features
+
+* upgrade packages ([3be65a6](https://github.com/bond-london/gatsby-graphcms-components/commit/3be65a6b8954e855559e62792436813561260e0e))
+* verify local files exist if the asset exists ([014abb3](https://github.com/bond-london/gatsby-graphcms-components/commit/014abb37086034812cf04f2415ef4e7f19dbc5d8))undefined
 
 ## [1.19.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.18.1...v1.19.0) (2022-03-31)
 
