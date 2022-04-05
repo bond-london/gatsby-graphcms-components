@@ -49,6 +49,12 @@ export interface VisualAsset {
   horizontalCropPosition?: HorizontalPosition;
 }
 
+export function validateAssetHasFile(asset: GenericAsset | undefined): void {
+  if (asset && !asset.localFile) {
+    throw new Error(`Asset ${asset.id} has no local file`);
+  }
+}
+
 export function getImageFromFile(file?: File): IGatsbyImageData | undefined {
   return file?.childImageSharp?.gatsbyImageData;
 }
@@ -56,6 +62,7 @@ export function getImageFromFile(file?: File): IGatsbyImageData | undefined {
 export function getImage(
   node: GenericAsset | undefined
 ): IGatsbyImageData | undefined {
+  validateAssetHasFile(node);
   return getImageFromFile(node?.localFile);
 }
 
@@ -71,6 +78,7 @@ export function getVideoFromFile(file?: File): string | undefined {
 }
 
 export function getVideo(node: GenericAsset | undefined): string | undefined {
+  validateAssetHasFile(node);
   return getVideoFromFile(node?.localFile);
 }
 
@@ -86,6 +94,7 @@ export function getLottieFromFile(file?: File): LottieInformation | undefined {
 export function getLottie(
   node: GenericAsset | undefined
 ): LottieInformation | undefined {
+  validateAssetHasFile(node);
   return getLottieFromFile(node?.localFile);
 }
 
@@ -96,6 +105,7 @@ export function getSvgFromFile(file?: File): SvgInformation | undefined {
 export function getExtractedSvg(
   node: GenericAsset | undefined
 ): SvgInformation | undefined {
+  validateAssetHasFile(node);
   return getSvgFromFile(node?.localFile);
 }
 
