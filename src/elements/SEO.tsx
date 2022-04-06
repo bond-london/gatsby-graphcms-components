@@ -90,8 +90,8 @@ export const SEO: React.FC<Props> = ({
         )}
         <title>{pageTitle}</title>
         <noscript>This site runs best with JavaScript enabled</noscript>
-        <meta name="description" content={description} />
-        <meta name="image" content={imageUrl} />
+        {description && <meta name="description" content={description} />}
+        {imageUrl && <meta name="image" content={imageUrl} />}
         {keywords && <meta name="keywords" content={keywords} />}
         <meta name="designer" content="Bond London" />
         {buildTime && <meta name="revised" content={buildTime as string} />}
@@ -100,14 +100,18 @@ export const SEO: React.FC<Props> = ({
         <meta property="og:url" content={pageUrl} />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:type" content="website" />
-        <meta property="og:description" content={description} />
-        <meta property="og:image" content={imageUrl} />
+        {description && (
+          <meta property="og:description" content={description} />
+        )}
+        {imageUrl && <meta property="og:image" content={imageUrl} />}
 
         {/* Twitter card tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
-        <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={imageUrl} />
+        {description && (
+          <meta name="twitter:description" content={description} />
+        )}
+        {imageUrl && <meta name="twitter:image" content={imageUrl} />}
 
         <script type="application/ld+json">{JSON.stringify(schemaOrg)}</script>
         {className && <body className={className} />}
