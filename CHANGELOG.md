@@ -1,6 +1,11 @@
 
 
-## [1.20.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.19.0...v1.20.0) (2022-04-05)
+### [1.20.1](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.20.0...v1.20.1) (2022-04-06)
+
+
+### Bug Fixes
+
+* prevent undefined images ([b8daf7f](https://github.com/bond-london/gatsby-graphcms-components/commit/b8daf7f66c53c3bb9b9f737a8068b0430882990f))## [1.20.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.19.0...v1.20.0) (2022-04-05)
 
 
 ### Features
