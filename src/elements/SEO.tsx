@@ -1,6 +1,10 @@
 import { getSrc, IGatsbyImageData } from "gatsby-plugin-image";
-import React, { useMemo } from "react";
-import { Helmet } from "react-helmet";
+import React, { ReactNode, useMemo } from "react";
+import { HelmetProps } from "react-helmet";
+
+declare class Helmet extends React.Component<
+  HelmetProps & { children?: ReactNode[] }
+> {}
 
 export interface SiteBuildMetadata {
   readonly buildTime?: unknown;
@@ -83,39 +87,35 @@ export const SEO: React.FC<Props> = ({
   const pageUrl = siteUrl + pagePath;
 
   return (
-    <>
-      <Helmet htmlAttributes={{ lang: "en" }}>
-        {pageMetadata.noIndex && (
-          <meta name="robots" content="noindex, nofollow" />
-        )}
-        <title>{pageTitle}</title>
-        <noscript>This site runs best with JavaScript enabled</noscript>
-        {description && <meta name="description" content={description} />}
-        {imageUrl && <meta name="image" content={imageUrl} />}
-        {keywords && <meta name="keywords" content={keywords} />}
-        <meta name="designer" content="Bond London" />
-        {buildTime && <meta name="revised" content={buildTime as string} />}
+    <Helmet htmlAttributes={{ lang: "en" }}>
+      {pageMetadata.noIndex && (
+        <meta name="robots" content="noindex, nofollow" />
+      )}
+      <title>{pageTitle}</title>
+      <noscript>This site runs best with JavaScript enabled</noscript>
+      {description && <meta name="description" content={description} />}
+      {imageUrl && <meta name="image" content={imageUrl} />}
+      {keywords && <meta name="keywords" content={keywords} />}
+      <meta name="designer" content="Bond London" />
+      {buildTime ? (
+        <meta name="revised" content={buildTime as string} />
+      ) : undefined}
 
-        {/* Open graph tags */}
-        <meta property="og:url" content={pageUrl} />
-        <meta property="og:title" content={pageTitle} />
-        <meta property="og:type" content="website" />
-        {description && (
-          <meta property="og:description" content={description} />
-        )}
-        {imageUrl && <meta property="og:image" content={imageUrl} />}
+      {/* Open graph tags */}
+      <meta property="og:url" content={pageUrl} />
+      <meta property="og:title" content={pageTitle} />
+      <meta property="og:type" content="website" />
+      {description && <meta property="og:description" content={description} />}
+      {imageUrl && <meta property="og:image" content={imageUrl} />}
 
-        {/* Twitter card tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={pageTitle} />
-        {description && (
-          <meta name="twitter:description" content={description} />
-        )}
-        {imageUrl && <meta name="twitter:image" content={imageUrl} />}
+      {/* Twitter card tags */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={pageTitle} />
+      {description && <meta name="twitter:description" content={description} />}
+      {imageUrl && <meta name="twitter:image" content={imageUrl} />}
 
-        <script type="application/ld+json">{JSON.stringify(schemaOrg)}</script>
-        {className && <body className={className} />}
-      </Helmet>
-    </>
+      <script type="application/ld+json">{JSON.stringify(schemaOrg)}</script>
+      {className && <body className={className} />}
+    </Helmet>
   );
 };
