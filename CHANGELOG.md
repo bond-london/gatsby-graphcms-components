@@ -1,5 +1,22 @@
 
 
+### [1.20.2](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.21.0...v1.20.2) (2022-04-20)
+
+
+### Features
+
+* always auth ([4c248f2](https://github.com/bond-london/gatsby-graphcms-components/commit/4c248f2477ba2168724c41619d511d4c71fb375a))
+* better publish ([f30bc56](https://github.com/bond-london/gatsby-graphcms-components/commit/f30bc5635a66d264fb9640728325d26e0581495b))
+* maybe this time? ([8ce5427](https://github.com/bond-london/gatsby-graphcms-components/commit/8ce5427089ceab309d9fc07ddbd61e7042d769b2))
+* more config ([628292d](https://github.com/bond-london/gatsby-graphcms-components/commit/628292d29fcd52279dcd2d846503040ca7c688f9))
+* more updates ([3414c90](https://github.com/bond-london/gatsby-graphcms-components/commit/3414c9076bdbdf1f11df46646de70bcda86784db))
+* more updates ([863b55e](https://github.com/bond-london/gatsby-graphcms-components/commit/863b55ed16d07ffc970a0f5f3a3d00648ddc79d2))
+* setup node first ([d601794](https://github.com/bond-london/gatsby-graphcms-components/commit/d601794adf0848783cfa77aad4ed2852090c66d3))
+* update publish ([0693ded](https://github.com/bond-london/gatsby-graphcms-components/commit/0693ded166404c86c36cbd93478ae32dbbf89206))
+* update publish ([13ccbf0](https://github.com/bond-london/gatsby-graphcms-components/commit/13ccbf0264f4cf2c958cf46f1a6b8562d67f7d47))
+* updated publish ([e30d0ac](https://github.com/bond-london/gatsby-graphcms-components/commit/e30d0ac8ea14641e0f59ef92ec53133ce71663f6))
+* yarn login ([49e273d](https://github.com/bond-london/gatsby-graphcms-components/commit/49e273d9d281c3c969bb4ba5172dccc245017f19))
+
 ### [1.20.1](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.20.0...v1.20.1) (2022-04-06)
 
 
