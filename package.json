@@ -65,7 +65,7 @@
   "peerDependencies": {
     "@bond-london/graphcms-rich-text": "^0.x",
     "lottie-web": "^5.x",
-    "react": "^16.x || ^17.x",
+    "react": "^18.x",
     "react-helmet": "^6.1.0"
   },
   "optionalDependencies": {},
