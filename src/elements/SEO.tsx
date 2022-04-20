@@ -1,10 +1,6 @@
 import { getSrc, IGatsbyImageData } from "gatsby-plugin-image";
-import React, { ReactNode, useMemo } from "react";
-import { HelmetProps } from "react-helmet";
-
-declare class Helmet extends React.Component<
-  HelmetProps & { children?: ReactNode[] }
-> {}
+import React, { useMemo } from "react";
+import { Helmet } from "react-helmet";
 
 export interface SiteBuildMetadata {
   readonly buildTime?: unknown;
