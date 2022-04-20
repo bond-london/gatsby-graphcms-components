@@ -1,3 +1,9 @@
+name: Publish to npmjs
+
+on:
+  release:
+    types: [created]
+
 jobs:
   release:
     runs-on: ubuntu-latest
