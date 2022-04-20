@@ -1,9 +1,9 @@
 name: Publish to npmjs
 
 on:
-  workflow_dispatch:
-  release:
-    types: [created]
+  push:
+    branches:
+      - main
 
 jobs:
   release:
