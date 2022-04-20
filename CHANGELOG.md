@@ -1,5 +1,12 @@
 
 
+### [1.22.2](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.22.1...v1.22.2) (2022-04-20)
+
+
+### Bug Fixes
+
+* updated helmet ([da415ef](https://github.com/bond-london/gatsby-graphcms-components/commit/da415ef4caf2d064e00d434023d0c7d418a58043))
+
 ### [1.22.1](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.20.2...v1.22.1) (2022-04-20)
 
 
