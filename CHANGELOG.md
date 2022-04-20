@@ -1,5 +1,13 @@
 
 
+### [1.22.1](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.20.2...v1.22.1) (2022-04-20)
+
+
+### Features
+
+* finalising automatic build ([399ef2f](https://github.com/bond-london/gatsby-graphcms-components/commit/399ef2f22ed180857ebfff28473771dae44b511a))
+* tweak version ([7720930](https://github.com/bond-london/gatsby-graphcms-components/commit/77209309ab40de214ca5a00410c94bce4d54e5eb))
+
 ### [1.20.2](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.21.0...v1.20.2) (2022-04-20)
 
 
