@@ -1,5 +1,12 @@
 
 
+### [1.22.3](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.22.2...v1.22.3) (2022-04-20)
+
+
+### Bug Fixes
+
+* update react dependency ([d6384d7](https://github.com/bond-london/gatsby-graphcms-components/commit/d6384d7894a0603246039063994bbe9db1017261))
+
 ### [1.22.2](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.22.1...v1.22.2) (2022-04-20)
 
 
