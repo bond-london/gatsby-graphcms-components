@@ -136,7 +136,15 @@ export function getVisual(
   const videoUrl = !image && !svg && !animation ? possibleVideoUrl : undefined;
   if (videoUrl) {
     const previewImage = videoUrl ? getImage(preview) : undefined;
-    return { image: previewImage, alt, videoUrl, loop };
+    return {
+      image: previewImage,
+      alt,
+      videoUrl,
+      loop,
+      dontCrop,
+      verticalCropPosition,
+      horizontalCropPosition,
+    };
   }
 
   return {
