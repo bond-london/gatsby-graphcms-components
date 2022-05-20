@@ -1,5 +1,13 @@
 
 
+### [1.22.4](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.22.3...v1.22.4) (2022-05-20)
+
+
+### Bug Fixes
+
+* add preload to videos ([916989c](https://github.com/bond-london/gatsby-graphcms-components/commit/916989cb5b61022dcd2415372c7cda8c1527a69a))
+* use positioning for videos ([36a040f](https://github.com/bond-london/gatsby-graphcms-components/commit/36a040fec95ca6fa9ad9bfb29cd95eef01cf20e3))
+
 ### [1.22.3](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.22.2...v1.22.3) (2022-04-20)
 
 
