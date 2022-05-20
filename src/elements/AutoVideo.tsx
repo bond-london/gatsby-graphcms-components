@@ -85,7 +85,7 @@ export const AutoVideo: React.FC<Props> = (props) => {
       className={className}
       ref={videoRef}
       src={src}
-      preload="none"
+      preload="auto"
       autoPlay={false}
       loop={loop}
       muted={true}
