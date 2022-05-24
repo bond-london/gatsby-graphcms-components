@@ -66,6 +66,8 @@ export const AutoVideoAndThumbnail: React.FC<Props> = ({
           delay={delay}
           style={style}
           visualStyle={visualStyle}
+          width={thumbnail.width}
+          height={thumbnail.height}
         />
       )}
     </>

@@ -1,6 +1,5 @@
 import { IGatsbyImageData } from "gatsby-plugin-image";
-import { CSSProperties, useMemo } from "react";
-import { InternalVisualComponentProps } from ".";
+import { CSSProperties } from "react";
 
 export interface GenericAsset {
   alt?: string;
@@ -243,29 +242,4 @@ export function calculateCropDetails(
       horizontalCropPosition
     )} ${caclulateVertical(verticalCropPosition)}`,
   };
-}
-
-export function useStyles(props: Partial<InternalVisualComponentProps>) {
-  const { noStyle, objectFit, objectPosition, fitParent, style, visualStyle } =
-    props;
-  return useMemo(() => {
-    if (noStyle) {
-      return undefined;
-    }
-    const shared: CSSProperties = {
-      objectFit,
-      objectPosition,
-      width: "100%",
-      height: "100%",
-    };
-
-    const conditional: CSSProperties = fitParent
-      ? {
-          position: "absolute",
-          left: "0",
-          top: "0",
-        }
-      : { display: "block", position: "relative" };
-    return { ...shared, ...conditional, ...style, ...visualStyle };
-  }, [noStyle, objectFit, objectPosition, fitParent, style, visualStyle]);
 }

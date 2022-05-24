@@ -11,6 +11,8 @@ export interface VisualComponentProps {
   threshold: number;
   delay: number;
   visualStyle: CSSProperties;
+  width?: number;
+  height?: number;
 }
 export interface AutoVisualProps extends VisualComponentProps {
   visual: VisualAsset;
