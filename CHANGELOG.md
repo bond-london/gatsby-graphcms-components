@@ -1,5 +1,21 @@
 
 
+### [2.0.1](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.22.3...v2.0.1) (2022-05-25)
+
+
+### Features
+
+* new functionality for responsive videos ([d8096fd](https://github.com/bond-london/gatsby-graphcms-components/commit/d8096fdfbc70a22edd937ca88050b79fc0891340))
+
+
+### Bug Fixes
+
+* add preload to videos ([916989c](https://github.com/bond-london/gatsby-graphcms-components/commit/916989cb5b61022dcd2415372c7cda8c1527a69a))
+* explicitly set video width if passed in ([ce42db0](https://github.com/bond-london/gatsby-graphcms-components/commit/ce42db0290403937beeee928012445868132452a))
+* update versions ([f665ce2](https://github.com/bond-london/gatsby-graphcms-components/commit/f665ce23690651b820fdf8071206b56f25263919))
+* use positioning for videos ([36a040f](https://github.com/bond-london/gatsby-graphcms-components/commit/36a040fec95ca6fa9ad9bfb29cd95eef01cf20e3))
+* version bump ([8cd5e82](https://github.com/bond-london/gatsby-graphcms-components/commit/8cd5e82f71349d8822d0c531a4b89e672362bfb6))
+
 ### [1.22.4](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.22.3...v1.22.4) (2022-05-20)
 
 
