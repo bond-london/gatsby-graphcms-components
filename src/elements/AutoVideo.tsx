@@ -1,3 +1,4 @@
+import { Layout } from "gatsby-plugin-image";
 import React, {
   CSSProperties,
   useCallback,
@@ -10,45 +11,46 @@ import { InternalVisualComponentProps } from ".";
 import { onVisibleToUser } from "../hooks/Visibility";
 
 function useStyles(props: Partial<InternalVisualComponentProps>) {
-  const {
-    noStyle,
-    objectFit,
-    objectPosition,
-    fitParent,
-    style,
-    visualStyle,
-    width,
-    height,
-  } = props;
+  const { noStyle, objectFit, objectPosition, fitParent, style, visualStyle } =
+    props;
   return useMemo(() => {
-    if (noStyle) {
-      return undefined;
-    }
-    const shared: CSSProperties = {
+    const videoStyle: CSSProperties = {
       objectFit,
       objectPosition,
-      width: width ? undefined : "100%",
-      height: height ? undefined : "100%",
+      width: "100%",
+      height: "100%",
+      bottom: 0,
+      margin: 0,
+      maxWidth: "none",
+      padding: 0,
+      position: "absolute",
+      right: 0,
+      top: 0,
     };
 
-    const conditional: CSSProperties = fitParent
+    if (noStyle) {
+      return { videoStyle, wrapperStyle: undefined };
+    }
+
+    const wrapperStyle: CSSProperties = fitParent
       ? {
+          width: "100%",
+          height: "100%",
+          bottom: 0,
+          margin: 0,
+          maxWidth: "none",
+          padding: 0,
           position: "absolute",
-          left: "0",
-          top: "0",
+          right: 0,
+          top: 0,
         }
       : { display: "block", position: "relative" };
-    return { ...shared, ...conditional, ...style, ...visualStyle };
-  }, [
-    noStyle,
-    objectFit,
-    objectPosition,
-    fitParent,
-    style,
-    visualStyle,
-    width,
-    height,
-  ]);
+
+    return {
+      videoStyle,
+      wrapperStyle: { ...wrapperStyle, ...style, ...visualStyle },
+    };
+  }, [noStyle, objectFit, objectPosition, fitParent, style, visualStyle]);
 }
 
 function playVideo(videoElement: HTMLVideoElement) {
@@ -68,10 +70,42 @@ interface Props extends Partial<InternalVisualComponentProps> {
   loop?: boolean;
   width?: number;
   height?: number;
+  layout?: Layout;
   onLoad?: () => void;
   onClick?: () => void;
   onVisible?: (isVisible: boolean) => void;
 }
+
+const Sizer: React.FC<{ width?: number; height?: number; layout?: Layout }> = ({
+  layout,
+  width,
+  height,
+}) => {
+  if (layout && width && height) {
+    if (layout === "fullWidth") {
+      <div aria-hidden style={{ paddingTop: `${(height / width) * 100}%` }} />;
+    }
+
+    if (layout === "constrained") {
+      return (
+        <div style={{ maxWidth: width, display: `block` }}>
+          <img
+            alt=""
+            role="presentation"
+            aria-hidden="true"
+            src={`data:image/svg+xml;charset=utf-8,%3Csvg height='${height}' width='${width}' xmlns='http://www.w3.org/2000/svg' version='1.1'%3E%3C/svg%3E`}
+            style={{
+              maxWidth: `100%`,
+              display: `block`,
+              position: `static`,
+            }}
+          />
+        </div>
+      );
+    }
+  }
+  return null;
+};
 
 export const AutoVideo: React.FC<Props> = (props) => {
   const {
@@ -85,6 +119,7 @@ export const AutoVideo: React.FC<Props> = (props) => {
     loop,
     width,
     height,
+    layout,
   } = props;
   const [hasPlayed, setHasPlayed] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -129,11 +164,38 @@ export const AutoVideo: React.FC<Props> = (props) => {
     }
   }, [onLoad]);
 
-  const fullStyles = useStyles(props);
+  const { wrapperStyle, videoStyle } = useStyles(props);
+
+  if (layout) {
+    return (
+      <div
+        data-component="Constrained video"
+        className={className}
+        style={wrapperStyle}
+      >
+        <Sizer layout={layout} width={width} height={height} />
+        <video
+          style={videoStyle}
+          className={className}
+          ref={videoRef}
+          src={src}
+          preload="auto"
+          autoPlay={false}
+          loop={loop}
+          muted={true}
+          playsInline={true}
+          onPlay={hasPlayed ? undefined : handlePlay}
+          onClick={onClick}
+          width={width}
+          height={height}
+        />
+      </div>
+    );
+  }
 
   return (
     <video
-      style={fullStyles}
+      style={wrapperStyle}
       className={className}
       ref={videoRef}
       src={src}
