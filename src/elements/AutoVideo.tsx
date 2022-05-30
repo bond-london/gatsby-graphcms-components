@@ -29,26 +29,41 @@ function useStyles(props: Partial<InternalVisualComponentProps>) {
     };
 
     if (noStyle) {
-      return { videoStyle, wrapperStyle: undefined };
+      return {
+        videoStyle,
+        standaloneStyle: undefined,
+        wrapperStyle: undefined,
+      };
     }
 
-    const wrapperStyle: CSSProperties = fitParent
-      ? {
-          width: "100%",
-          height: "100%",
-          bottom: 0,
-          margin: 0,
-          maxWidth: "none",
-          padding: 0,
-          position: "absolute",
-          right: 0,
-          top: 0,
-        }
-      : { display: "block", position: "relative" };
+    const wrapperStyle: CSSProperties = {
+      ...(fitParent
+        ? {
+            width: "100%",
+            height: "100%",
+            bottom: 0,
+            margin: 0,
+            maxWidth: "none",
+            padding: 0,
+            position: "absolute",
+            right: 0,
+            top: 0,
+          }
+        : { display: "block", position: "relative" }),
+      ...style,
+      ...visualStyle,
+    };
+
+    const standaloneStyle: CSSProperties = {
+      ...wrapperStyle,
+      objectFit,
+      objectPosition,
+    };
 
     return {
       videoStyle,
-      wrapperStyle: { ...wrapperStyle, ...style, ...visualStyle },
+      standaloneStyle,
+      wrapperStyle,
     };
   }, [noStyle, objectFit, objectPosition, fitParent, style, visualStyle]);
 }
@@ -164,7 +179,7 @@ export const AutoVideo: React.FC<Props> = (props) => {
     }
   }, [onLoad]);
 
-  const { wrapperStyle, videoStyle } = useStyles(props);
+  const { wrapperStyle, standaloneStyle, videoStyle } = useStyles(props);
 
   if (layout) {
     return (
@@ -195,7 +210,7 @@ export const AutoVideo: React.FC<Props> = (props) => {
 
   return (
     <video
-      style={wrapperStyle}
+      style={standaloneStyle}
       className={className}
       ref={videoRef}
       src={src}

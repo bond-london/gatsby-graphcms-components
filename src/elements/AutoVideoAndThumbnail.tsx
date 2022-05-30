@@ -9,7 +9,7 @@ interface Props extends Partial<InternalVisualComponentProps> {
   loop?: boolean;
 }
 
-export const AutoVideoAndThumbnail: React.FC<Props> = ({
+const AutoVideoAndThumbnailInside: React.FC<Props> = ({
   videoSrc,
   alt,
   thumbnail,
@@ -57,13 +57,13 @@ export const AutoVideoAndThumbnail: React.FC<Props> = ({
         <AutoVideo
           className={className}
           src={videoSrc}
-          fitParent={fitParent}
+          fitParent={true}
           loop={loop}
           noStyle={noStyle}
           objectFit={objectFit}
           objectPosition={objectPosition}
           threshold={threshold}
-          delay={delay}
+          delay={0}
           style={style}
           visualStyle={visualStyle}
           width={thumbnail.width}
@@ -72,5 +72,17 @@ export const AutoVideoAndThumbnail: React.FC<Props> = ({
         />
       )}
     </>
+  );
+};
+
+export const AutoVideoAndThumbnail: React.FC<Props> = (props) => {
+  if (props.fitParent) {
+    return <AutoVideoAndThumbnailInside {...props} />;
+  }
+
+  return (
+    <div className={props.className} style={{ position: "relative" }}>
+      <AutoVideoAndThumbnailInside {...props} className={undefined} />
+    </div>
   );
 };
