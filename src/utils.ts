@@ -26,11 +26,10 @@ export interface LottieInformation {
 }
 
 interface File {
-  readonly childImageSharp?: ImageSharp;
-  readonly publicURL?: string;
-  readonly svg?: SvgInformation;
-  readonly lottie?: Omit<LottieInformation, "animationUrl">;
-  readonly name: string;
+  readonly childImageSharp?: ImageSharp | null;
+  readonly publicURL?: string | null;
+  readonly svg?: SvgInformation | null;
+  readonly lottie?: Omit<LottieInformation, "animationUrl"> | null;
 }
 
 export type VerticalPosition = "Top" | "Middle" | "Bottom";
@@ -54,7 +53,9 @@ export function validateAssetHasFile(asset: GenericAsset | undefined): void {
   }
 }
 
-export function getImageFromFile(file?: File): IGatsbyImageData | undefined {
+export function getImageFromFile(
+  file?: File | null
+): IGatsbyImageData | undefined {
   return file?.childImageSharp?.gatsbyImageData;
 }
 
@@ -72,8 +73,8 @@ export function getAlt(
   return node?.alternateText || defaultValue;
 }
 
-export function getVideoFromFile(file?: File): string | undefined {
-  return file?.publicURL;
+export function getVideoFromFile(file?: File | null): string | undefined {
+  return file?.publicURL || undefined;
 }
 
 export function getVideo(node: GenericAsset | undefined): string | undefined {
@@ -81,7 +82,9 @@ export function getVideo(node: GenericAsset | undefined): string | undefined {
   return getVideoFromFile(node?.localFile);
 }
 
-export function getLottieFromFile(file?: File): LottieInformation | undefined {
+export function getLottieFromFile(
+  file?: File | null
+): LottieInformation | undefined {
   if (file?.lottie && file?.publicURL) {
     return {
       encoded: file.lottie.encoded,
@@ -97,8 +100,8 @@ export function getLottie(
   return getLottieFromFile(node?.localFile);
 }
 
-export function getSvgFromFile(file?: File): SvgInformation | undefined {
-  return file?.svg;
+export function getSvgFromFile(file?: File | null): SvgInformation | undefined {
+  return file?.svg || undefined;
 }
 
 export function getExtractedSvg(
@@ -170,7 +173,7 @@ export function getVisualFromFile(
     return;
   }
 
-  const alt = defaultAlt || file.name;
+  const alt = defaultAlt || "";
   const image = getImageFromFile(file);
   const svg = getSvgFromFile(file);
   const possibleVideoUrl = getVideoFromFile(file);
