@@ -2,13 +2,14 @@ import { IGatsbyImageData } from "gatsby-plugin-image";
 import { CSSProperties } from "react";
 
 export interface GenericAsset {
-  alt?: string;
+  alt?: string | null;
   id: string;
-  localFile?: File;
-  alternateText?: string;
-  dontCrop?: boolean;
-  verticalCropPosition?: VerticalPosition;
-  horizontalCropPosition?: HorizontalPosition;
+  localFile?: File | null;
+  alternateText?: string | null;
+  dontCrop?: boolean | null;
+  verticalCropPosition?: VerticalPosition | null;
+  horizontalCropPosition?: HorizontalPosition | null;
+  handle: string;
 }
 
 interface ImageSharp {
@@ -30,6 +31,7 @@ interface File {
   readonly publicURL?: string | null;
   readonly svg?: SvgInformation | null;
   readonly lottie?: Omit<LottieInformation, "animationUrl"> | null;
+  readonly name?: string | null;
 }
 
 export type VerticalPosition = "Top" | "Middle" | "Bottom";
@@ -47,7 +49,9 @@ export interface VisualAsset {
   horizontalCropPosition?: HorizontalPosition;
 }
 
-export function validateAssetHasFile(asset: GenericAsset | undefined): void {
+export function validateAssetHasFile(
+  asset: GenericAsset | undefined | null
+): void {
   if (asset && !asset.localFile) {
     throw new Error(`Asset ${asset.id} has no local file`);
   }
@@ -60,7 +64,7 @@ export function getImageFromFile(
 }
 
 export function getImage(
-  node: GenericAsset | undefined
+  node: GenericAsset | undefined | null
 ): IGatsbyImageData | undefined {
   validateAssetHasFile(node);
   return getImageFromFile(node?.localFile);
@@ -116,9 +120,9 @@ export function getSvg(node: GenericAsset | undefined): string | undefined {
 }
 
 export function getVisual(
-  asset: GenericAsset | undefined,
+  asset: GenericAsset | undefined | null,
   loop = false,
-  preview: GenericAsset | undefined = undefined,
+  preview: GenericAsset | undefined | null = undefined,
   defaultAlt = ""
 ): VisualAsset | undefined {
   if (!asset) {
@@ -143,9 +147,9 @@ export function getVisual(
       alt,
       videoUrl,
       loop,
-      dontCrop,
-      verticalCropPosition,
-      horizontalCropPosition,
+      dontCrop: dontCrop || undefined,
+      verticalCropPosition: verticalCropPosition || undefined,
+      horizontalCropPosition: horizontalCropPosition || undefined,
     };
   }
 
@@ -155,9 +159,9 @@ export function getVisual(
     svg,
     animation,
     loop: !!loop,
-    dontCrop,
-    verticalCropPosition,
-    horizontalCropPosition,
+    dontCrop: dontCrop || undefined,
+    verticalCropPosition: verticalCropPosition || undefined,
+    horizontalCropPosition: horizontalCropPosition || undefined,
   };
 }
 

@@ -37,7 +37,7 @@
     "@commitlint/cli": "^17.0.0",
     "@commitlint/config-conventional": "^17.0.0",
     "@release-it/conventional-changelog": "^5.0.0",
-    "@types/react": "18.0.9",
+    "@types/react": "^18.0.12",
     "@types/react-helmet": "^6.1.5",
     "@typescript-eslint/eslint-plugin": "^5.25.0",
     "@typescript-eslint/parser": "^5.25.0",
@@ -64,6 +64,7 @@
   },
   "peerDependencies": {
     "@bond-london/graphcms-rich-text": "^0.x",
+    "gatsby-plugin-image": "^2.x",
     "lottie-web": "^5.x",
     "react": "^18.x",
     "react-helmet": "^6.1.0"
