@@ -1,15 +1,15 @@
 import { IGatsbyImageData } from "gatsby-plugin-image";
-import { CSSProperties } from "react";
+import { CSSProperties, useEffect, useState } from "react";
 
 export interface GenericAsset {
   alt?: string | null;
-  id: string;
+  id?: string | null;
   localFile?: File | null;
   alternateText?: string | null;
   dontCrop?: boolean | null;
   verticalCropPosition?: VerticalPosition | null;
   horizontalCropPosition?: HorizontalPosition | null;
-  handle: string;
+  handle?: string | null;
 }
 
 interface ImageSharp {
@@ -53,7 +53,7 @@ export function validateAssetHasFile(
   asset: GenericAsset | undefined | null
 ): void {
   if (asset && !asset.localFile) {
-    throw new Error(`Asset ${asset.id} has no local file`);
+    throw new Error(`Asset ${asset.id || "??"} has no local file`);
   }
 }
 
@@ -121,9 +121,9 @@ export function getSvg(node: GenericAsset | undefined): string | undefined {
 
 export function getVisual(
   asset: GenericAsset | undefined | null,
-  loop = false,
-  preview: GenericAsset | undefined | null = undefined,
-  defaultAlt = ""
+  loop?: boolean | null,
+  preview?: GenericAsset | null,
+  defaultAlt?: string | null
 ): VisualAsset | undefined {
   if (!asset) {
     return;
@@ -131,7 +131,7 @@ export function getVisual(
 
   const { dontCrop, verticalCropPosition, horizontalCropPosition } = asset;
   const image = getImage(asset);
-  const alt = getAlt(asset, defaultAlt);
+  const alt = getAlt(asset, defaultAlt || "");
   const svg = getExtractedSvg(asset);
   const possibleVideoUrl = getVideo(asset);
   const animation = getLottie(asset);
@@ -146,7 +146,7 @@ export function getVisual(
       image: previewImage,
       alt,
       videoUrl,
-      loop,
+      loop: loop || false,
       dontCrop: dontCrop || undefined,
       verticalCropPosition: verticalCropPosition || undefined,
       horizontalCropPosition: horizontalCropPosition || undefined,
@@ -158,7 +158,7 @@ export function getVisual(
     alt,
     svg,
     animation,
-    loop: !!loop,
+    loop: loop || false,
     dontCrop: dontCrop || undefined,
     verticalCropPosition: verticalCropPosition || undefined,
     horizontalCropPosition: horizontalCropPosition || undefined,
@@ -249,4 +249,21 @@ export function calculateCropDetails(
       horizontalCropPosition
     )} ${caclulateVertical(verticalCropPosition)}`,
   };
+}
+
+export function useMediaQuery(mediaQuery: string, initialValue = true) {
+  const [matches, setMatches] = useState(initialValue);
+
+  useEffect(() => {
+    const handleChange = (list: MediaQueryListEvent) => {
+      setMatches(list.matches);
+    };
+
+    const mediaQueryList = window.matchMedia(mediaQuery);
+    mediaQueryList.addEventListener("change", handleChange);
+    setMatches(mediaQueryList.matches);
+    return () => mediaQueryList.removeEventListener("change", handleChange);
+  }, [mediaQuery]);
+
+  return matches;
 }

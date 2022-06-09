@@ -3,15 +3,15 @@ import React, { useMemo } from "react";
 import { Helmet } from "react-helmet";
 
 export interface SiteBuildMetadata {
-  readonly buildTime?: unknown;
-  readonly buildYear: string;
+  readonly buildTime?: unknown | string | null;
+  readonly buildYear: string | null;
 }
 
 export interface SiteMetadata {
-  readonly siteName: string;
-  readonly siteUrl: string;
-  readonly logo?: string;
-  readonly sameAs?: string[];
+  readonly siteName: string | null;
+  readonly siteUrl: string | null;
+  readonly logo?: string | null;
+  readonly sameAs?: string[] | null;
 }
 
 export interface Seo {
@@ -35,10 +35,16 @@ interface Props {
 export function buildOrganizationSchema(
   name: string,
   url: string,
-  logo?: string,
-  sameAs?: string[]
+  logo?: string | null,
+  sameAs?: string[] | null
 ) {
-  return { "@type": "Organization", name, url, logo, sameAs };
+  return {
+    "@type": "Organization",
+    name,
+    url,
+    logo: logo || undefined,
+    sameAs: sameAs || undefined,
+  };
 }
 
 export function buildWebsiteSchema(name: string, url: string) {
