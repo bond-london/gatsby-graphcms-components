@@ -23,14 +23,24 @@ export interface SvgInformation {
 
 export interface LottieInformation {
   readonly animationUrl: string;
-  readonly encoded: string;
+  readonly encoded?: string;
+  readonly encodedUrl?: string;
+  width?: string;
+  height?: string;
+}
+
+export interface ExtractedLottie {
+  width?: string | null;
+  height?: string | null;
+  encoded?: string | null;
+  encodedFile?: File | null;
 }
 
 interface File {
   readonly childImageSharp?: ImageSharp | null;
   readonly publicURL?: string | null;
   readonly svg?: SvgInformation | null;
-  readonly lottie?: Omit<LottieInformation, "animationUrl"> | null;
+  readonly childExtractedLottie?: ExtractedLottie | null;
   readonly name?: string | null;
 }
 
@@ -89,10 +99,14 @@ export function getVideo(node: GenericAsset | undefined): string | undefined {
 export function getLottieFromFile(
   file?: File | null
 ): LottieInformation | undefined {
-  if (file?.lottie && file?.publicURL) {
+  if (file?.childExtractedLottie && file?.publicURL) {
     return {
-      encoded: file.lottie.encoded,
+      encoded: file.childExtractedLottie.encoded || undefined,
+      encodedUrl:
+        file.childExtractedLottie?.encodedFile?.publicURL || undefined,
       animationUrl: file.publicURL,
+      width: file.childExtractedLottie.width || undefined,
+      height: file.childExtractedLottie.height || undefined,
     };
   }
 }

@@ -1,5 +1,5 @@
 import { AnimationItem, SVGRendererConfig } from "lottie-web";
-import lottie from "lottie-web/build/player/lottie_light";
+import lottie from "lottie-web";
 
 import React, {
   CSSProperties,

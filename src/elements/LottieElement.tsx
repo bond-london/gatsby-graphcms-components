@@ -4,10 +4,10 @@ import React, { CSSProperties, lazy, Suspense, useMemo, useRef } from "react";
 const LottiePlayer = lazy(() => import("./LottiePlayer"));
 
 import { InternalVisualComponentProps } from ".";
+import { LottieInformation } from "../utils";
 
 interface Props extends Partial<InternalVisualComponentProps> {
-  animationUrl: string;
-  encoded: string;
+  animation: LottieInformation;
   rendererSettings?: SVGRendererConfig;
   placeholderClassName?: string;
   loop?: boolean;
@@ -19,8 +19,7 @@ interface Props extends Partial<InternalVisualComponentProps> {
 
 export const LottieElement: React.FC<Props> = (props) => {
   const {
-    animationUrl,
-    encoded,
+    animation,
     className,
     rendererSettings,
     placeholderClassName,
@@ -56,12 +55,18 @@ export const LottieElement: React.FC<Props> = (props) => {
     return { ...shared, ...style };
   }, [fitParent, style]);
 
+  const imgSrc = animation.encoded || animation.encodedUrl;
+
   return (
     <div ref={containerRef} className={className} style={fullStyles}>
       <img
         alt={alt}
         ref={imgRef}
-        src={encoded}
+        src={imgSrc}
+        decoding="async"
+        loading="lazy"
+        width={animation.width}
+        height={animation.height}
         style={
           visualStyle || {
             height: "100%",
@@ -77,7 +82,7 @@ export const LottieElement: React.FC<Props> = (props) => {
           containerRef={containerRef}
           imgRef={imgRef}
           debug={debug}
-          animationUrl={animationUrl}
+          animationUrl={animation.animationUrl}
           rendererSettings={rendererSettings}
           loop={loop}
           loopDelay={loopDelay}

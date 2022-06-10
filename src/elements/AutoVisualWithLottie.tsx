@@ -37,8 +37,7 @@ export const AutoVisualWithLottie: React.FC<
     );
     return (
       <LottieElement
-        animationUrl={animation.animationUrl}
-        encoded={animation.encoded}
+        animation={animation}
         className={className}
         loop={loop}
         fitParent={fitParent}
