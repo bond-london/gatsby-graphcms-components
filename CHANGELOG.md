@@ -1,5 +1,26 @@
 
 
+## [3.1.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.22.3...v3.1.0) (2022-06-10)
+
+
+### Features
+
+* improved lottie support ([13d74c7](https://github.com/bond-london/gatsby-graphcms-components/commit/13d74c7dc6181faccde06805b1bf8325a48cc953))
+* new functionality for responsive videos ([d8096fd](https://github.com/bond-london/gatsby-graphcms-components/commit/d8096fdfbc70a22edd937ca88050b79fc0891340))
+* support lottie using lazy/suspense ([a6a23d3](https://github.com/bond-london/gatsby-graphcms-components/commit/a6a23d3b901befd236604469f433f9591425a3de))
+
+
+### Bug Fixes
+
+* add preload to videos ([916989c](https://github.com/bond-london/gatsby-graphcms-components/commit/916989cb5b61022dcd2415372c7cda8c1527a69a))
+* explicitly set video width if passed in ([ce42db0](https://github.com/bond-london/gatsby-graphcms-components/commit/ce42db0290403937beeee928012445868132452a))
+* few more updates using new typegen ([2769097](https://github.com/bond-london/gatsby-graphcms-components/commit/2769097f46a02178e2b8d58a986e79a3e6577367))
+* more graphql changes ([c455b76](https://github.com/bond-london/gatsby-graphcms-components/commit/c455b76e66fc4ed9b9884d08a128fa15f04968c9))
+* update versions ([f665ce2](https://github.com/bond-london/gatsby-graphcms-components/commit/f665ce23690651b820fdf8071206b56f25263919))
+* use positioning for videos ([36a040f](https://github.com/bond-london/gatsby-graphcms-components/commit/36a040fec95ca6fa9ad9bfb29cd95eef01cf20e3))
+* version bump ([8cd5e82](https://github.com/bond-london/gatsby-graphcms-components/commit/8cd5e82f71349d8822d0c531a4b89e672362bfb6))
+* video aspect ratio changes and is not consistent with the image ([35c375c](https://github.com/bond-london/gatsby-graphcms-components/commit/35c375c936d7aa6dc84d3425e21d619d4d40c5b6)), closes [#2](https://github.com/bond-london/gatsby-graphcms-components/issues/2)
+
 ## [3.0.1](https://github.com/bond-london/gatsby-graphcms-components/compare/v1.22.3...v3.0.1) (2022-06-10)
 
 
