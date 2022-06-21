@@ -11,15 +11,15 @@ export interface SiteMetadata {
   readonly siteName: string | null;
   readonly siteUrl: string | null;
   readonly logo?: string | null;
-  readonly sameAs?: string[] | null;
+  readonly sameAs?: ReadonlyArray<string | null> | null;
 }
 
 export interface Seo {
   title: string;
-  description?: string;
-  image?: IGatsbyImageData;
-  keywords?: string;
-  noIndex?: boolean;
+  description?: string | null;
+  image?: IGatsbyImageData | null;
+  keywords?: string | null;
+  noIndex?: boolean | null;
 }
 interface Props {
   siteBuildMetadata: SiteBuildMetadata;
@@ -36,7 +36,7 @@ export function buildOrganizationSchema(
   name: string,
   url: string,
   logo?: string | null,
-  sameAs?: string[] | null
+  sameAs?: ReadonlyArray<string | null> | null
 ) {
   return {
     "@type": "Organization",
