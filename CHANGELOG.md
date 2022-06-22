@@ -1,5 +1,13 @@
 
 
+## [3.1.3](https://github.com/bond-london/gatsby-graphcms-components/compare/v3.1.0...v3.1.3) (2022-06-22)
+
+
+### Bug Fixes
+
+* more canges to support new typegen ([7bd4f3e](https://github.com/bond-london/gatsby-graphcms-components/commit/7bd4f3e280e6202e5e53eed1ef0533329c730814))
+* more null support ([3da8f70](https://github.com/bond-london/gatsby-graphcms-components/commit/3da8f70a6321cc94adfc03f937c8fe2746b1a97e))
+
 ## [3.1.2](https://github.com/bond-london/gatsby-graphcms-components/compare/v3.1.0...v3.1.2) (2022-06-21)
 
 
