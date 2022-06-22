@@ -15,7 +15,7 @@ function useStyles(props: Partial<InternalVisualComponentProps>) {
     props;
   return useMemo(() => {
     const videoStyle: CSSProperties = {
-      objectFit,
+      objectFit: objectFit || "cover",
       objectPosition,
       width: "100%",
       height: "100%",
@@ -56,7 +56,7 @@ function useStyles(props: Partial<InternalVisualComponentProps>) {
 
     const standaloneStyle: CSSProperties = {
       ...wrapperStyle,
-      objectFit,
+      objectFit: objectFit || "cover",
       objectPosition,
     };
 
