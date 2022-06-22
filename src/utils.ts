@@ -81,7 +81,7 @@ export function getImage(
 }
 
 export function getAlt(
-  node: GenericAsset | undefined,
+  node: GenericAsset | undefined | null,
   defaultValue: string
 ): string {
   return node?.alternateText || defaultValue;
@@ -91,7 +91,9 @@ export function getVideoFromFile(file?: File | null): string | undefined {
   return file?.publicURL || undefined;
 }
 
-export function getVideo(node: GenericAsset | undefined): string | undefined {
+export function getVideo(
+  node: GenericAsset | undefined | null
+): string | undefined {
   validateAssetHasFile(node);
   return getVideoFromFile(node?.localFile);
 }
@@ -112,7 +114,7 @@ export function getLottieFromFile(
 }
 
 export function getLottie(
-  node: GenericAsset | undefined
+  node: GenericAsset | undefined | null
 ): LottieInformation | undefined {
   validateAssetHasFile(node);
   return getLottieFromFile(node?.localFile);
@@ -123,13 +125,15 @@ export function getSvgFromFile(file?: File | null): SvgInformation | undefined {
 }
 
 export function getExtractedSvg(
-  node: GenericAsset | undefined
+  node: GenericAsset | undefined | null
 ): SvgInformation | undefined {
   validateAssetHasFile(node);
   return getSvgFromFile(node?.localFile);
 }
 
-export function getSvg(node: GenericAsset | undefined): string | undefined {
+export function getSvg(
+  node: GenericAsset | undefined | null
+): string | undefined {
   return getExtractedSvg(node)?.encoded;
 }
 
