@@ -1,5 +1,12 @@
 
 
+## [3.2.0](https://github.com/bond-london/gatsby-graphcms-components/compare/v3.1.3...v3.2.0) (2022-06-22)
+
+
+### Bug Fixes
+
+* default video object fit to cover ([3907e70](https://github.com/bond-london/gatsby-graphcms-components/commit/3907e70b53856e1cffa7871ca94a18c7d2ab3b6a))
+
 ## [3.1.3](https://github.com/bond-london/gatsby-graphcms-components/compare/v3.1.0...v3.1.3) (2022-06-22)
 
 
