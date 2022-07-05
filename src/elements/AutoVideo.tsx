@@ -139,10 +139,6 @@ export const AutoVideo: React.FC<Props> = (props) => {
   const [hasPlayed, setHasPlayed] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  if (!src) {
-    throw new Error("The src should be set");
-  }
-
   useEffect(() => {
     const videoElement = videoRef.current;
     if (!videoElement) return;
@@ -180,6 +176,11 @@ export const AutoVideo: React.FC<Props> = (props) => {
   }, [onLoad]);
 
   const { wrapperStyle, standaloneStyle, videoStyle } = useStyles(props);
+
+  if (!src) {
+    console.error("The src should be set");
+    return null;
+  }
 
   if (layout) {
     return (

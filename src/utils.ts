@@ -61,10 +61,12 @@ export interface VisualAsset {
 
 export function validateAssetHasFile(
   asset: GenericAsset | undefined | null
-): void {
+): boolean {
   if (asset && !asset.localFile) {
-    throw new Error(`Asset ${asset.id || "??"} has no local file`);
+    console.error(`Asset ${asset.id || "??"} has no local file`);
+    return false;
   }
+  return true;
 }
 
 export function getImageFromFile(
@@ -76,7 +78,7 @@ export function getImageFromFile(
 export function getImage(
   node: GenericAsset | undefined | null
 ): IGatsbyImageData | undefined {
-  validateAssetHasFile(node);
+  if (!validateAssetHasFile(node)) return;
   return getImageFromFile(node?.localFile);
 }
 
@@ -94,7 +96,7 @@ export function getVideoFromFile(file?: File | null): string | undefined {
 export function getVideo(
   node: GenericAsset | undefined | null
 ): string | undefined {
-  validateAssetHasFile(node);
+  if (!validateAssetHasFile(node)) return;
   return getVideoFromFile(node?.localFile);
 }
 
@@ -116,7 +118,7 @@ export function getLottieFromFile(
 export function getLottie(
   node: GenericAsset | undefined | null
 ): LottieInformation | undefined {
-  validateAssetHasFile(node);
+  if (!validateAssetHasFile(node)) return;
   return getLottieFromFile(node?.localFile);
 }
 
@@ -127,7 +129,7 @@ export function getSvgFromFile(file?: File | null): SvgInformation | undefined {
 export function getExtractedSvg(
   node: GenericAsset | undefined | null
 ): SvgInformation | undefined {
-  validateAssetHasFile(node);
+  if (!validateAssetHasFile(node)) return;
   return getSvgFromFile(node?.localFile);
 }
 

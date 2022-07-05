@@ -53,7 +53,12 @@ export function buildWebsiteSchema(name: string, url: string) {
 
 export const SEO: React.FC<Props> = ({
   siteBuildMetadata: { buildTime },
-  siteMetadata: { siteName, siteUrl, logo, sameAs },
+  siteMetadata: {
+    siteName: possibleSiteName,
+    siteUrl: possibleSiteUrl,
+    logo,
+    sameAs,
+  },
   pageMetadata,
   pagePath,
   pageTitle,
@@ -61,12 +66,8 @@ export const SEO: React.FC<Props> = ({
   schemaOrgs,
   additionalSchemas,
 }) => {
-  if (!siteName) {
-    throw new Error(`The site metadata must have siteName`);
-  }
-  if (!siteUrl) {
-    throw new Error(`The site metadata must have siteUrl`);
-  }
+  const siteName = possibleSiteName || "??";
+  const siteUrl = possibleSiteUrl || "??";
 
   const description = pageMetadata?.description;
   const image = pageMetadata.image;
@@ -86,6 +87,18 @@ export const SEO: React.FC<Props> = ({
     return { "@context": "http://schema.org", "@graph": schemas };
   }, [schemaOrgs, siteName, siteUrl, logo, sameAs, additionalSchemas]);
 
+  if (!possibleSiteName) {
+    console.error(`The site metadata must have siteName`);
+    return null;
+  }
+  if (!possibleSiteUrl) {
+    console.error(`The site metadata must have siteUrl`);
+    return null;
+  }
+  if (pagePath === "/*") {
+    console.error(`The path should be taken from location.pathname`);
+    return null;
+  }
   const pageUrl = siteUrl + pagePath;
 
   return (
