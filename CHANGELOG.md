@@ -1,5 +1,18 @@
 
 
+## [3.3.4](https://github.com/bond-london/gatsby-graphcms-components/compare/v3.2.0...v3.3.4) (2022-07-08)
+
+
+### Features
+
+* update version ([5d4ec0e](https://github.com/bond-london/gatsby-graphcms-components/commit/5d4ec0e7d22a80d3d4845e88086c649fe59b0c9a))
+
+
+### Bug Fixes
+
+* don't throw errors ([307cd93](https://github.com/bond-london/gatsby-graphcms-components/commit/307cd93e7adc68840c9edf69f9d52b3c5c0b08f2))
+* switch from using suspense ([8ced1bb](https://github.com/bond-london/gatsby-graphcms-components/commit/8ced1bb9cf6b55973aa5d31270dda4e46b9cf1e8))
+
 ## [3.3.1](https://github.com/bond-london/gatsby-graphcms-components/compare/v3.2.0...v3.3.1) (2022-07-08)
 
 
