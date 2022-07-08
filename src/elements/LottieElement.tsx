@@ -1,5 +1,12 @@
 import type { SVGRendererConfig } from "lottie-web";
-import React, { CSSProperties, lazy, Suspense, useMemo, useRef } from "react";
+import React, {
+  CSSProperties,
+  lazy,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 const LottiePlayer = lazy(() => import("./LottiePlayer"));
 
@@ -39,6 +46,8 @@ export const LottieElement: React.FC<Props> = (props) => {
 
   const containerRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => setIsClient(true), []);
 
   debug && console.log("container ref", !!containerRef.current);
 
@@ -77,7 +86,7 @@ export const LottieElement: React.FC<Props> = (props) => {
         }
         className={placeholderClassName}
       />
-      <Suspense>
+      {isClient && (
         <LottiePlayer
           containerRef={containerRef}
           imgRef={imgRef}
@@ -91,7 +100,7 @@ export const LottieElement: React.FC<Props> = (props) => {
           threshold={threshold}
           delay={delay}
         />
-      </Suspense>
+      )}
     </div>
   );
 };
