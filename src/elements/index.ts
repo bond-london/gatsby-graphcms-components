@@ -6,4 +6,4 @@ export * from "./SEO";
 export * from "./SvgIcon";
 export * from "./RTF";
 export * from "./AutoVisualNoLottie";
-export * from "./AspectRatioVisual";
+export * from "./AspectRatioVisualNoLottie";
