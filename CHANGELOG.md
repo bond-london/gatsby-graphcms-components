@@ -1,5 +1,12 @@
 
 
+## [3.4.3](https://github.com/bond-london/gatsby-graphcms-components/compare/v3.4.2...v3.4.3) (2022-07-12)
+
+
+### Features
+
+* sorted out aspect ratio ([e4fc490](https://github.com/bond-london/gatsby-graphcms-components/commit/e4fc490b00c3ad86280470f38cd2303f508194bb))
+
 ## [3.4.2](https://github.com/bond-london/gatsby-graphcms-components/compare/v3.2.0...v3.4.2) (2022-07-12)
 
 
