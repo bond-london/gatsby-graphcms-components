@@ -1,5 +1,12 @@
 
 
+## [3.4.4](https://github.com/bond-london/gatsby-graphcms-components/compare/v3.4.3...v3.4.4) (2022-07-13)
+
+
+### Bug Fixes
+
+* few tweaks to lottie support ([a7175a3](https://github.com/bond-london/gatsby-graphcms-components/commit/a7175a354eb2526a7ed022ac577b94e688d1544b))
+
 ## [3.4.3](https://github.com/bond-london/gatsby-graphcms-components/compare/v3.4.2...v3.4.3) (2022-07-12)
 
 
