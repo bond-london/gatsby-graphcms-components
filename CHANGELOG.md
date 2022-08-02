@@ -1,5 +1,18 @@
 
 
+## [4.0.1](https://github.com/bond-london/gatsby-graphcms-components/compare/v3.4.3...v4.0.1) (2022-08-02)
+
+
+### Features
+
+* upgrade to use new video and better lottie ([a26d0a5](https://github.com/bond-london/gatsby-graphcms-components/commit/a26d0a5d2d4770b682690a8adbdc8727d7ca747a))
+
+
+### Bug Fixes
+
+* few tweaks to lottie support ([a7175a3](https://github.com/bond-london/gatsby-graphcms-components/commit/a7175a354eb2526a7ed022ac577b94e688d1544b))
+* update version ([010d88b](https://github.com/bond-london/gatsby-graphcms-components/commit/010d88b13d42095d3a97a056f4ef0ad01663ab25))
+
 ## [3.4.3](https://github.com/bond-london/gatsby-graphcms-components/compare/v3.4.2...v3.4.3) (2022-07-12)
 
 
