@@ -1,3 +1,7 @@
+import {
+  GatsbyTransformedVideo,
+  getGatsbyVideo,
+} from "@bond-london/gatsby-transformer-video";
 import { IGatsbyImageData } from "gatsby-plugin-image";
 import { CSSProperties, useEffect, useState } from "react";
 
@@ -37,6 +41,9 @@ export interface ExtractedLottie {
 }
 
 interface File {
+  readonly childGatsbyVideo?: {
+    readonly transformed: Record<string, unknown>;
+  } | null;
   readonly childImageSharp?: ImageSharp | null;
   readonly publicURL?: string | null;
   readonly svg?: SvgInformation | null;
@@ -48,6 +55,7 @@ export type VerticalPosition = "Top" | "Middle" | "Bottom";
 export type HorizontalPosition = "Left" | "Middle" | "Right";
 
 export interface VisualAsset {
+  video?: GatsbyTransformedVideo;
   image?: IGatsbyImageData;
   videoUrl?: string;
   alt: string;
@@ -89,14 +97,26 @@ export function getAlt(
   return node?.alternateText || defaultValue;
 }
 
-export function getVideoFromFile(file?: File | null): string | undefined {
+export function getVideoUrlFromFile(file?: File | null): string | undefined {
   return file?.publicURL || undefined;
+}
+
+export function getVideoUrl(
+  node: GenericAsset | undefined | null
+): string | undefined {
+  if (!validateAssetHasFile(node)) return;
+  return getVideoUrlFromFile(node?.localFile);
+}
+
+export function getVideoFromFile(
+  file?: File | null
+): GatsbyTransformedVideo | undefined {
+  return getGatsbyVideo(file?.childGatsbyVideo?.transformed);
 }
 
 export function getVideo(
   node: GenericAsset | undefined | null
-): string | undefined {
-  if (!validateAssetHasFile(node)) return;
+): GatsbyTransformedVideo | undefined {
   return getVideoFromFile(node?.localFile);
 }
 
@@ -151,15 +171,17 @@ export function getVisual(
 
   const { dontCrop, verticalCropPosition, horizontalCropPosition } = asset;
   const image = getImage(asset);
+  const video = getVideo(asset);
   const alt = getAlt(asset, defaultAlt || "");
   const svg = getExtractedSvg(asset);
-  const possibleVideoUrl = getVideo(asset);
+  const possibleVideoUrl = getVideoUrl(asset);
   const animation = getLottie(asset);
-  if (!image && !svg && !possibleVideoUrl && !animation) {
+  if (!image && !svg && !possibleVideoUrl && !animation && !video) {
     return;
   }
 
-  const videoUrl = !image && !svg && !animation ? possibleVideoUrl : undefined;
+  const videoUrl =
+    !image && !svg && !animation && !video ? possibleVideoUrl : undefined;
   if (videoUrl) {
     const previewImage = videoUrl ? getImage(preview) : undefined;
     return {
@@ -175,6 +197,7 @@ export function getVisual(
 
   return {
     image,
+    video,
     alt,
     svg,
     animation,
@@ -199,14 +222,16 @@ export function getVisualFromFile(
 
   const alt = defaultAlt || "";
   const image = getImageFromFile(file);
+  const video = getVideoFromFile(file);
   const svg = getSvgFromFile(file);
-  const possibleVideoUrl = getVideoFromFile(file);
+  const possibleVideoUrl = getVideoUrlFromFile(file);
   const animation = getLottieFromFile(file);
-  if (!image && !svg && !possibleVideoUrl && !animation) {
+  if (!image && !svg && !possibleVideoUrl && !animation && !video) {
     return;
   }
 
-  const videoUrl = !image && !svg && !animation ? possibleVideoUrl : undefined;
+  const videoUrl =
+    !image && !svg && !animation && !video ? possibleVideoUrl : undefined;
   if (videoUrl) {
     return {
       alt,
@@ -220,6 +245,7 @@ export function getVisualFromFile(
 
   return {
     image,
+    video,
     alt,
     svg,
     videoUrl,

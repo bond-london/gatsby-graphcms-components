@@ -2,6 +2,7 @@ import React, { CSSProperties } from "react";
 import { AutoVideoOrThumbnail, SvgIcon } from ".";
 import { VisualAsset } from "..";
 import { calculateCropDetails } from "../utils";
+import { AutoGatsbyVideo } from "./AutoGatsbyVideo";
 
 export interface VisualComponentProps {
   className: string;
@@ -40,7 +41,7 @@ export const AutoVisualNoLottie: React.FC<Partial<AutoVisualProps>> = ({
 
   const { objectFit, objectPosition } = calculateCropDetails(visual, dontCrop);
 
-  const { image, svg, animation, videoUrl, alt, loop } = visual;
+  const { image, svg, animation, videoUrl, alt, loop, video } = visual;
   if (animation) {
     console.error("Lottie is not supported");
     return null;
@@ -60,6 +61,20 @@ export const AutoVisualNoLottie: React.FC<Partial<AutoVisualProps>> = ({
         visualStyle={visualStyle}
         threshold={threshold}
         delay={delay}
+      />
+    );
+  }
+
+  if (video) {
+    return (
+      <AutoGatsbyVideo
+        videoData={video}
+        loop={loop}
+        className={className}
+        objectFit={objectFit}
+        objectPosition={objectPosition}
+        fitParent={fitParent}
+        noStyle={noStyle}
       />
     );
   }

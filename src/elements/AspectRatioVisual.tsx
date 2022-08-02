@@ -1,8 +1,8 @@
 import React, { CSSProperties, PropsWithChildren } from "react";
 import { VisualAsset } from "../utils";
-import { AutoVisualWithLottie } from "./AutoVisualWithLottie";
+import { AutoVisual } from "./AutoVisual";
 
-export const AspectRatioVisualWithLottie: React.FC<
+export const AspectRatioVisual: React.FC<
   PropsWithChildren<{
     visual?: VisualAsset;
     className?: string;
@@ -26,7 +26,7 @@ export const AspectRatioVisualWithLottie: React.FC<
     <div style={{ position: "relative" }} className={className}>
       <div className={aspectRatioClassName}>
         {children}
-        <AutoVisualWithLottie
+        <AutoVisual
           visual={visual}
           fitParent={true}
           className={visualClassName}

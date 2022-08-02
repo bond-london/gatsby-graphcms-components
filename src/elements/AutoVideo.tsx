@@ -10,7 +10,7 @@ import React, {
 import { InternalVisualComponentProps } from ".";
 import { onVisibleToUser } from "../hooks/Visibility";
 
-function useStyles(props: Partial<InternalVisualComponentProps>) {
+export function useStyles(props: Partial<InternalVisualComponentProps>) {
   const { noStyle, objectFit, objectPosition, fitParent, style, visualStyle } =
     props;
   return useMemo(() => {

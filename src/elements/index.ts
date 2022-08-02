@@ -7,3 +7,6 @@ export * from "./SvgIcon";
 export * from "./RTF";
 export * from "./AutoVisualNoLottie";
 export * from "./AspectRatioVisualNoLottie";
+export * from "./AutoVisual";
+export * from "./AspectRatioVisual";
+export * from "./LottieElement";

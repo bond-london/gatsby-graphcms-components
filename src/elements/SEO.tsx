@@ -1,6 +1,5 @@
 import { getSrc, IGatsbyImageData } from "gatsby-plugin-image";
 import React, { useMemo } from "react";
-import { Helmet } from "react-helmet";
 
 export interface SiteBuildMetadata {
   readonly buildTime?: unknown | string | null;
@@ -27,7 +26,6 @@ interface Props {
   pageMetadata: Seo;
   pagePath: string;
   pageTitle: string;
-  className?: string;
   schemaOrgs?: unknown[];
   additionalSchemas?: unknown[];
 }
@@ -62,7 +60,6 @@ export const SEO: React.FC<Props> = ({
   pageMetadata,
   pagePath,
   pageTitle,
-  className,
   schemaOrgs,
   additionalSchemas,
 }) => {
@@ -102,7 +99,7 @@ export const SEO: React.FC<Props> = ({
   const pageUrl = siteUrl + pagePath;
 
   return (
-    <Helmet htmlAttributes={{ lang: "en" }}>
+    <>
       {pageMetadata.noIndex && (
         <meta name="robots" content="noindex, nofollow" />
       )}
@@ -130,7 +127,6 @@ export const SEO: React.FC<Props> = ({
       {imageUrl && <meta name="twitter:image" content={imageUrl} />}
 
       <script type="application/ld+json">{JSON.stringify(schemaOrg)}</script>
-      {className && <body className={className} />}
-    </Helmet>
+    </>
   );
 };

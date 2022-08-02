@@ -5,7 +5,7 @@ import { calculateCropDetails } from "../utils";
 import { AutoVisualNoLottie } from "./AutoVisualNoLottie";
 import { LottieElement } from "./LottieElement";
 
-export const AutoVisualWithLottie: React.FC<
+export const AutoVisual: React.FC<
   Partial<
     AutoVisualProps & {
       loopDelay?: number;
