@@ -1156,11 +1156,11 @@
     gatsby-worker "^1.19.0"
 
 "@bond-london/graphcms-rich-text@^1.2.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@bond-london/graphcms-rich-text/-/graphcms-rich-text-1.4.0.tgz#8e37119b0fd35f96dffe615ccbf5912c451739ea"
-  integrity sha512-Wbk8uHqIorEFjMlYZ+sqpgRCQyXfBsZJdmbmSWeQT0Zfw4sczvalGuxoR0IwcD5NFZsShDhh1NWR8aQ8CpWzxw==
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/@bond-london/graphcms-rich-text/-/graphcms-rich-text-1.4.1.tgz#b20e069840d1b1c50bc1448848767343b6de4d01"
+  integrity sha512-PSfI+HB7qgqnPxHuG/vqAYvj4j1lasLT+RuesrkK8nMJxrpTKY0XuUtBC+jYXaBfwhGU7qTHHUveOsH8R5rDkw==
   dependencies:
-    "@graphcms/rich-text-types" "^0.4.0"
+    "@graphcms/rich-text-types" "^0.5.0"
 
 "@builder.io/partytown@^0.5.2":
   version "0.5.4"
@@ -1412,10 +1412,10 @@
     html-entities "^2.3.3"
     strip-ansi "^6.0.0"
 
-"@graphcms/rich-text-types@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@graphcms/rich-text-types/-/rich-text-types-0.4.0.tgz#f032143270b28d0d2fe41d1f63bd6db7de4aa90f"
-  integrity sha512-eqvI/FrtHH9k+AYpKJ6ZMlc8eZmwidam8YlObDD9wBfEJhK2vnQ7ERU01IGiq/jzwVdEPeId/AhQREZUFVaApg==
+"@graphcms/rich-text-types@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@graphcms/rich-text-types/-/rich-text-types-0.5.0.tgz#9a8707de62d7c9e63b8912e269cf7cb912d13495"
+  integrity sha512-3oKVp2V1f9zYn9dYpLvePeu/8w8nQhZyv3FWm7yUtY/AlVXRwU3HJtIXvvdwAkmTuNANNhcDkBOzfkZaKJNADw==
   dependencies:
     tslib "^2.0.0"
 
