@@ -1,5 +1,7 @@
 
 
+## [4.1.2](https://github.com/bond-london/gatsby-graphcms-components/compare/v4.1.1...v4.1.2) (2022-08-08)
+
 ## [4.1.1](https://github.com/bond-london/gatsby-graphcms-components/compare/v4.0.2...v4.1.1) (2022-08-08)
 
 ## [4.0.2](https://github.com/bond-london/gatsby-graphcms-components/compare/v4.0.1...v4.0.2) (2022-08-02)
