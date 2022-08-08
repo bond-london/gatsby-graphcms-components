@@ -1,7 +1,7 @@
 {
   "name": "@bond-london/gatsby-graphcms-components",
   "sideEffects": false,
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "Components shared across various Bond London projects",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -73,7 +73,7 @@
     }
   },
   "dependencies": {
-    "@bond-london/gatsby-transformer-video": "^1.0.0",
+    "@bond-london/gatsby-transformer-video": "^1.1.4",
     "@bond-london/graphcms-rich-text": "^1.2.0"
   },
   "release-it": {

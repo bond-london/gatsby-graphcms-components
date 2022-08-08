@@ -1141,10 +1141,10 @@
     "@babel/helper-validator-identifier" "^7.18.6"
     to-fast-properties "^2.0.0"
 
-"@bond-london/gatsby-transformer-video@^1.0.0":
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/@bond-london/gatsby-transformer-video/-/gatsby-transformer-video-1.1.3.tgz#b56e8a77cc8f9a79196123e71324b620b0cb44e7"
-  integrity sha512-7O+tfIZPKYdoPxbRIY4vmhHHXl51JnmUo/WDOH3Xd65zi5n6ORUIR6IgJuN0oYYmXW/flJ0OSmww1zfPa2pq0w==
+"@bond-london/gatsby-transformer-video@^1.1.4":
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/@bond-london/gatsby-transformer-video/-/gatsby-transformer-video-1.1.4.tgz#8fc51a6b62f0f0a5faa3b9b4a8672d397c372e0f"
+  integrity sha512-tIkY4atuIvjsnUijnp+FDD9rPPihPxEC+SOIYFGrq86EsvWAsfr/SF5QHgiHnYgSmcAUAVRUOFrl4I7SkRcI9g==
   dependencies:
     "@azure/storage-blob" "^12.11.0"
     ffmpeg-static "^5.0.2"
