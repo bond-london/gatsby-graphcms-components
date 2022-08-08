@@ -1,3 +1,9 @@
+
+
+## [4.0.2](https://github.com/bond-london/gatsby-graphcms-components/compare/v4.0.1...v4.0.2) (2022-08-02)
+
+## [3.4.4](https://github.com/bond-london/gatsby-graphcms-components/compare/v4.0.1...v4.0.2) (2022-07-13)
+
 ## [4.0.1](https://github.com/bond-london/gatsby-graphcms-components/compare/v3.4.3...v4.0.1) (2022-08-02)
 
 ### Features
