@@ -45,6 +45,7 @@ interface File {
     readonly transformed: Record<string, unknown>;
   } | null;
   readonly childImageSharp?: ImageSharp | null;
+  readonly childGatsbySvg?: SvgInformation | null;
   readonly publicURL?: string | null;
   readonly svg?: SvgInformation | null;
   readonly childExtractedLottie?: ExtractedLottie | null;
@@ -143,7 +144,7 @@ export function getLottie(
 }
 
 export function getSvgFromFile(file?: File | null): SvgInformation | undefined {
-  return file?.svg || undefined;
+  return file?.svg || file?.childGatsbySvg || undefined;
 }
 
 export function getExtractedSvg(
