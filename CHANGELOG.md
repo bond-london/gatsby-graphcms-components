@@ -1,5 +1,12 @@
 
 
+## [4.1.3](https://github.com/bond-london/gatsby-graphcms-components/compare/v4.1.2...v4.1.3) (2022-09-14)
+
+
+### Bug Fixes
+
+* allow getVisualFromFile to use childGatsbySvg ([48bf884](https://github.com/bond-london/gatsby-graphcms-components/commit/48bf884427bd5b252e0a8a85fb9f08721ed17a73))
+
 ## [4.1.2](https://github.com/bond-london/gatsby-graphcms-components/compare/v4.1.1...v4.1.2) (2022-08-08)
 
 ## [4.1.1](https://github.com/bond-london/gatsby-graphcms-components/compare/v4.0.2...v4.1.1) (2022-08-08)
